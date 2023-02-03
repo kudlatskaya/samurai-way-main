@@ -8,26 +8,6 @@
                        "nav content";
 }
 
-.header {
-  grid-area: header;
-  background: gray;
-}
 
-.nav {
-  grid-area: nav;
-  background: red;
-}
 
-.nav a {
-  text-decoration: none;
-}
 
-.content {
-  grid-area: content;
-  background: green;
-}
-
-.content .img {
-  height: 5rem;
-  background: palevioletred;
-}

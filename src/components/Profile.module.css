@@ -1,0 +1,13 @@
+.content {
+    grid-area: content;
+    background: green;
+}
+
+.content .img {
+    height: 5rem;
+    background: palevioletred;
+}
+
+.item {
+    color: aqua;
+}
