@@ -1,0 +1,25 @@
+.content {
+    grid-area: content;
+    background: green;
+}
+
+.userInfo {
+    display: grid;
+    grid-template-columns: 3fr 6fr;
+    grid-template-areas: "avatar name";
+
+}
+
+.userAvatar {
+    grid-area: avatar;
+}
+
+.userName{
+    grid-area: name;
+}
+
+.content .img {
+    height: 5rem;
+    background: palevioletred;
+}
+

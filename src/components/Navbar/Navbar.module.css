@@ -4,11 +4,8 @@
     background: red;
 }
 
-.nav a {
+.item a {
     text-decoration: none;
-}
-
-.item{
     color: white;
 }
 
