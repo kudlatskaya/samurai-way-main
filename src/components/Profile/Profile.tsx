@@ -6,9 +6,8 @@ import ProfileInfo from "./ProfileInfo";
 const Profile = () => {
     return (
         <main>
-
-            <ProfileInfo />
-            <MyPosts />
+            <ProfileInfo/>
+            <MyPosts/>
         </main>
     );
 };

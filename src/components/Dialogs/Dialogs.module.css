@@ -11,6 +11,11 @@
     color: gold;
 }
 
+.link {
+    text-decoration: none;
+    color: white;
+}
+
 .dialog {
 
 }
