@@ -8,6 +8,10 @@
                        "nav content";
 }
 
+.app-wrapper-content {
+    grid-area: content;
+    background: green;
+}
 
 
 
