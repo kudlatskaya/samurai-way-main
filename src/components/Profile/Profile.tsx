@@ -2,12 +2,19 @@ import React from 'react';
 import s from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo";
+import {PostType} from "../../index";
 
-const Profile = () => {
+let ProfilePropsType = {
+    posts: PostType[],
+}
+
+const Profile = (props: ProfilePropsType) => {
+    const {posts} = props;
+
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts posts={posts}/>
         </main>
     );
 };
