@@ -2,7 +2,8 @@ import React from 'react';
 import s from "./MyPost.module.css"
 
 type MyPostPropsType = {
-    message: string
+    message: string,
+    likesCount: number,
 }
 
 const MyPost = (props:MyPostPropsType) => {
@@ -10,7 +11,7 @@ const MyPost = (props:MyPostPropsType) => {
         <div className={s.item}>post</div>
         <p>{props.message}</p>
         <div>
-            <span>Like</span>
+            <span>Like {props.likesCount}</span>
         </div>
     </>
 };

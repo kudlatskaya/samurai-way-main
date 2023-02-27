@@ -12,7 +12,7 @@ type MessagePropsType = {
 }
 
 const DialogItem = (props: DialogItemPropsType) => {
-    let { name, id } = props;
+    let {name, id} = props;
     let path = '/dialogs/' + id;
 
     return <>
@@ -27,22 +27,46 @@ const Message = (props: MessagePropsType) => {
     return <div className={s.message}>{message}</div>
 }
 
+type DialogType = {
+    id: number,
+    name: string,
+}
+
+type MessageType = {
+    id: number,
+    message: string,
+}
+
 const Dialogs = () => {
+
+    let dialogsData: DialogType[] = [
+        {id: 1, name: 'Dimych'},
+        {id: 2, name: 'Andrey'},
+        {id: 3, name: 'Sasha'},
+        {id: 4, name: 'Viktor'},
+        {id: 5, name: 'Masha'},
+        {id: 6, name: 'Valera'},
+    ]
+
+    let messagesData: MessageType[] = [
+        {id: 1, message: 'hi'},
+        {id: 2, message: 'hi hi'},
+        {id: 3, message: 'hi hi hi'},
+        {id: 4, message: 'hi hi hi hi'},
+    ]
+
+    let dialogsElements = dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} /> );
+
+    let messagesElements = messagesData.map(message => <Message message={message.message} /> );
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem name='Dimych' id={1}/>
-                <DialogItem name='Andrey' id={2}/>
-                <DialogItem name='Sasha' id={3}/>
-                <DialogItem name='Viktor' id={4}/>
-                <DialogItem name='Masha' id={5}/>
+                { dialogsElements }
             </div>
 
             <div className={s.messages}>
-                <Message message='hi'/>
-                <Message message='hi hi'/>
-                <Message message='hi hi hi'/>
-                <Message message='hi hi hi hi'/>
+                { messagesElements }
             </div>
         </div>
     );
