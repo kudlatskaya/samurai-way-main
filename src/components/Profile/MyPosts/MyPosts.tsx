@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import MyPost from "./Post/MyPost";
-import {PostType} from "../../../index";
+import {PostType} from "../../../redux/state";
 
 
 type MyPostsPropsType = {
