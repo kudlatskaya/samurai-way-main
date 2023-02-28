@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+
+export type MessageType = {
+    id: number,
+    message: string,
+}
+
 export type PostType = {
     id: number,
     message: string,
@@ -30,7 +36,14 @@ let dialogsData: DialogType[] = [
     {id: 6, name: 'Valera'},
 ]
 
+let messagesData: MessageType[] = [
+    {id: 1, message: 'hi'},
+    {id: 2, message: 'hi hi'},
+    {id: 3, message: 'hi hi hi'},
+    {id: 4, message: 'hi hi hi hi'},
+]
+
 ReactDOM.render(
-    <App posts={myPostsData} dialogs={dialogsData}/>,
-  document.getElementById('root')
+    <App posts={myPostsData} dialogs={dialogsData} messages={messagesData}/>,
+    document.getElementById('root')
 );
