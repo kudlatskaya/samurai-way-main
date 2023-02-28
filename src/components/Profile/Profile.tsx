@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo";
 import {PostType} from "../../index";
 
-let ProfilePropsType = {
+type ProfilePropsType = {
     posts: PostType[],
 }
 

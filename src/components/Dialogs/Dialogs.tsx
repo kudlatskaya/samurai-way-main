@@ -2,15 +2,10 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {PostType} from "../../index";
+import {DialogType, PostType} from "../../index";
 
 type DialogsPropsType = {
-    dialogs: PostType[],
-}
-
-type DialogType = {
-    id: number,
-    name: string,
+    dialogs: DialogType[],
 }
 
 type MessageType = {
@@ -21,15 +16,6 @@ type MessageType = {
 const Dialogs = (props: DialogsPropsType) => {
     const {dialogs} = props;
 
-    let dialogsData: DialogType[] = [
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Andrey'},
-        {id: 3, name: 'Sasha'},
-        {id: 4, name: 'Viktor'},
-        {id: 5, name: 'Masha'},
-        {id: 6, name: 'Valera'},
-    ]
-
     let messagesData: MessageType[] = [
         {id: 1, message: 'hi'},
         {id: 2, message: 'hi hi'},
@@ -37,7 +23,7 @@ const Dialogs = (props: DialogsPropsType) => {
         {id: 4, message: 'hi hi hi hi'},
     ]
 
-    let dialogsElements = dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} /> );
+    let dialogsElements = dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} /> );
 
     let messagesElements = messagesData.map(message => <Message message={message.message} /> );
 

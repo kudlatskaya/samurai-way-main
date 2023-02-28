@@ -9,6 +9,11 @@ export type PostType = {
     likesCount: number,
 }
 
+export type DialogType = {
+    id: number,
+    name: string,
+}
+
 let myPostsData: PostType[] = [
     {id: 1, message: 'Hi', likesCount: 12},
     {id: 2, message: 'By', likesCount: 1},
@@ -16,7 +21,16 @@ let myPostsData: PostType[] = [
     {id: 4, message: 'Good by', likesCount: 11},
 ]
 
+let dialogsData: DialogType[] = [
+    {id: 1, name: 'Dimych'},
+    {id: 2, name: 'Andrey'},
+    {id: 3, name: 'Sasha'},
+    {id: 4, name: 'Viktor'},
+    {id: 5, name: 'Masha'},
+    {id: 6, name: 'Valera'},
+]
+
 ReactDOM.render(
-    <App posts={myPostsData}/>,
+    <App posts={myPostsData} dialogs={dialogsData}/>,
   document.getElementById('root')
 );
