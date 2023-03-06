@@ -17,8 +17,11 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let onClickAddPostHandler = () => {
-        let text = newPostElement.current.value;
-        addPost(text);
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            addPost(text);
+            newPostElement.current.value = '';
+        }
     }
 
     return (<>
