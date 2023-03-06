@@ -9,11 +9,13 @@ import {StateType} from "./redux/state";
 
 type AppPropsType = {
     state: StateType,
+    addPost: (postMessage: string) => void,
 }
 
 const App = (props: AppPropsType) => {
     const {
-        state: { profilePage, dialogsPage }
+        state: { profilePage, dialogsPage },
+        addPost,
     } = props;
 
     return (
@@ -25,7 +27,7 @@ const App = (props: AppPropsType) => {
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
                     {/*<Route path='/profile' component={Profile}/>*/}
                     <Route path='/dialogs' render={ () => <Dialogs state={dialogsPage}/> }/>
-                    <Route path='/profile' render={ () => <Profile state={profilePage}/> }/>
+                    <Route path='/profile' render={ () => <Profile state={profilePage} addPost={addPost}/> }/>
                 </div>
             </div>
         </BrowserRouter>

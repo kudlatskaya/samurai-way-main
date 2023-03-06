@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import s from "./MyPosts.module.css";
 import MyPost from "./Post/MyPost";
 import {PostType} from "../../../redux/state";
@@ -6,17 +6,19 @@ import {PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts: PostType[],
+    addPost: (postMessage: string) => void,
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-    const {posts} = props;
+    const { posts, addPost } = props;
 
     let myPostElements = posts.map(post => <MyPost message={post.message} likesCount={post.likesCount}/>);
 
-    let newPostElement = React.createRef();
+    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
-    let addPost = () => {
+    let onClickAddPostHandler = () => {
         let text = newPostElement.current.value;
+        addPost(text);
     }
 
     return (<>
@@ -24,7 +26,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             <div>
                 <p>New post</p>
                 <textarea ref={newPostElement}></textarea>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onClickAddPostHandler}>Add post</button>
             </div>
             <div className={s.posts}>
                 {myPostElements}

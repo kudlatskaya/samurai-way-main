@@ -8,17 +8,19 @@ type ProfilePropsType = {
     state: {
         posts: PostType[],
     },
+    addPost: (postMessage: string) => void,
 }
 
 const Profile = (props: ProfilePropsType) => {
     const {
-        state: { posts }
+        state: { posts },
+        addPost,
     } = props;
 
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts posts={posts}/>
+            <MyPosts posts={posts} addPost={addPost}/>
         </main>
     );
 };
