@@ -8,15 +8,15 @@ type MyPostsPropsType = {
     posts: PostType[],
     addPost: () => void,
     newPostText: string,
-    updateNewPostText: (newText?: string) => void,
+    updateNewPostText: (newText: string) => void,
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
     const { posts, addPost, newPostText, updateNewPostText } = props;
 
-    let myPostElements = posts.map(post => <MyPost message={post.message} likesCount={post.likesCount}/>);
+    let myPostElements = posts.map(post => <MyPost key={post.id} message={post.message} likesCount={post.likesCount}/>);
 
-    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let onClickAddPostHandler = () => {
             addPost();
@@ -24,7 +24,7 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     const onChangePost = () => {
         let text = newPostElement.current?.value;
-        updateNewPostText(text);
+        text && updateNewPostText(text);
     }
 
     return (<>

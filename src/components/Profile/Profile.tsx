@@ -10,7 +10,7 @@ type ProfilePropsType = {
         newPostText: string,
     },
     addPost: () => void,
-    updateNewPostText: (newText?: string) => void,
+    updateNewPostText: (newText: string) => void,
 }
 
 const Profile = (props: ProfilePropsType) => {
