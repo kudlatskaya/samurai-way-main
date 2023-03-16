@@ -7,10 +7,11 @@ import {PostType} from "../../../redux/state";
 type MyPostsPropsType = {
     posts: PostType[],
     addPost: (postMessage: string) => void,
+    newPostText: string,
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-    const { posts, addPost } = props;
+    const { posts, addPost, newPostText } = props;
 
     let myPostElements = posts.map(post => <MyPost message={post.message} likesCount={post.likesCount}/>);
 
@@ -24,11 +25,15 @@ const MyPosts = (props: MyPostsPropsType) => {
         }
     }
 
+    const onChangePost = () => {
+
+    }
+
     return (<>
             <p>My posts</p>
             <div>
                 <p>New post</p>
-                <textarea ref={newPostElement}></textarea>
+                <textarea ref={newPostElement} onChange={onChangePost} value={newPostText}/>
                 <button onClick={onClickAddPostHandler}>Add post</button>
             </div>
             <div className={s.posts}>

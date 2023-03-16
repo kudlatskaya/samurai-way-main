@@ -19,11 +19,13 @@ export type DialogType = {
 export type StateType = {
     profilePage: {
         posts: PostType[],
+        newPostText: string,
     },
     dialogsPage: {
         dialogs: DialogType[],
         messages: MessageType[],
-    }
+    },
+    sidebar: [],
 }
 
 let state: StateType = {
@@ -34,6 +36,7 @@ let state: StateType = {
             {id: 3, message: 'Hello', likesCount: 10},
             {id: 4, message: 'Good by', likesCount: 11},
         ],
+        newPostText: 'it-kamasutra.com',
     },
     dialogsPage: {
         dialogs: [
@@ -50,7 +53,8 @@ let state: StateType = {
             {id: 3, message: 'hi hi hi'},
             {id: 4, message: 'hi hi hi hi'},
         ],
-    }
+    },
+    sidebar: [],
 }
 export let addPost = (postMessage: string) => {
     let newPost: PostType = {
