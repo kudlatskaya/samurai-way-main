@@ -9,19 +9,24 @@ type ProfilePropsType = {
         posts: PostType[],
         newPostText: string,
     },
-    addPost: (postMessage: string) => void,
+    addPost: () => void,
+    updateNewPostText: (newText?: string) => void,
 }
 
 const Profile = (props: ProfilePropsType) => {
     const {
         profilePage: { posts, newPostText },
         addPost,
+        updateNewPostText,
     } = props;
 
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts posts={posts} newPostText={newPostText} addPost={addPost}/>
+            <MyPosts posts={posts}
+                     newPostText={newPostText}
+                     addPost={addPost}
+                     updateNewPostText={updateNewPostText}/>
         </main>
     );
 };

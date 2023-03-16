@@ -36,7 +36,7 @@ let state: StateType = {
             {id: 3, message: 'Hello', likesCount: 10},
             {id: 4, message: 'Good by', likesCount: 11},
         ],
-        newPostText: 'it-kamasutra.com',
+        newPostText: 'it-kamasutra.c',
     },
     dialogsPage: {
         dialogs: [
@@ -56,14 +56,21 @@ let state: StateType = {
     },
     sidebar: [],
 }
-export let addPost = (postMessage: string) => {
+
+export let addPost = () => {
     let newPost: PostType = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
     }
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    renderEntireTree(state);
+}
+
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
     renderEntireTree(state);
 }
 

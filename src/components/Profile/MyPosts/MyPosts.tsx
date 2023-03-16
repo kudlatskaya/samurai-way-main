@@ -6,27 +6,25 @@ import {PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts: PostType[],
-    addPost: (postMessage: string) => void,
+    addPost: () => void,
     newPostText: string,
+    updateNewPostText: (newText?: string) => void,
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-    const { posts, addPost, newPostText } = props;
+    const { posts, addPost, newPostText, updateNewPostText } = props;
 
     let myPostElements = posts.map(post => <MyPost message={post.message} likesCount={post.likesCount}/>);
 
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     let onClickAddPostHandler = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            addPost(text);
-            newPostElement.current.value = '';
-        }
+            addPost();
     }
 
     const onChangePost = () => {
-
+        let text = newPostElement.current?.value;
+        updateNewPostText(text);
     }
 
     return (<>
