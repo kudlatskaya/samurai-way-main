@@ -31,7 +31,7 @@ export type StoreType = {
     getState: () => StateType,
     addPost: () => void,
     updateNewPostText: (newText: string) => void,
-    _rerenderEntireTree: (state: StateType) => void,
+    _callSubscriber: (state: StateType) => void,
     subscribe: (observer: (state: StateType) => void) => void,
 }
 
@@ -78,18 +78,18 @@ let store: StoreType = {
 
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
-        this._rerenderEntireTree(this._state);
+        this._callSubscriber(this._state);
     },
 
     updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
-        this._rerenderEntireTree(this._state);
+        this._callSubscriber(this._state);
     },
 
-    _rerenderEntireTree() {},
+    _callSubscriber() {},
 
     subscribe(observer) {
-        this._rerenderEntireTree = observer;
+        this._callSubscriber = observer;
     },
 }
 
