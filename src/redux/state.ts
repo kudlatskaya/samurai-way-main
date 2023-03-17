@@ -26,13 +26,19 @@ export type StateType = {
     sidebar: [],
 }
 
+export type ActionType = {
+    type: string,
+    newText?: string,
+}
+
 export type StoreType = {
     _state: StateType,
     getState: () => StateType,
-    addPost: () => void,
-    updateNewPostText: (newText: string) => void,
+    _addPost: () => void,
+    _updateNewPostText: (newText: string) => void,
     _callSubscriber: (state: StateType) => void,
     subscribe: (observer: (state: StateType) => void) => void,
+    dispatch: (action: ActionType) => void,
 }
 
 let store: StoreType = {
@@ -65,11 +71,17 @@ let store: StoreType = {
         sidebar: [],
     },
 
+    _callSubscriber() {},
+
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
     getState() {
         return this._state;
     },
 
-    addPost() {
+    _addPost() {
         const newPost: PostType = {
             id: 5,
             message: this._state.profilePage.newPostText,
@@ -81,16 +93,20 @@ let store: StoreType = {
         this._callSubscriber(this._state);
     },
 
-    updateNewPostText(newText: string) {
+    _updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
 
-    _callSubscriber() {},
+    dispatch(action) {
+        if(action.type === 'ADD-POST') {
+            this._addPost();
+        }
+        else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+            action.newText && this._updateNewPostText(action.newText);
+        }
 
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    },
+    }
 }
 
 
