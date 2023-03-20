@@ -13,21 +13,31 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
     const {
-        state: { dialogs, messages }
+        state: {dialogs, messages}
     } = props;
 
-    let dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} /> );
+    let dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
 
-    let messagesElements = messages.map(message => <Message key={message.id} message={message.message} /> );
+    let messagesElements = messages.map(message => <Message key={message.id} message={message.message}/>);
+
+    const onSendMessageClick = () => {
+        
+    }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                { dialogsElements }
+                {dialogsElements}
             </div>
 
             <div className={s.messages}>
-                { messagesElements }
+                <div> {messagesElements} </div>
+                <div>
+                    <div><textarea placeholder={'Enter your message'}></textarea></div>
+                    <div>
+                        <button onClick={ () => {alert('ku')} }>send</button>
+                    </div>
+                </div>
             </div>
         </div>
     );

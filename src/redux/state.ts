@@ -1,6 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+
 export type MessageType = {
     id: number,
     message: string,
@@ -25,6 +28,7 @@ export type StateType = {
     dialogsPage: {
         dialogs: DialogType[],
         messages: MessageType[],
+        newMessageBody: string,
     },
     sidebar: [],
 }
@@ -38,7 +42,9 @@ export type StoreType = {
     _state: StateType,
     getState: () => StateType,
     _addPost: () => void,
+    _addMessage: () => void,
     _updateNewPostText: (newText: string) => void,
+    _updateNewMessageBody: (newMessageBody: string) => void,
     _callSubscriber: (state: StateType) => void,
     subscribe: (observer: (state: StateType) => void) => void,
     dispatch: (action: ActionType) => void,
@@ -70,6 +76,7 @@ let store: StoreType = {
                 {id: 3, message: 'hi hi hi'},
                 {id: 4, message: 'hi hi hi hi'},
             ],
+            newMessageBody: '',
         },
         sidebar: [],
     },
@@ -96,8 +103,24 @@ let store: StoreType = {
         this._callSubscriber(this._state);
     },
 
+    _addMessage() {
+        const newMessage: MessageType = {
+            id: 5,
+            message: this._state.dialogsPage.newMessageBody,
+        }
+
+        this._state.dialogsPage.messages.push(newMessage)
+        this._state.dialogsPage.newMessageBody = '';
+        this._callSubscriber(this._state);
+    },
+
     _updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state);
+    },
+
+    _updateNewMessageBody(newMessageBody: string) {
+        this._state.dialogsPage.newMessageBody = newMessageBody;
         this._callSubscriber(this._state);
     },
 
@@ -108,7 +131,12 @@ let store: StoreType = {
         else if(action.type === UPDATE_NEW_POST_TEXT) {
             action.newText && this._updateNewPostText(action.newText);
         }
-
+        else if(action.type === UPDATE_NEW_MESSAGE_BODY) {
+            action.newText && this._updateNewMessageBody(action.newText);
+        }
+        else if(action.type === SEND_MESSAGE) {
+            this._addMessage();
+        }
     }
 }
 
@@ -116,6 +144,11 @@ export const addPostActionCreator = (): ActionType => ({ type: ADD_POST, })
 
 export const updateNewPostTextActionCreator = (text: string): ActionType =>
     ({ type: UPDATE_NEW_POST_TEXT, newText: text, })
+
+export const sendMessageActionCreator = (): ActionType => ({ type: SEND_MESSAGE, })
+
+export const updateNewMessageBodyActionCreator = (text: string): ActionType =>
+    ({ type: UPDATE_NEW_MESSAGE_BODY, newText: text, })
 
 
 export default store;
