@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export type MessageType = {
     id: number,
     message: string,
@@ -99,15 +102,27 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-        if(action.type === 'ADD-POST') {
+        if(action.type === ADD_POST) {
             this._addPost();
         }
-        else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+        else if(action.type === UPDATE_NEW_POST_TEXT) {
             action.newText && this._updateNewPostText(action.newText);
         }
 
     }
 }
 
+export const addPostActionCreator = (): ActionType => {
+    return {
+        type: ADD_POST,
+    }
+}
+
+export const updateNewPostTextActionCreator = (text: string): ActionType => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text,
+    }
+}
 
 export default store;
