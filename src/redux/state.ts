@@ -33,7 +33,7 @@ export type StateType = {
         messages: MessageType[],
         newMessageBody: string,
     },
-    sidebar: [],
+    sidebar: {},
 }
 
 export type ActionType = {
@@ -77,7 +77,7 @@ let store: StoreType = {
             ],
             newMessageBody: '',
         },
-        sidebar: [],
+        sidebar: {},
     },
 
     _callSubscriber() {},
