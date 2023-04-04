@@ -6,6 +6,7 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {StateType, ActionType} from "./redux/state";
+import {ReduxStateType} from "./redux/redux-store";
 
 type AppPropsType = {
     state: StateType,

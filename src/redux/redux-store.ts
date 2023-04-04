@@ -11,4 +11,6 @@ let reducers =  combineReducers({
 
 let store = createStore(reducers);
 
+export type ReduxStateType = ReturnType<typeof store.getState>;
+
 export default store;
