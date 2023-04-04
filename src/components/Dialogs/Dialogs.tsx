@@ -14,23 +14,26 @@ type DialogsPropsType = {
     dispatch: (action: ActionType) => void,
 }
 
-const Dialogs = (props: DialogsPropsType) => {
-    const {
-        state: {dialogs, messages, newMessageBody},
-        dispatch,
-    } = props;
+const Dialogs = (props: any) => {
+    // const {
+    //     state: {dialogs, messages, newMessageBody},
+    //     dispatch,
+    // } = props;
 
-    let dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
+    let state = props.dialogsPage;
 
-    let messagesElements = messages.map(message => <Message key={message.id} message={message.message}/>);
+    let dialogsElements = state.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
+
+    let messagesElements = state.messages.map(message => <Message key={message.id} message={message.message}/>);
 
     const onSendMessageClick = () => {
-        dispatch(sendMessageActionCreator());
+       props.sendMessage();
     }
 
     const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
-        dispatch(updateNewMessageBodyActionCreator(text));
+        props.updateNewMessageBody(text);
+        // dispatch(updateNewMessageBodyActionCreator(text));
     }
 
     return (

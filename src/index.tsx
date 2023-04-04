@@ -9,7 +9,8 @@ import {StateType} from "./redux/state"
 export let renderEntireTree = (state: ReduxStateType) => {
 
     ReactDOM.render(
-        <App state={store.getState()} dispatch={store.dispatch.bind(store)} />,
+        // <App state={store.getState()} dispatch={store.dispatch.bind(store)} />,
+        <App store={store}/>,
         document.getElementById('root')
     );
 }

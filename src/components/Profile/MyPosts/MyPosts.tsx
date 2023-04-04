@@ -8,21 +8,18 @@ import {ActionType, PostType} from "../../../redux/state";
 type MyPostsPropsType = {
     updateNewPostText: (text: string) => void,
     addPost: () => void,
-    // posts: PostType[],
-    // newPostText: string,
+    posts: PostType[],
+    newPostText: string,
     // dispatch: (action: ActionType) => void,
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-    const { updateNewPostText, addPost } = props;
+    const { updateNewPostText, addPost, posts, newPostText } = props;
 
     let myPostElements = posts.map(post => <MyPost key={post.id} message={post.message} likesCount={post.likesCount}/>);
 
-    // let newPostElement = React.createRef<HTMLTextAreaElement>();
-
     let onClickAddPostHandler = () => {
         addPost();
-
     }
 
     const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
