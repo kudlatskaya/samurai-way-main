@@ -13,7 +13,7 @@ let initialState = {
         newPostText: 'it-kamasutra.c',
     }
 
-const profileReducer = (state = initialState, action: {type: string, newText: string,}) => {
+const profileReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = {

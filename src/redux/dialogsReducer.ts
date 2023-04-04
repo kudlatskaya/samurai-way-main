@@ -21,7 +21,7 @@ let initialState = {
     newMessageBody: '',
 }
 
-const dialogsReducer = (state = initialState, action: {type: string, newText: string,}) => {
+const dialogsReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.newText;

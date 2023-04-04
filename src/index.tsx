@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store  from "./redux/redux-store";
+import store  from "./redux/state";
 import {StateType} from "./redux/state"
 
 export let renderEntireTree = (state: StateType) => {
@@ -12,9 +12,8 @@ export let renderEntireTree = (state: StateType) => {
     );
 }
 
-console.log(store)
-
 renderEntireTree(store.getState());
+
 store.subscribe(() => {
     let state = store.getState();
     renderEntireTree(state);
