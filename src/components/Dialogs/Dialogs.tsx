@@ -1,39 +1,37 @@
-import React, {ChangeEvent} from 'react';
+import {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from '../../redux/dialogsReducer';
-import {ActionType, DialogType, MessageType } from "../../redux/state";
+import {DialogType, MessageType} from "../../redux/state";
 
 type DialogsPropsType = {
-    state: {
+    dialogsPage: {
         dialogs: DialogType[],
         messages: MessageType[],
         newMessageBody: string,
     },
-    dispatch: (action: ActionType) => void,
+    sendMessage: () => void,
+    updateNewMessageBody: (text: string) => void,
 }
 
-const Dialogs = (props: any) => {
-    // const {
-    //     state: {dialogs, messages, newMessageBody},
-    //     dispatch,
-    // } = props;
+const Dialogs = (props: DialogsPropsType) => {
+    const {
+        dialogsPage: {dialogs, messages, newMessageBody},
+        sendMessage,
+        updateNewMessageBody,
+    } = props;
 
-    let state = props.dialogsPage;
+    let dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
 
-    let dialogsElements = state.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
-
-    let messagesElements = state.messages.map(message => <Message key={message.id} message={message.message}/>);
+    let messagesElements = messages.map(message => <Message key={message.id} message={message.message}/>);
 
     const onSendMessageClick = () => {
-       props.sendMessage();
+        sendMessage();
     }
 
-    const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
-        props.updateNewMessageBody(text);
-        // dispatch(updateNewMessageBodyActionCreator(text));
+        updateNewMessageBody(text);
     }
 
     return (

@@ -49,6 +49,8 @@ export type StoreType = {
     dispatch: (action: ActionType) => void,
 }
 
+export type DispatchType = (action: ActionType) => void
+
 let store: StoreType = {
     _state: {
         profilePage: {
