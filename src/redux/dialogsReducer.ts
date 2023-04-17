@@ -1,4 +1,4 @@
-import {DialogType, MessageType} from "./types";
+import {DialogType, MessageType} from "../components/Dialogs/DialogsContainer";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';

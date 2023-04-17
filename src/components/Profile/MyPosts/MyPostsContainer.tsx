@@ -2,8 +2,13 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../red
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {PostType} from "../../../redux/types";
 import {Dispatch} from "redux";
+
+export type PostType = {
+    id: number,
+    message: string,
+    likesCount: number,
+}
 
 type MapStateToProps = {
     posts: PostType[],

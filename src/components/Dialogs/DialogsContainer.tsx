@@ -3,7 +3,16 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {DialogType, MessageType} from "../../redux/types";
+
+export type DialogType = {
+    id: number,
+    name: string,
+}
+
+export type MessageType = {
+    id: number,
+    message: string,
+}
 
 type DialogsPageType = {
     dialogs: DialogType[],
