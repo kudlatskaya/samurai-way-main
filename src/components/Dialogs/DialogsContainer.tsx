@@ -1,14 +1,25 @@
-import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from '../../redux/dialogsReducer';
+import {sendMessageActionCreator, updateNewMessageBodyActionCreator, StateType} from '../../redux/dialogsReducer';
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
-const mapStateToProps = (state) => {
+type MapStateToPropsType = {
+    dialogsPage: StateType
+}
+
+type MapDispatchToPropsType = {
+    updateNewMessageBody: (text: string) => void,
+    sendMessage: () => void
+}
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        dialogsPage: state.dialogsPage,
+        dialogsPage: state.dialogsReducer,
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         updateNewMessageBody: (text: string) => {
             dispatch(updateNewMessageBodyActionCreator(text))

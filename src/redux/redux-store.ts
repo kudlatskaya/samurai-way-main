@@ -3,15 +3,15 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sidebarReducer from "./sidebarReducer";
 
-let reducers =  combineReducers({
+let rootReducer =  combineReducers({
     profileReducer,
     dialogsReducer,
     sidebarReducer,
 });
 
-//legacy_createStore
-// let store = createStore(reducers);
-let store = legacy_createStore(reducers);
+export type AppStateType = ReturnType<typeof rootReducer>
+
+let store = legacy_createStore(rootReducer);
 
 
 export type StoreType = typeof store;

@@ -2,12 +2,15 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../red
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
+
+
 const mapStateToProps = (state) => {
     return {
         posts: state.profileReducer.posts,
         newPostText: state.profileReducer.newPostText,
     }
 }
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
