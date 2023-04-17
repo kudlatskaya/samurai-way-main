@@ -1,15 +1,9 @@
-import {DialogType, MessageType} from "./state";
+import {DialogType, MessageType} from "./types";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-export type StateType = {
-    dialogs: DialogType[],
-    messages: MessageType[],
-    newMessageBody: string,
-}
-
-let initialState: StateType = {
+let initialState = {
     dialogs: [
         {id: 1, name: 'Dimych'},
         {id: 2, name: 'Andrey'},
@@ -17,19 +11,21 @@ let initialState: StateType = {
         {id: 4, name: 'Viktor'},
         {id: 5, name: 'Masha'},
         {id: 6, name: 'Valera'},
-    ],
+    ] as DialogType[],
     messages: [
         {id: 1, message: 'hi'},
         {id: 2, message: 'hi hi'},
         {id: 3, message: 'hi hi hi'},
         {id: 4, message: 'hi hi hi hi'},
-    ],
+    ] as MessageType[],
     newMessageBody: '',
 }
 
+type StateType = typeof initialState
+
 type ActionType = SendMessageActionCreatorType | UpdateNewMessageBodyActionCreatorType
 
-const dialogsReducer = (state = initialState, action: ActionType): StateType => {
+const dialogsReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.newText;

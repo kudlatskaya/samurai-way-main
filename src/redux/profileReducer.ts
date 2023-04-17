@@ -1,20 +1,25 @@
-import {ActionType, PostType} from "./state";
+import {PostType} from "./types";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-let initialState = {
-        posts: [
-            {id: 1, message: 'Hi', likesCount: 12},
-            {id: 2, message: 'By', likesCount: 1},
-            {id: 3, message: 'Hello', likesCount: 10},
-            {id: 4, message: 'Good by', likesCount: 11},
-        ],
-        newPostText: 'it-kamasutra.c',
-    }
+type ActionType = AddPostActionCreatorType | UpdateNewPostTextActionCreatorType
 
-const profileReducer = (state = initialState, action: any) => {
+let initialState = {
+    posts: [
+        {id: 1, message: 'Hi', likesCount: 12},
+        {id: 2, message: 'By', likesCount: 1},
+        {id: 3, message: 'Hello', likesCount: 10},
+        {id: 4, message: 'Good by', likesCount: 11},
+    ] as PostType[],
+    newPostText: '',
+}
+
+type StateType = typeof initialState
+
+const profileReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
+
         case ADD_POST:
             const newPost: PostType = {
                 id: 5,
@@ -35,11 +40,14 @@ const profileReducer = (state = initialState, action: any) => {
     }
 }
 
+type AddPostActionCreatorType = ReturnType<typeof addPostActionCreator>
 
-export const addPostActionCreator = (): ActionType => ({ type: ADD_POST, })
+export const addPostActionCreator = () => ({type: ADD_POST} as const)
 
-export const updateNewPostTextActionCreator = (text: string): ActionType =>
-    ({ type: UPDATE_NEW_POST_TEXT, newText: text, })
+type UpdateNewPostTextActionCreatorType = ReturnType<typeof updateNewPostTextActionCreator>
+
+export const updateNewPostTextActionCreator = (text: string) =>
+    ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
 
 export default profileReducer;
 
