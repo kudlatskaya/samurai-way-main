@@ -29,8 +29,8 @@ const MyPostsContainer = () => {
 
                 return <MyPosts updateNewPostText={onChangePost}
                                 addPost={onClickAddPostHandler}
-                                posts={state.profilePage.posts}
-                                newPostText={state.profilePage.newPostText}/>
+                                posts={state.profileReducer.posts}
+                                newPostText={state.profileReducer.newPostText}/>
             }
         }
     </StoreContext.Consumer>

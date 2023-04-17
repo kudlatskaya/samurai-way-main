@@ -1,7 +1,5 @@
 import React from "react";
-import {StoreType} from "./redux/state";
-// import store from "./redux/redux-store";
-import App from "./App";
+import {StoreType} from "./redux/redux-store";
 
 const StoreContext = React.createContext({} as StoreType);
 
@@ -11,11 +9,10 @@ export type ProviderPropsType = {
 }
 
 export const Provider = (props: ProviderPropsType) => {
-    return (
-        <StoreContext.Provider value={props.store} >
-            {props.children}
-            < /StoreContext.Provider>
-    )
+    return <StoreContext.Provider value={props.store}>
+        {props.children}
+    </StoreContext.Provider>
+
 }
 
 export default StoreContext;
