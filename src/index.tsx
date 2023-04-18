@@ -6,13 +6,13 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "./StoreContext";
 
 
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </BrowserRouter>,
-        document.getElementById('root')
-    );
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+);
 
-serviceWorker.unregister();
+// serviceWorker.unregister();

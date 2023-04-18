@@ -26,10 +26,15 @@ type StateType = typeof initialState
 type ActionType = SendMessageActionCreatorType | UpdateNewMessageBodyActionCreatorType
 
 const dialogsReducer = (state: StateType = initialState, action: ActionType): StateType => {
+    let _state;
+
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.newText;
-            return state;
+
+            return {
+                ...state,
+                newMessageBody: action.newText
+            };
 
         case SEND_MESSAGE:
             const newMessage: MessageType = {
@@ -37,9 +42,11 @@ const dialogsReducer = (state: StateType = initialState, action: ActionType): St
                 message: state.newMessageBody,
             }
 
-            state.messages.push(newMessage)
-            state.newMessageBody = '';
-            return state;
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, newMessage]
+            };
 
         default:
             return state;
