@@ -11,13 +11,13 @@ type UsersPropsType = {
 const Users = (props: UsersPropsType) => {
     const {users, follow, unfollow, setUsers} = props;
 
-    if(users.length === 0) {
-        setUsers([
-            {id: 1, src: images[0], followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
-            {id: 2, src: images[1], followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
-            {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
-        ])
-    }
+    // if(users.length === 0) {
+    //     setUsers([
+    //         {id: 1, src: images[0], followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
+    //         {id: 2, src: images[1], followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
+    //         {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
+    //     ])
+    // }
 
 
     return (
@@ -31,8 +31,8 @@ const Users = (props: UsersPropsType) => {
                         <div>
                             {
                                 item.followed
-                                    ? <button onClick={() => { follow(item.id)}}>Unfollow</button>
-                                    : <button onClick={() => { unfollow(item.id)}}>Follow</button>
+                                    ? <button onClick={() => { unfollow(item.id)}}>Unfollow</button>
+                                    : <button onClick={() => { follow(item.id)}}>Follow</button>
                             }
 
                         </div>
