@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 
 export type UserType = {
     id: number,
+    src: string,
     followed: boolean,
     fullName: string,
     status: string,
@@ -13,11 +14,17 @@ export type UserType = {
     }
 }
 
+export const images = [
+    'https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg',
+    'https://gamebomb.ru/files/galleries/001/b/b2/413053.jpg',
+    'https://www.soyuz.ru/public/uploads/files/2/7615287/20221219115607f2986eae3a.jpg',
+]
+
 const initialState = {
     users: [
-        {id: 1, followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
-        {id: 2, followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
-        {id: 3, followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
+        {id: 1, src: images[0], followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
+        {id: 2, src: images[1], followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
+        {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
     ] as UserType[]
 }
 
