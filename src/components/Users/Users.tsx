@@ -1,5 +1,7 @@
 import {images, UserType} from "../../redux/usersReducer";
-import styles from './users.module.css'
+import s from './users.module.css'
+import axios from "axios";
+import avatar from '../../asets/images/avatar.jpg';
 
 type UsersPropsType = {
     users: UserType[],
@@ -11,14 +13,11 @@ type UsersPropsType = {
 const Users = (props: UsersPropsType) => {
     const {users, follow, unfollow, setUsers} = props;
 
-    // if(users.length === 0) {
-    //     setUsers([
-    //         {id: 1, src: images[0], followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
-    //         {id: 2, src: images[1], followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
-    //         {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
-    //     ])
-    // }
-
+    if(users.length === 0) {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            setUsers(response.data.items);
+        })
+    }
 
     return (
         <div>
@@ -26,7 +25,7 @@ const Users = (props: UsersPropsType) => {
                 users.map(item => <div key={item.id}>
                     <span>
                         <div>
-                            <img src={item.src} className={styles.userPhoto}/>
+                            <img src={item.src && avatar} className={s.userPhoto}/>
                         </div>
                         <div>
                             {

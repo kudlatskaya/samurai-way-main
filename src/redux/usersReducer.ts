@@ -3,37 +3,39 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
 export type UserType = {
+    name: string,
     id: number,
-    src: string,
-    followed: boolean,
-    fullName: string,
+    uniqueUrlName: string,
+    photos: {
+        small: string,
+        large: string,
+    },
     status: string,
-    location: {
-        city: string,
-        country: string,
-    }
+    followed: boolean,
 }
 
-export const images = [
-    'https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg',
-    'https://gamebomb.ru/files/galleries/001/b/b2/413053.jpg',
-    'https://www.soyuz.ru/public/uploads/files/2/7615287/20221219115607f2986eae3a.jpg',
-]
-
-const initialState = {
-    users: [
-        {id: 1, src: images[0], followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
-        {id: 2, src: images[1], followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
-        {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
-    ] as UserType[]
+// export const images = [
+//     'https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg',
+//     'https://gamebomb.ru/files/galleries/001/b/b2/413053.jpg',
+//     'https://www.soyuz.ru/public/uploads/files/2/7615287/20221219115607f2986eae3a.jpg',
+// ]
+//
+// const initialState = {
+//     users: [
+//         {id: 1, src: images[0], followed: false, fullName: 'Masha', status: 'I am online', location: {city: 'Minsk', country: 'Belarus'}},
+//         {id: 2, src: images[1], followed: false, fullName: 'Dasha', status: 'I am here', location: {city: 'Brest', country: 'Belarus'}},
+//         {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
+//     ] as UserType[]
+// }
+type UsersType = UserType[]
+type StateType = {
+    items: UsersType
 }
 
-type StateType = typeof initialState
-type UsersType = typeof initialState.users
 
 type ActionType = FollowACType | UnfollowACType | SetUsersACType
 
-const usersReducer = (state: StateType = initialState, action: ActionType) => {
+const usersReducer = (state: StateType, action: ActionType) => {
     switch (action.type) {
         case "FOLLOW":
             return {
