@@ -1,4 +1,4 @@
-import {images, UserType} from "../../redux/usersReducer";
+import {UserType} from "../../redux/usersReducer";
 import s from './users.module.css'
 import axios from "axios";
 import avatar from '../../asets/images/avatar.jpg';
@@ -25,7 +25,7 @@ const Users = (props: UsersPropsType) => {
                 users.map(item => <div key={item.id}>
                     <span>
                         <div>
-                            <img src={item.src && avatar} className={s.userPhoto}/>
+                            <img src={item.photos.small && avatar} className={s.userPhoto}/>
                         </div>
                         <div>
                             {
@@ -38,13 +38,13 @@ const Users = (props: UsersPropsType) => {
                     </span>
                     <span>
                         <span>
-                            <div>{item.fullName}</div>
+                            <div>{item.name}</div>
                             <div>{item.status}</div>
                         </span>
-                        <span>
-                            <div>{item.location.city}</div>
-                            <div>{item.location.country}</div>
-                        </span>
+                        {/*<span>*/}
+                        {/*    <div>{item.location.city}</div>*/}
+                        {/*    <div>{item.location.country}</div>*/}
+                        {/*</span>*/}
                     </span>
                 </div>)
             }

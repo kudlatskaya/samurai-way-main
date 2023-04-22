@@ -14,6 +14,13 @@ export type UserType = {
     followed: boolean,
 }
 
+type StateType = {
+    items: UserType[],
+    totalCount: number,
+    error: string,
+}
+
+
 // export const images = [
 //     'https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg',
 //     'https://gamebomb.ru/files/galleries/001/b/b2/413053.jpg',
@@ -27,20 +34,17 @@ export type UserType = {
 //         {id: 3, src: images[2], followed: true, fullName: 'Sasha', status: 'I am offline', location: {city: 'Moscow', country: 'Russia'}},
 //     ] as UserType[]
 // }
-type UsersType = UserType[]
-type StateType = {
-    items: UsersType
-}
+// type UsersType = UserType[]
 
 
 type ActionType = FollowACType | UnfollowACType | SetUsersACType
 
-const usersReducer = (state: StateType, action: ActionType) => {
+const usersReducer = (state: StateType, action: ActionType): StateType => {
     switch (action.type) {
         case "FOLLOW":
             return {
                 ...state,
-                users: state.users.map(item => {
+                items: state.items.map(item => {
                     if (item.id === action.id) {
                         return {...item, followed: true}
                     }
@@ -51,7 +55,7 @@ const usersReducer = (state: StateType, action: ActionType) => {
         case "UNFOLLOW":
             return {
                 ...state,
-                users: state.users.map(item => {
+                items: state.items.map(item => {
                     if (item.id === action.id) {
                         return {...item, followed: false}
                     }
@@ -60,7 +64,7 @@ const usersReducer = (state: StateType, action: ActionType) => {
             }
 
         case "SET_USERS":
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, items: [...state.items, ...action.users]}
 
         default:
             return state;
@@ -75,7 +79,7 @@ type UnfollowACType = ReturnType<typeof unfollowAC>
 export const unfollowAC = (id: number) => ({type: UNFOLLOW, id} as const)
 
 type SetUsersACType = ReturnType<typeof setUsersAC>
-export const setUsersAC = (users: UsersType) => ({type: SET_USERS, users} as const)
+export const setUsersAC = (users: UserType[]) => ({type: SET_USERS, users} as const)
 
 
 export default usersReducer;
