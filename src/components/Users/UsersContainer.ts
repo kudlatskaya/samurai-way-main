@@ -15,6 +15,7 @@ type MapDispatchToPropsType = {
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
+
     return {
         users: state.usersReducer.items
     }
