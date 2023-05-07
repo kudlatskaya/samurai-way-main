@@ -1,5 +1,5 @@
 import {UserType} from "../../redux/usersReducer";
-import s from './users.module.css'
+import s from './Users.module.css'
 import axios from "axios";
 import avatar from '../../asets/images/avatar.jpg';
 
@@ -13,16 +13,22 @@ type UsersPropsType = {
 const Users = (props: UsersPropsType) => {
     const {users, follow, unfollow, setUsers} = props;
 
+    //useEffect
     let getUsers = () => {
-        if(users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                setUsers(response.data.items);
-            })
-        }
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            setUsers(response.data.items);
+        })
     }
 
     return (
         <div>
+            <div>
+                <span className={s.seletedPage}>1</span>
+                <span className={s.seletedPage1}>2</span>
+                <span className={s.seletedPage}>3</span>
+                <span className={s.seletedPage}>4</span>
+                <span className={s.seletedPage}>5</span>
+            </div>
             <button onClick={getUsers}>Users</button>
             {
                 users.map(item => <div key={item.id}>
@@ -33,8 +39,12 @@ const Users = (props: UsersPropsType) => {
                         <div>
                             {
                                 item.followed
-                                    ? <button onClick={() => { unfollow(item.id)}}>Unfollow</button>
-                                    : <button onClick={() => { follow(item.id)}}>Follow</button>
+                                    ? <button onClick={() => {
+                                        unfollow(item.id)
+                                    }}>Unfollow</button>
+                                    : <button onClick={() => {
+                                        follow(item.id)
+                                    }}>Follow</button>
                             }
 
                         </div>

@@ -1,5 +1,5 @@
 // import {UserType} from "../../redux/usersReducer";
-// import s from './users.module.css'
+// import s from './Users.module.css'
 // import axios from "axios";
 // import avatar from '../../asets/images/avatar.jpg';
  import React from 'react'
