@@ -2,34 +2,42 @@ import {UserType} from "../../redux/usersReducer";
 import s from './Users.module.css'
 import axios from "axios";
 import avatar from '../../asets/images/avatar.jpg';
+import {useEffect} from "react";
 
 type UsersPropsType = {
     users: UserType[],
     follow: (id: number) => void,
     unfollow: (id: number) => void,
     setUsers: (users: UserType[]) => void,
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
 }
 
-const Users = (props: UsersPropsType) => {
-    const {users, follow, unfollow, setUsers} = props;
+const Users = ({users, follow, unfollow, setUsers, totalUsersCount, pageSize, currentPage}: UsersPropsType) => {
 
-    //useEffect
-    let getUsers = () => {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    useEffect(() => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`).then(response => {
             setUsers(response.data.items);
         })
+    }, [])
+
+    let pagesCount =  Math.ceil(totalUsersCount / pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
     return (
         <div>
             <div>
-                <span className={s.seletedPage}>1</span>
-                <span className={s.seletedPage1}>2</span>
-                <span className={s.seletedPage}>3</span>
-                <span className={s.seletedPage}>4</span>
-                <span className={s.seletedPage}>5</span>
+                {
+                    pages.map(p => {
+                        return <span className={ currentPage === p ? s.seletedPage : '' }>{p}</span>
+                    })
+                }
             </div>
-            <button onClick={getUsers}>Users</button>
+
             {
                 users.map(item => <div key={item.id}>
                     <span>
