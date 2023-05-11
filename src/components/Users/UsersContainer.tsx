@@ -26,7 +26,7 @@ type UsersAPIContainerPropsType = {
     setCurrentPage: (currentPage: number) => void,
     setTotalUsersCount: (totalUsersCount: number) => void,
     isFetching: boolean,
-    toggleIsFetching: (isFetching: boolean) => void,
+    setToggleIsFetching: (isFetching: boolean) => void,
 }
 
 const UsersAPIContainer = ({
@@ -40,15 +40,15 @@ const UsersAPIContainer = ({
                                setCurrentPage,
                                setTotalUsersCount,
                                isFetching,
-                               toggleIsFetching,
+                               setToggleIsFetching,
                            }: UsersAPIContainerPropsType) => {
 
     useEffect(() => {
-        toggleIsFetching(true)
+        setToggleIsFetching(true)
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
-                toggleIsFetching(false)
+                setToggleIsFetching(false)
                 setUsers(response.data.items)
                 setTotalUsersCount(response.data.totalCount)
             })
@@ -56,11 +56,11 @@ const UsersAPIContainer = ({
 
     const onPageChanged = (currentPage: number) => {
         setCurrentPage(currentPage)
-        toggleIsFetching(true)
+        setToggleIsFetching(true)
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
-                toggleIsFetching(false)
+                setToggleIsFetching(false)
                 setUsers(response.data.items)
             })
     }
@@ -87,15 +87,6 @@ type MapStateToProps = {
     isFetching: boolean,
 }
 
-type MapDispatchToPropsType = {
-    follow: (id: number) => void,
-    unfollow: (id: number) => void,
-    setUsers: (users: UserType[]) => void,
-    setCurrentPage: (currentPage: number) => void,
-    setTotalUsersCount: (totalUsersCount: number) => void,
-    toggleIsFetching: (isFetching: boolean) => void,
-}
-
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         users: state.usersReducer.items,
@@ -106,36 +97,13 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        follow: (id: number) => {
-            dispatch(followAC(id));
-        },
-        unfollow: (id: number) => {
-            dispatch(unfollowAC(id));
-        },
-        setUsers: (users: UserType[]) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountAC(totalUsersCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(setToggleIsFetchingAC(isFetching))
-        }
-    }
-}
-
 const UsersContainer = connect(mapStateToProps, {
-    follow: follow,
-    unfollow: unfollow,
-    setUsers: setUsers,
-    setCurrentPage: setCurrentPage,
-    setTotalUsersCount: setTotalUsersCount,
-    toggleIsFetching: setToggleIsFetching,
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setToggleIsFetching,
 })(UsersAPIContainer);
 
 export default UsersContainer;
