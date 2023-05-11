@@ -1,48 +1,18 @@
 import {UserType} from "../../redux/usersReducer";
 import s from './Users.module.css'
-import axios from "axios";
 import avatar from '../../asets/images/avatar.jpg';
-import {useEffect} from "react";
 
 type UsersPropsType = {
     users: UserType[],
     follow: (id: number) => void,
     unfollow: (id: number) => void,
-    setUsers: (users: UserType[]) => void,
+    currentPage: number,
+    onPageChanged: (currentPage: number) => void,
     pageSize: number,
     totalUsersCount: number,
-    currentPage: number,
-    setCurrentPage: (currentPage: number) => void,
-    setTotalUsersCount: (totalUsersCount: number) => void,
 }
 
-const Users = ({
-                   users,
-                   follow,
-                   unfollow,
-                   setUsers,
-                   totalUsersCount,
-                   pageSize,
-                   currentPage,
-                   setCurrentPage,
-                   setTotalUsersCount
-               }: UsersPropsType) => {
-
-    useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                setUsers(response.data.items);
-                setTotalUsersCount(response.data.totalCount)
-            })
-    }, [])
-
-    const onPageChanged = (currentPage: number) => {
-        setCurrentPage(currentPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                setUsers(response.data.items);
-            })
-    }
+const Users = ({ users, follow, unfollow, currentPage, totalUsersCount, pageSize, onPageChanged }: UsersPropsType) => {
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
