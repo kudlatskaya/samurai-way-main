@@ -2,11 +2,12 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {
-    followAC,
-    setCurrentPageAC, setToggleIsFetchingAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setToggleIsFetching,
+    setTotalUsersCount,
+    setUsers,
+    unfollow,
     UserType
 } from "../../redux/usersReducer";
 import {useEffect} from "react";
@@ -65,7 +66,7 @@ const UsersAPIContainer = ({
     }
 
     return <>
-        { isFetching ? <Preloader /> : null }
+        {isFetching ? <Preloader/> : null}
 
         <Users
             users={users}
@@ -128,6 +129,13 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+const UsersContainer = connect(mapStateToProps, {
+    follow: follow,
+    unfollow: unfollow,
+    setUsers: setUsers,
+    setCurrentPage: setCurrentPage,
+    setTotalUsersCount: setTotalUsersCount,
+    toggleIsFetching: setToggleIsFetching,
+})(UsersAPIContainer);
 
 export default UsersContainer;
