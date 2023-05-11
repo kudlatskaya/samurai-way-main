@@ -12,17 +12,28 @@ type UsersPropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
+    setCurrentPage: (currentPage: number) => void,
 }
 
-const Users = ({users, follow, unfollow, setUsers, totalUsersCount, pageSize, currentPage}: UsersPropsType) => {
+const Users = ({
+                   users,
+                   follow,
+                   unfollow,
+                   setUsers,
+                   totalUsersCount,
+                   pageSize,
+                   currentPage,
+                   setCurrentPage
+               }: UsersPropsType) => {
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`).then(response => {
-            setUsers(response.data.items);
-        })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+            .then(response => {
+                setUsers(response.data.items);
+            })
     }, [])
 
-    let pagesCount =  Math.ceil(totalUsersCount / pageSize);
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -33,7 +44,12 @@ const Users = ({users, follow, unfollow, setUsers, totalUsersCount, pageSize, cu
             <div>
                 {
                     pages.map(p => {
-                        return <span className={ currentPage === p ? s.seletedPage : '' }>{p}</span>
+                        return <span className={currentPage === p ? s.seletedPage : ''}
+                                     onClick={() => {
+                                         setCurrentPage(p)
+                                     }}
+                        >{p}</span>
+
                     })
                 }
             </div>

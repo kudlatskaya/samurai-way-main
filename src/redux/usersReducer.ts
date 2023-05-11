@@ -1,7 +1,7 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
-
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export type UserType = {
     name: string,
@@ -35,11 +35,11 @@ const initialState = {
     currentPage: 2,
 }
 
-type ActionType = FollowACType | UnfollowACType | SetUsersACType
+type ActionType = FollowACType | UnfollowACType | SetUsersACType | SetCurrentPageACType
 
 const usersReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
-        case "FOLLOW":
+        case FOLLOW:
             return {
                 ...state,
                 items: state.items.map(item => {
@@ -50,7 +50,7 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
                 }),
             }
 
-        case "UNFOLLOW":
+        case UNFOLLOW:
             return {
                 ...state,
                 items: state.items.map(item => {
@@ -61,8 +61,11 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
                 }),
             }
 
-        case "SET_USERS":
+        case SET_USERS:
             return {...state, items: [...state.items, ...action.users]}
+
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
 
         default:
             return state;
@@ -79,5 +82,7 @@ export const unfollowAC = (id: number) => ({type: UNFOLLOW, id} as const)
 type SetUsersACType = ReturnType<typeof setUsersAC>
 export const setUsersAC = (users: UserType[]) => ({type: SET_USERS, users} as const)
 
+type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 
 export default usersReducer;
