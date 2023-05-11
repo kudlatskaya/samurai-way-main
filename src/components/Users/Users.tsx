@@ -13,6 +13,7 @@ type UsersPropsType = {
     totalUsersCount: number,
     currentPage: number,
     setCurrentPage: (currentPage: number) => void,
+    setTotalUsersCount: (totalUsersCount: number) => void,
 }
 
 const Users = ({
@@ -23,15 +24,25 @@ const Users = ({
                    totalUsersCount,
                    pageSize,
                    currentPage,
-                   setCurrentPage
+                   setCurrentPage,
+                   setTotalUsersCount
                }: UsersPropsType) => {
 
     useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 setUsers(response.data.items);
+                setTotalUsersCount(response.data.totalCount)
             })
     }, [])
+
+    const onPageChanged = (currentPage: number) => {
+        setCurrentPage(currentPage);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+            .then(response => {
+                setUsers(response.data.items);
+            })
+    }
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -45,10 +56,10 @@ const Users = ({
                 {
                     pages.map(p => {
                         return <span className={currentPage === p ? s.seletedPage : ''}
-                                     onClick={() => {
-                                         setCurrentPage(p)
+                                     onClick={(e) => {
+                                         onPageChanged(p)
                                      }}
-                        >{p}</span>
+                        >{p} </span>
 
                     })
                 }
