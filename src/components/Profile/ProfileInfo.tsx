@@ -1,11 +1,18 @@
 import s from "./ProfileInfo.module.css";
+import Preloader from "../Preloader/Preloader";
 
-const ProfileInfo = () => {
+type ProfileInfoPropsType = {
+    profile: null | any
+}
+
+const ProfileInfo = (props: ProfileInfoPropsType) => {
+    if(!props.profile) return <Preloader/>
+
     return (
         <div className={s.userInfo}>
             <div className={s.img}></div>
             <div className={s.userAvatar}><img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShCTtwxGDbjnpPgVZznNqUH757TIfzheMk6w&usqp=CAU"
+                src={props.profile.photos.large}
                 alt=""/></div>
             <div className={s.userName}>
                 <p>My name</p>

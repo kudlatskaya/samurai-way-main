@@ -1,6 +1,7 @@
 import {UserType} from "../../redux/usersReducer";
 import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
+import {NavLink} from "react-router-dom";
 
 type UsersPropsType = {
     users: UserType[],
@@ -12,7 +13,7 @@ type UsersPropsType = {
     totalUsersCount: number,
 }
 
-const Users = ({ users, follow, unfollow, currentPage, totalUsersCount, pageSize, onPageChanged }: UsersPropsType) => {
+const Users = ({users, follow, unfollow, currentPage, totalUsersCount, pageSize, onPageChanged}: UsersPropsType) => {
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -39,7 +40,9 @@ const Users = ({ users, follow, unfollow, currentPage, totalUsersCount, pageSize
                 users.map(item => <div key={item.id}>
                     <span>
                         <div>
-                            <img src={item.photos.small && avatar} className={s.userPhoto}/>
+                            <NavLink to={'/profile' + item.id}>
+                                <img src={item.photos.small && avatar} className={s.userPhoto}/>
+                            </NavLink>
                         </div>
                         <div>
                             {
