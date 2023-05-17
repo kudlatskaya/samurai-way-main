@@ -1,7 +1,7 @@
 
 .nav {
     grid-area: nav;
-    background: red;
+    background: darkslategray;
 }
 
 .link {

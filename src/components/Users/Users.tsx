@@ -2,6 +2,8 @@ import {UserType} from "../../redux/usersReducer";
 import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
 import {NavLink} from "react-router-dom";
+import Pagination from "../Pagination/PaginationBlock";
+import PaginationBlock from "../Pagination/PaginationBlock";
 
 type UsersPropsType = {
     users: UserType[],
@@ -24,16 +26,17 @@ const Users = ({users, follow, unfollow, currentPage, totalUsersCount, pageSize,
     return (
         <div>
             <div>
-                {
-                    pages.map(p => {
-                        return <span className={currentPage === p ? s.seletedPage : ''}
-                                     onClick={(e) => {
-                                         onPageChanged(p)
-                                     }}
-                        >{p} </span>
+                <PaginationBlock count={pagesCount}  onPageChanged={onPageChanged}/>
+                {/*{*/}
+                {/*    pages.map(p => {*/}
+                {/*        return <span className={currentPage === p ? s.seletedPage : ''}*/}
+                {/*                     onClick={(e) => {*/}
+                {/*                         onPageChanged(p)*/}
+                {/*                     }}*/}
+                {/*        >{p} </span>*/}
 
-                    })
-                }
+                {/*    })*/}
+                {/*}*/}
             </div>
 
             {

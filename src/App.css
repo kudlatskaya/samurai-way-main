@@ -10,7 +10,7 @@
 
 .app-wrapper-content {
     grid-area: content;
-    background: green;
+    background: gray;
 }
 
 

@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://github.com/kudlatskaya/samurai-way-main",
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.1",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
     "@testing-library/user-event": "13.2.1",
@@ -24,6 +28,7 @@
     "redux-form": "8.3.8",
     "redux-thunk": "2.4.1",
     "reselect": "4.1.5",
+    "styled-components": "^6.0.0-rc.1",
     "typescript": "4.4.2",
     "uuid": "8.3.2",
     "web-vitals": "2.1.0"
