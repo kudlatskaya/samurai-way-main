@@ -7,8 +7,7 @@ type PaginationBlockPropsType = {
     onPageChanged: (currentPage: number) => void,
 }
 
-const PaginationBlock = (props: PaginationBlockPropsType) => {
-    let {count, onPageChanged} = props;
+const PaginationBlock = ({count, onPageChanged}: PaginationBlockPropsType) => {
 
     const [page, setPage] = React.useState(5);
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {

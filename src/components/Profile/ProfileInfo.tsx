@@ -10,7 +10,6 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     return (
         <div className={s.userInfo}>
-            <div className={s.img}></div>
             <div className={s.userAvatar}><img
                 src={props.profile.photos.large}
                 alt=""/></div>

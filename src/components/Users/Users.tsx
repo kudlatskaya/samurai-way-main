@@ -2,26 +2,25 @@ import {UserType} from "../../redux/usersReducer";
 import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
 import {NavLink} from "react-router-dom";
-import Pagination from "../Pagination/PaginationBlock";
 import PaginationBlock from "../Pagination/PaginationBlock";
 
 type UsersPropsType = {
     users: UserType[],
     follow: (id: number) => void,
     unfollow: (id: number) => void,
-    currentPage: number,
+   // currentPage: number,
     onPageChanged: (currentPage: number) => void,
     pageSize: number,
     totalUsersCount: number,
 }
 
-const Users = ({users, follow, unfollow, currentPage, totalUsersCount, pageSize, onPageChanged}: UsersPropsType) => {
+const Users = ({users, follow, unfollow, totalUsersCount, pageSize, onPageChanged}: UsersPropsType) => {
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
+    // let pages = [];
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i);
+    // }
 
     return (
         <div>
@@ -43,7 +42,7 @@ const Users = ({users, follow, unfollow, currentPage, totalUsersCount, pageSize,
                 users.map(item => <div key={item.id}>
                     <span>
                         <div>
-                            <NavLink to={'/profile' + item.id}>
+                            <NavLink to={'/profile' + '/2'}>
                                 <img src={item.photos.small && avatar} className={s.userPhoto}/>
                             </NavLink>
                         </div>

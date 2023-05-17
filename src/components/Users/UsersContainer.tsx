@@ -69,7 +69,7 @@ const UsersAPIContainer = ({
 
         <Users
             users={users}
-            currentPage={currentPage}
+            // currentPage={currentPage}
             pageSize={pageSize}
             totalUsersCount={totalUsersCount}
             follow={follow}
