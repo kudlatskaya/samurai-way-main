@@ -15,8 +15,11 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 alt=""/></div>
             <div className={s.userName}>
                 <p>My name</p>
+                <p>{props.profile.name}</p>
                 <p>My age</p>
+                <p>{props.profile.age}</p>
                 <p>My city</p>
+                <p>{props.profile.city}</p>
             </div>
         </div>
 
