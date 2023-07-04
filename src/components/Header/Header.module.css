@@ -5,5 +5,11 @@
 
 .loginBlock {
     float: right;
+
+}
+
+.loginBlock a {
+    color: darkslategray;
+    text-decoration: none;
 }
 

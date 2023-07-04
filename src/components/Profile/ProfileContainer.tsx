@@ -62,7 +62,7 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
                 props.setUserProfile(response.data);
             })
     }, [])
-    console.log(props.profile)
+    // console.log(props.profile)
     return (
         <div>
             <Profile {...props} profile={props.profile}/>
