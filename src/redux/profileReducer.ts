@@ -14,7 +14,27 @@ let initialState = {
         {id: 4, message: 'Good by', likesCount: 11},
     ] as PostType[],
     newPostText: '',
-    profile: {},
+    profile: {
+        aboutMe: null,
+        contacts: {
+            facebook: null,
+            website: null,
+            vk: null,
+            twitter: null,
+            instagram: null,
+            youtube: null,
+            github: null,
+            mainLink: null
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription: null,
+        fullName: "My Name",
+        userId: undefined,
+        photos: {
+            small: null,
+            large: null
+        }
+    },
 }
 
 type StateType = typeof initialState
