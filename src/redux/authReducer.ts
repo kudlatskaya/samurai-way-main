@@ -5,6 +5,7 @@ type StateType = {
     userId: number | null,
     email: string | null,
     login: string | null,
+    isAuth: boolean
 }
 
 
@@ -12,6 +13,7 @@ const initialState = {
     userId: null,
     email: null,
     login: null,
+    isAuth: false
 }
 
 type ActionType = setUsersDataACType
@@ -22,7 +24,8 @@ const authReducer = (state: StateType = initialState, action: ActionType): State
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
 
 

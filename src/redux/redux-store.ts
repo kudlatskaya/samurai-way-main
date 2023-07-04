@@ -19,7 +19,7 @@ export type AppStateType = ReturnType<typeof rootReducer>
 const store = legacy_createStore(rootReducer);
 
 //@ts-ignore
-//window.store=store
+window.store=store
 // export type ReduxStateType = ReturnType<typeof store.getState>;
 
 export default store;
