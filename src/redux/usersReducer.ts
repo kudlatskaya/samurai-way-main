@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 export type UserType = {
     name: string,
@@ -23,6 +24,7 @@ type StateType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean
+    followingProgress: number[]
 }
 
 // export const images = [
@@ -36,7 +38,8 @@ const initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingProgress: []
 }
 
 type ActionType = FollowACType
@@ -45,6 +48,7 @@ type ActionType = FollowACType
     | SetCurrentPageACType
     | SetTotalUsersCountACType
     | SetToggleIsFetchingACType
+    | SetToggleIsFollowingProgressACType
 
 const usersReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
@@ -79,6 +83,13 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.totalUsersCount}
 
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {...state,
+                followingProgress: action.followingProgress
+                    ? [...state.followingProgress, action.userId]
+                    : state.followingProgress.filter(id => id != action.userId)
+            }
+
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
 
@@ -105,6 +116,13 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL
 
 type SetToggleIsFetchingACType = ReturnType<typeof setToggleIsFetching>
 export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
+
+type SetToggleIsFollowingProgressACType = ReturnType<typeof setToggleIsFollowingProgress>
+export const setToggleIsFollowingProgress = (followingProgress: number[], userId: number) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    followingProgress,
+    userId
+} as const)
 
 export default usersReducer;
 

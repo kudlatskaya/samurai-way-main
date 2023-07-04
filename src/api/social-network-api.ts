@@ -17,8 +17,8 @@ export const socialNetworkApi = {
         return instance.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
             .then(res => res.data)
     },
-    createUser() {
-        return instance.post<ResponseType>('follow/${u.id}');
+    createUser(id: number) {
+        return instance.post<ResponseType>(`follow/${id}`);
     },
     deleteUser(id: number) {
         return instance.delete<ResponseType>(`follow/${id}`)

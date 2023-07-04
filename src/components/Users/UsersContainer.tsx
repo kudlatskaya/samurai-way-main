@@ -3,7 +3,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     follow,
     setCurrentPage,
-    setToggleIsFetching,
+    setToggleIsFetching, setToggleIsFollowingProgress,
     setTotalUsersCount,
     setUsers,
     unfollow,
@@ -26,6 +26,8 @@ type UsersAPIContainerPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void,
     isFetching: boolean,
     setToggleIsFetching: (isFetching: boolean) => void,
+    setToggleIsFollowingProgress: (isFetching:  boolean, userId: number) => void,
+    followingProgress: number[]
 }
 
 const UsersAPIContainer = ({
@@ -40,6 +42,8 @@ const UsersAPIContainer = ({
                                setTotalUsersCount,
                                isFetching,
                                setToggleIsFetching,
+                               setToggleIsFollowingProgress,
+                               followingProgress
                            }: UsersAPIContainerPropsType) => {
 
     useEffect(() => {
@@ -69,12 +73,13 @@ const UsersAPIContainer = ({
 
         <Users
             users={users}
-            // currentPage={currentPage}
             pageSize={pageSize}
             totalUsersCount={totalUsersCount}
             follow={follow}
             onPageChanged={onPageChanged}
-            unfollow={unfollow}/>
+            unfollow={unfollow}
+            setToggleIsFollowingProgress={setToggleIsFollowingProgress}
+            followingProgress={followingProgress}/>
     </>
 }
 
@@ -84,6 +89,7 @@ type MapStateToProps = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
+    followingProgress: number[]
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
@@ -93,6 +99,7 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
         totalUsersCount: state.usersReducer.totalUsersCount,
         currentPage: state.usersReducer.currentPage,
         isFetching: state.usersReducer.isFetching,
+        followingProgress: state.usersReducer.followingProgress
     }
 }
 
@@ -103,6 +110,7 @@ const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     setToggleIsFetching,
+    setToggleIsFollowingProgress
 })(UsersAPIContainer);
 
 export default UsersContainer;
