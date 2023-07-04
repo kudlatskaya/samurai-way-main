@@ -26,7 +26,6 @@ type StateType = typeof initialState
 type ActionType = SendMessageActionCreatorType | UpdateNewMessageBodyActionCreatorType
 
 const dialogsReducer = (state: StateType = initialState, action: ActionType): StateType => {
-    let _state;
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
@@ -54,11 +53,9 @@ const dialogsReducer = (state: StateType = initialState, action: ActionType): St
 }
 
 type SendMessageActionCreatorType = ReturnType<typeof sendMessageActionCreator>
-
 export const sendMessageActionCreator = () => ({type: SEND_MESSAGE} as const)
 
 type UpdateNewMessageBodyActionCreatorType = ReturnType<typeof updateNewMessageBodyActionCreator>
-
 export const updateNewMessageBodyActionCreator = (text: string) =>
     ({type: UPDATE_NEW_MESSAGE_BODY, newText: text} as const)
 

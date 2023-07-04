@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {setUserData} from "../../redux/authReducer";
 import {AppStateType} from "../../redux/redux-store";
+import {socialNetworkApi} from "../../api/social-network-api";
 
 type MapStateToPropsType = {
     isAuth: boolean
@@ -19,9 +19,7 @@ type HeaderContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 const HeaderContainer = (props: HeaderContainerPropsType) => {
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        })
+        socialNetworkApi.getAuth()
             .then(response => {
                 if(response.data.resultCode === 0) {
                     const {id, email, login} = response.data.data

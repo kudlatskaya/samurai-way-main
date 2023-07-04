@@ -1,10 +1,10 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
-import axios from "axios";
-import {connect, useDispatch} from "react-redux";
-import profileReducer, {setUserProfile} from "../../redux/profileReducer";
+import {connect} from "react-redux";
+import {setUserProfile} from "../../redux/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
+import {socialNetworkApi} from "../../api/social-network-api";
 
 
 type ContactsType = {
@@ -23,7 +23,7 @@ type PhotosType = {
     large: string | null
 }
 
-type ProfileType = {
+export type ProfileType = {
     aboutMe: string | null,
     contacts: ContactsType,
     lookingForAJob: boolean,
@@ -49,20 +49,18 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & PropsType
 
 const ProfileContainer = (props: ProfileContainerPropsType) => {
-    // let {profile, setUserProfile} = props
-    // const params = useParams<{ userId: string }>();
-    let userId = props.match.params.userId;
-
-    // let userId = +params.userId;
+    const params = useParams<{ userId: string }>();
+    // let userId = props.match.params.userId;
+    let userId = params.userId;
     if (!userId) userId = '2';
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        socialNetworkApi.getProfile(userId)
             .then(response => {
                 props.setUserProfile(response.data);
             })
     }, [])
-    // console.log(props.profile)
+
     return (
         <div>
             <Profile {...props} profile={props.profile}/>

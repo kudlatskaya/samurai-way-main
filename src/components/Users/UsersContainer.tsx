@@ -10,9 +10,9 @@ import {
     UserType
 } from "../../redux/usersReducer";
 import {useEffect} from "react";
-import axios from "axios";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
+import {socialNetworkApi} from "../../api/social-network-api";
 
 type UsersAPIContainerPropsType = {
     users: UserType[],
@@ -45,11 +45,11 @@ const UsersAPIContainer = ({
     useEffect(() => {
         setToggleIsFetching(true)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
+        socialNetworkApi.getUsers(currentPage, pageSize)
+            .then(data => {
                 setToggleIsFetching(false)
-                setUsers(response.data.items)
-                setTotalUsersCount(response.data.totalCount)
+                setUsers(data.items)
+                setTotalUsersCount(data.totalCount)
             })
     }, [])
 
@@ -57,10 +57,10 @@ const UsersAPIContainer = ({
         setCurrentPage(currentPage)
         setToggleIsFetching(true)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
+        socialNetworkApi.getUsers(currentPage, pageSize)
+            .then(data => {
                 setToggleIsFetching(false)
-                setUsers(response.data.items)
+                setUsers(data.items)
             })
     }
 
