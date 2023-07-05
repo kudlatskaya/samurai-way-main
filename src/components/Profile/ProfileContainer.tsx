@@ -2,9 +2,9 @@ import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getProfileTC} from "../../redux/profileReducer";
-import {Redirect, RouteComponentProps, useParams, withRouter} from "react-router-dom";
+import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import AuthRedirect from "../../hoc/AuthRedirect";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 
 type ContactsType = {
@@ -35,7 +35,6 @@ export type ProfileType = {
 
 type MapStatePropsType = {
     profile: ProfileType
-    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -58,22 +57,16 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
         props.getProfileTC(userId)
     }, [])
 
-
-
     return (
         <div>
             <Profile {...props} profile={props.profile}/>
         </div>
     );
 };
-
-let AuthRedirectComponent = AuthRedirect(ProfileContainer)
+let ProfileContainerUrl = withRouter(ProfileContainer);
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-    profile: state.profileReducer.profile,
-    isAuth: state.authReducer.isAuth
+    profile: state.profileReducer.profile
 })
 
-let ProfileContainerUrl = withRouter(AuthRedirectComponent);
-
-export default connect(mapStateToProps, {getProfileTC})(ProfileContainerUrl);
+export default withAuthRedirect(connect(mapStateToProps, {getProfileTC})(ProfileContainerUrl));

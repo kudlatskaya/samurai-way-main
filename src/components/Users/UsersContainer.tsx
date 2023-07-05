@@ -4,6 +4,7 @@ import {followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../
 import {useEffect} from "react";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 type UsersAPIContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -66,11 +67,11 @@ type MapDispatchToPropsType = {
     unfollowTC: (userId: number) => void,
 }
 
-const UsersContainer = connect(mapStateToProps, {
+const UsersContainer = withAuthRedirect(connect(mapStateToProps, {
     setCurrentPage,
     getUsersTC,
     followTC,
     unfollowTC,
-})(UsersAPIContainer);
+})(UsersAPIContainer));
 
 export default UsersContainer;
