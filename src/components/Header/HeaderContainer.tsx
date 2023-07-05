@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {setUserData} from "../../redux/authReducer";
+import {getAuthTC} from "../../redux/authReducer";
 import {AppStateType} from "../../redux/redux-store";
-import {socialNetworkApi} from "../../api/social-network-api";
 
 type MapStateToPropsType = {
     isAuth: boolean
@@ -11,7 +10,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    setUserData: (userId: number, email: string, login: string) => void
+    getAuthTC: () => void
 }
 
 type HeaderContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -19,13 +18,7 @@ type HeaderContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 const HeaderContainer = (props: HeaderContainerPropsType) => {
 
     useEffect(() => {
-        socialNetworkApi.getAuth()
-            .then(response => {
-                if(response.data.resultCode === 0) {
-                    const {id, email, login} = response.data.data
-                    props.setUserData(id, email, login)
-                }
-            })
+        getAuthTC()
     }, [])
 
     return <Header {...props}/>;
@@ -36,4 +29,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     login: state.authReducer.login
 })
 
-export default connect(mapStateToProps, {setUserData})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthTC})(HeaderContainer);

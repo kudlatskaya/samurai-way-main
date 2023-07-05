@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {socialNetworkApi} from "../api/social-network-api";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 
@@ -28,7 +31,6 @@ const authReducer = (state: StateType = initialState, action: ActionType): State
                 isAuth: true
             }
 
-
         default:
             return state;
     }
@@ -40,6 +42,16 @@ export const setUserData = (userId: number, email: string, login: string) => ({
     type: 'SET_USER_DATA',
     data: {userId, email, login}
 } as const)
+
+export const getAuthTC = () => (dispatch: Dispatch) => {
+    socialNetworkApi.getAuth()
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                const {id, email, login} = response.data.data
+                dispatch(setUserData(id, email, login))
+            }
+        })
+}
 
 export default authReducer;
 

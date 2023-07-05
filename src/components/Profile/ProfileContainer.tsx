@@ -1,10 +1,9 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profileReducer";
+import {getProfileTC} from "../../redux/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import {socialNetworkApi} from "../../api/social-network-api";
 
 
 type ContactsType = {
@@ -38,7 +37,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    setUserProfile: (profile: ProfileType) => void
+    getProfileTC: (userId: string) => void
 }
 
 type PathParamsType = {
@@ -55,10 +54,7 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
     if (!userId) userId = '2';
 
     useEffect(() => {
-        socialNetworkApi.getProfile(userId)
-            .then(response => {
-                props.setUserProfile(response.data);
-            })
+        props.getProfileTC(userId)
     }, [])
 
     return (
@@ -74,4 +70,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 let ProfileContainerUrl = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainerUrl);
+export default connect(mapStateToProps, {getProfileTC})(ProfileContainerUrl);

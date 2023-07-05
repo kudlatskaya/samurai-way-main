@@ -1,3 +1,6 @@
+import {socialNetworkApi} from "../api/social-network-api";
+import {Dispatch} from "redux";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -84,8 +87,9 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
             return {...state, totalUsersCount: action.totalUsersCount}
 
         case TOGGLE_IS_FOLLOWING_PROGRESS:
-            return {...state,
-                followingProgress: action.followingProgress
+            return {
+                ...state,
+                followingProgress: action.isFetching
                     ? [...state.followingProgress, action.userId]
                     : state.followingProgress.filter(id => id != action.userId)
             }
@@ -99,11 +103,11 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
     return state;
 }
 
-type FollowACType = ReturnType<typeof follow>
-export const follow = (id: number) => ({type: FOLLOW, id} as const)
+type FollowACType = ReturnType<typeof setFollow>
+export const setFollow = (id: number) => ({type: FOLLOW, id} as const)
 
-type UnfollowACType = ReturnType<typeof unfollow>
-export const unfollow = (id: number) => ({type: UNFOLLOW, id} as const)
+type UnfollowACType = ReturnType<typeof setUnfollow>
+export const setUnfollow = (id: number) => ({type: UNFOLLOW, id} as const)
 
 type SetUsersACType = ReturnType<typeof setUsers>
 export const setUsers = (users: UserType[]) => ({type: SET_USERS, users} as const)
@@ -118,11 +122,55 @@ type SetToggleIsFetchingACType = ReturnType<typeof setToggleIsFetching>
 export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 
 type SetToggleIsFollowingProgressACType = ReturnType<typeof setToggleIsFollowingProgress>
-export const setToggleIsFollowingProgress = (followingProgress: number[], userId: number) => ({
+export const setToggleIsFollowingProgress = (isFetching: boolean, userId: number) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
-    followingProgress,
+    isFetching,
     userId
 } as const)
+
+export const getUsersTC = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setToggleIsFetching(true))
+
+        socialNetworkApi.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setToggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
+
+export const followTC = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setToggleIsFollowingProgress(true, userId))
+
+        socialNetworkApi.follow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setFollow(userId))
+                }
+                dispatch(setToggleIsFollowingProgress(false, userId))
+            })
+    }
+}
+
+export const unfollowTC = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setToggleIsFollowingProgress(true, userId))
+
+        socialNetworkApi.unfollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUnfollow(userId))
+                }
+                dispatch(setToggleIsFollowingProgress(false, userId))
+            })
+    }
+}
+
+
+//getAuth
 
 export default usersReducer;
 

@@ -1,4 +1,6 @@
 import {PostType} from "../components/Profile/MyPosts/MyPostsContainer";
+import {Dispatch} from "redux";
+import {socialNetworkApi} from "../api/social-network-api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -78,6 +80,15 @@ export const updateNewPostTextActionCreator = (text: string) =>
 
 type SetUserProfileACType = ReturnType<typeof setUserProfile>
 export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)
+
+
+//getProfile
+export const getProfileTC = (userId: string) => (dispatch: Dispatch) => {
+    socialNetworkApi.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data));
+        })
+}
 
 export default profileReducer;
 
