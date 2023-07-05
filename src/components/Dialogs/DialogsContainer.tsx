@@ -21,7 +21,8 @@ type DialogsPageType = {
 }
 
 type MapStateToPropsType = {
-    dialogsPage: DialogsPageType
+    dialogsPage: DialogsPageType,
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
@@ -32,6 +33,7 @@ type MapDispatchToPropsType = {
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsReducer,
+        isAuth: state.authReducer.isAuth
     }
 }
 
