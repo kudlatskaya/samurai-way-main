@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getProfileTC} from "../../redux/profileReducer";
 import {Redirect, RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
+import AuthRedirect from "../../hoc/AuthRedirect";
 
 
 type ContactsType = {
@@ -57,7 +58,7 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
         props.getProfileTC(userId)
     }, [])
 
-    if(!props.isAuth) return <Redirect to={'/login'} />
+
 
     return (
         <div>
@@ -66,11 +67,13 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
     );
 };
 
+let AuthRedirectComponent = AuthRedirect(ProfileContainer)
+
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profileReducer.profile,
     isAuth: state.authReducer.isAuth
 })
 
-let ProfileContainerUrl = withRouter(ProfileContainer);
+let ProfileContainerUrl = withRouter(AuthRedirectComponent);
 
 export default connect(mapStateToProps, {getProfileTC})(ProfileContainerUrl);
