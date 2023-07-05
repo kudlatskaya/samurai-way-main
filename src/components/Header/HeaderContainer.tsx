@@ -18,7 +18,7 @@ type HeaderContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 const HeaderContainer = (props: HeaderContainerPropsType) => {
 
     useEffect(() => {
-        getAuthTC()
+        props.getAuthTC()
     }, [])
 
     return <Header {...props}/>;

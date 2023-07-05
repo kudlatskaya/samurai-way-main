@@ -49,11 +49,10 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & PropsType
 
 const ProfileContainer = (props: ProfileContainerPropsType) => {
     const params = useParams<{ userId: string }>();
-    // let userId = props.match.params.userId;
-    let userId = params.userId;
-    if (!userId) userId = '2';
 
     useEffect(() => {
+        let userId = params.userId;
+        if (!userId) userId = '2';
         props.getProfileTC(userId)
     }, [])
 
