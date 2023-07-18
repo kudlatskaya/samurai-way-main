@@ -1,4 +1,4 @@
-import {socialNetworkApi} from "../api/social-network-api";
+import {userAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 const FOLLOW = 'FOLLOW';
@@ -132,7 +132,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setToggleIsFetching(true))
 
-        socialNetworkApi.getUsers(currentPage, pageSize)
+        userAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(setToggleIsFetching(false))
                 dispatch(setUsers(data.items))
@@ -145,7 +145,7 @@ export const followTC = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setToggleIsFollowingProgress(true, userId))
 
-        socialNetworkApi.follow(userId)
+        userAPI.follow(userId)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(setFollow(userId))
@@ -159,7 +159,7 @@ export const unfollowTC = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setToggleIsFollowingProgress(true, userId))
 
-        socialNetworkApi.unfollow(userId)
+        userAPI.unfollow(userId)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(setUnfollow(userId))

@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {socialNetworkApi} from "../api/social-network-api";
+import {authAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -44,7 +44,7 @@ export const setUserData = (userId: number, email: string, login: string) => ({
 } as const)
 
 export const getAuthTC = () => (dispatch: Dispatch) => {
-    socialNetworkApi.getAuth()
+    authAPI.getAuth()
         .then(response => {
             if(response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data

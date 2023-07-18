@@ -1,4 +1,4 @@
-import ProfileInfo from "./ProfileInfo";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type ProfilePropsType = {

@@ -12,7 +12,7 @@ const instance = axios.create({
 
 
 // api
-export const socialNetworkApi = {
+export const userAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return instance.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
             .then(res => res.data)
@@ -23,11 +23,17 @@ export const socialNetworkApi = {
     unfollow(id: number) {
         return instance.delete<ResponseType>(`follow/${id}`)
     },
+}
+
+export const profileAPI = {
     getProfile(userId: string) {
         return instance.get<ProfileType>(`profile/${userId}`);
     },
+}
+
+export const authAPI = {
     getAuth() {
-         return instance.get<ResponseType<AuthResponse>>(`auth/me`);
+        return instance.get<ResponseType<AuthResponse>>(`auth/me`);
     },
 }
 

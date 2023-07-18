@@ -69,12 +69,7 @@ type MapDispatchToPropsType = {
 }
 
 
-export default compose(
+export default compose<React.ComponentType>(
     withAuthRedirect,
-    connect(mapStateToProps, {
-        setCurrentPage,
-        getUsersTC,
-        followTC,
-        unfollowTC,
-    })
+    connect(mapStateToProps, {setCurrentPage, getUsersTC, followTC, unfollowTC})
 )(UsersAPIContainer);

@@ -1,5 +1,6 @@
 import s from "./ProfileInfo.module.css";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../Preloader/Preloader";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: null | any
@@ -10,9 +11,12 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     return (
         <div className={s.userInfo}>
-            <div className={s.userAvatar}><img
+            <div className={s.userAvatar}>
+                <img
                 src={props.profile.photos.large}
-                alt=""/></div>
+                alt=""/>
+            </div>
+            <ProfileStatus status={'ku'}/>
             <div className={s.userName}>
                 <p>My name</p>
                 <p>{props.profile.name}</p>
