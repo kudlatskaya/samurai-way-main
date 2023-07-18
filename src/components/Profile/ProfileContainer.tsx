@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfileTC} from "../../redux/profileReducer";
+import {getProfileTC, getStatusTC, updateStatusTC} from "../../redux/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
@@ -34,11 +34,14 @@ export type ProfileType = {
 }
 
 type MapStatePropsType = {
-    profile: ProfileType
+    profile: ProfileType,
+    status: string
 }
 
 type MapDispatchPropsType = {
-    getProfileTC: (userId: string) => void
+    getProfileTC: (userId: string) => void,
+    getStatusTC: (userId: string) => void,
+    updateStatusTC: (status: string) => void,
 }
 
 type PathParamsType = {
@@ -55,19 +58,21 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
         let userId = params.userId;
         if (!userId) userId = '2';
         props.getProfileTC(userId)
+        props.getStatusTC(userId)
     }, [])
 
     return (
         <div>
-            <Profile {...props} profile={props.profile}/>
+            <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatusTC}/>
         </div>
     );
 };
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-    profile: state.profileReducer.profile
+    profile: state.profileReducer.profile,
+    status: state.profileReducer.status
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfileTC}),
+    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC}),
     withRouter
 )(ProfileContainer)
