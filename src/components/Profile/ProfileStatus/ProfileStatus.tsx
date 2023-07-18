@@ -16,9 +16,10 @@ const ProfileStatus = ({status, updateStatus}: ProfileStatusPropsType) => {
         // setStatusValue(status)
     }
 
-    // useEffect(()=>{
-    //     updateStatus(statusValue)
-    // }, [statusValue])
+    useEffect(() => {
+        updateStatus(statusValue)
+        // if (status !== statusValue) setStatusValue(status)
+    }, [statusValue])
 
     const updateStatusValue = (e: ChangeEvent<HTMLInputElement>) => setStatusValue(e.target.value)
 
@@ -30,7 +31,8 @@ const ProfileStatus = ({status, updateStatus}: ProfileStatusPropsType) => {
                         <span onDoubleClick={activateEditMode}>{statusValue}</span>
                     </div>
                     : <div>
-                        <input autoFocus={true} onBlur={deactivateEditMode} value={statusValue} onChange={updateStatusValue}/>
+                        <input autoFocus={true} onBlur={deactivateEditMode} value={statusValue}
+                               onInput={updateStatusValue}/>
                     </div>
             }
         </div>

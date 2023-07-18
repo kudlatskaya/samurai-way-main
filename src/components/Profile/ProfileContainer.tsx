@@ -56,7 +56,7 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
 
     useEffect(() => {
         let userId = params.userId;
-        if (!userId) userId = '2';
+        if (!userId) userId = '28736';
         props.getProfileTC(userId)
         props.getStatusTC(userId)
     }, [])
