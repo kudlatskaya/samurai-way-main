@@ -9,8 +9,6 @@ type ProfileStatusPropsType = {
 const ProfileStatus = (props: ProfileStatusPropsType) => {
     let [editMode, setEditMode] = useState<boolean>(false)
     let [statusValue, setStatusValue] = useState<string>(props.status)
-    console.log("props.status - " + props.status)
-    console.log("statusValue - " + statusValue)
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -18,9 +16,7 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
     }
     const deactivateEditMode = () => {
         setEditMode(false)
-        // setStatusValue(props.status)
         props.updateStatus(statusValue)
-
     }
 
     useEffect(() => {
@@ -29,7 +25,6 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
 
     const updateStatusValue = (e: ChangeEvent<HTMLInputElement>) => {
         setStatusValue(e.target.value)
-        // props.updateStatus(statusValue)
     }
 
     return (
