@@ -41,7 +41,7 @@ let initialState = {
             large: null
         }
     },
-    status: 'kuku'
+    status: 'initial status'
 }
 
 type StateType = typeof initialState

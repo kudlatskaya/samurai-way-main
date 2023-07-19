@@ -5,34 +5,40 @@ type ProfileStatusPropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileStatus = ({status, updateStatus}: ProfileStatusPropsType) => {
+
+const ProfileStatus = (props: ProfileStatusPropsType) => {
     let [editMode, setEditMode] = useState<boolean>(false)
-    let [statusValue, setStatusValue] = useState<string>(status)
+    let [statusValue, setStatusValue] = useState<string>(props.status)
+    // console.log(props.status)
 
     const activateEditMode = () => setEditMode(true)
     const deactivateEditMode = () => {
         setEditMode(false)
-        updateStatus(statusValue)
-        // setStatusValue(status)
+        // setStatusValue(props.status)
+        props.updateStatus(statusValue)
+
     }
+    //
+    // useEffect(() => {
+    //     setStatusValue(props.status)
+    // }, [])
 
-    useEffect(() => {
-        updateStatus(statusValue)
-        // if (status !== statusValue) setStatusValue(status)
-    }, [statusValue])
-
-    const updateStatusValue = (e: ChangeEvent<HTMLInputElement>) => setStatusValue(e.target.value)
+    const updateStatusValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setStatusValue(e.target.value)
+        // props.updateStatus(statusValue)
+    }
 
     return (
         <div>
             {
                 !editMode
                     ? <div>
-                        <span onDoubleClick={activateEditMode}>{statusValue}</span>
+                        <span onDoubleClick={activateEditMode}>{props.status}</span>
                     </div>
                     : <div>
                         <input autoFocus={true} onBlur={deactivateEditMode} value={statusValue}
-                               onInput={updateStatusValue}/>
+                               onChange={updateStatusValue}
+                        />
                     </div>
             }
         </div>
@@ -40,3 +46,61 @@ const ProfileStatus = ({status, updateStatus}: ProfileStatusPropsType) => {
 };
 
 export default ProfileStatus;
+
+
+/*
+class ProfileStatus extends React.Component<any, any> {
+    state = {
+        editMode: false,
+        statusValue: this.props.status
+    }
+
+    activateEditMode = () => {
+        this.setState({
+            editMode: true
+        })
+    }
+
+    deactivateEditMode = () => {
+        this.setState({
+            editMode: false
+        })
+    }
+
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
+
+    componentDidUpdate(
+        prevProps: Readonly<any>,
+        prevState: Readonly<any>,
+        snapshot?: any
+    ) {
+        console.log(prevState)
+        console.log(prevProps)
+        console.log('update')
+    }
+
+    render() {
+        return (
+            <div>
+                {
+                    !this.state.editMode
+                        ? <div>
+                            <span onDoubleClick={this.activateEditMode}>{this.props.status || '-------'}</span>
+                        </div>
+                        : <div>
+                            <input autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.statusValue}
+                                   onInput={this.onStatusChange}
+                            />
+                        </div>
+                }
+            </div>
+        )
+    }
+}
+
+export default ProfileStatus*/
+

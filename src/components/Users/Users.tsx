@@ -35,7 +35,7 @@ const Users = ({
                 users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <NavLink to={'/profile' + '/2'}>
+                            <NavLink to={'/profile/' + '2'}>
                                 <img src={u.photos.small && avatar} className={s.userPhoto}/>
                             </NavLink>
                         </div>
