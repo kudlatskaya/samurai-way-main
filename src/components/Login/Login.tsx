@@ -11,7 +11,7 @@ const Login = () => {
                         <input type="text" placeholder={"Password"}/>
                     </div>
                      <div>
-                         <input type="checkbox" > remember me </input>
+                         <label> <input type="checkbox" />remember me</label>
                     </div>
                      <div>
                          <button>Login</button>
