@@ -2,6 +2,7 @@ import {ChangeEvent} from 'react';
 import s from "./MyPosts.module.css";
 import MyPost from "./Post/MyPost";
 import {PostType} from "./MyPostsContainer";
+import {useFormik} from "formik";
 
 type FormDataType = {
     postText: string
@@ -39,8 +40,33 @@ type MyPostsPropsType = {
     newPostText: string,
 }
 
+type FormikErrorType = {
+    post?: string
+}
+
 const MyPosts = (props: MyPostsPropsType) => {
-    const { updateNewPostText, addPost, posts, newPostText } = props;
+    const {updateNewPostText, addPost, posts, newPostText} = props;
+
+    const formik = useFormik({
+        initialValues: {
+            post: newPostText,
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+
+            if (!values.post) {
+                errors.post = 'Required'
+            }
+
+            return errors
+        },
+        onSubmit: values => {
+            updateNewPostText(values.post);
+            addPost();
+            formik.resetForm()
+        },
+
+    })
 
     let myPostElements = posts.map(post => <MyPost key={post.id} message={post.message} likesCount={post.likesCount}/>);
 
@@ -50,16 +76,26 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value;
-      updateNewPostText(text);
+        updateNewPostText(text);
     }
 
     return (<>
             <p>My posts</p>
             <div>
                 <p>New post</p>
-                <textarea onChange={onChangePost} value={newPostText}/>
-                <button onClick={onClickAddPostHandler}>Add post</button>
-                {/*<PostReduxForm addPost={onClickAddPostHandler} changePost={onChangePost}/>*/}
+                <form onSubmit={formik.handleSubmit}>
+                    <div>
+                        <textarea placeholder={'Enter your post'}
+                                  name={'post'}
+                                  onChange={formik.handleChange}
+                                  value={formik.values.post}/>
+                    </div>
+
+                    {formik.touched.post && formik.errors.post ?
+                        <div style={{color: 'red'}}>{formik.errors.post}</div> : null}
+
+                    <button type={'submit'}>Add post</button>
+                </form>
             </div>
             <div className={s.posts}>
                 {myPostElements}
