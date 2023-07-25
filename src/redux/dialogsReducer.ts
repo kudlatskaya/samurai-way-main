@@ -37,7 +37,7 @@ const dialogsReducer = (state: StateType = initialState, action: ActionType): St
 
         case SEND_MESSAGE:
             const newMessage: MessageType = {
-                id: 5,
+                id: Math.random(),
                 message: state.newMessageBody,
             }
 

@@ -1,9 +1,9 @@
-import {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {DialogType, MessageType} from './DialogsContainer'
 import {Redirect} from "react-router-dom";
+import {useFormik} from "formik";
 
 type DialogsPropsType = {
     dialogsPage: {
@@ -16,6 +16,10 @@ type DialogsPropsType = {
     isAuth: boolean
 }
 
+type FormikErrorType = {
+    message?: string
+}
+
 const Dialogs = (props: DialogsPropsType) => {
     const {
         dialogsPage: {dialogs, messages, newMessageBody},
@@ -24,20 +28,33 @@ const Dialogs = (props: DialogsPropsType) => {
         isAuth
     } = props;
 
+
+    const formik = useFormik({
+        initialValues: {
+            message: newMessageBody,
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+
+            if (!values.message) {
+                errors.message = 'Required'
+            }
+
+            return errors
+        },
+        onSubmit: values => {
+            updateNewMessageBody(values.message);
+            sendMessage();
+            formik.resetForm()
+        },
+
+    })
+
     let dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
 
     let messagesElements = messages.map(message => <Message key={message.id} message={message.message}/>);
 
-    const onSendMessageClick = () => {
-        sendMessage();
-    }
-
-    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.target.value;
-        updateNewMessageBody(text);
-    }
-
-    if(!isAuth) return <Redirect to={'/login'} />
+    if (isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>
@@ -47,17 +64,24 @@ const Dialogs = (props: DialogsPropsType) => {
 
             <div className={s.messages}>
                 <div> {messagesElements} </div>
-                <div>
-                    <div><textarea value={newMessageBody}
-                                   onChange={onNewMessageChange}
-                                   placeholder={'Enter your message'}></textarea></div>
-                    <div>
-                        <button onClick={onSendMessageClick}>send</button>
+                <form onSubmit={formik.handleSubmit}>
+                    <div><textarea placeholder={'Enter your message'}
+                                name={'message'}
+                                onChange={formik.handleChange}
+                                value={formik.values.message}/>
                     </div>
-                </div>
+
+                    {formik.touched.message && formik.errors.message ?
+                        <div style={{color: 'red'}}>{formik.errors.message}</div> : null}
+
+                    <div>
+                        <button type={'submit'}>send</button>
+                    </div>
+                </form>
             </div>
         </div>
     );
 };
+
 
 export default Dialogs;

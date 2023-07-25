@@ -3,6 +3,35 @@ import s from "./MyPosts.module.css";
 import MyPost from "./Post/MyPost";
 import {PostType} from "./MyPostsContainer";
 
+type FormDataType = {
+    postText: string
+}
+
+// const PostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+//
+//     const onChangeHandler = () => {
+//         props.changePost()
+//     }
+//
+//     const onClickHandler = () => {
+//         props.addPost()
+//     }
+//
+//     return (
+//         <form onSubmit={props.handleSubmit}>
+//             <div>
+//                 <Field name={'postText'} placeholder={"Post"} component={'input'} onChange={onChangeHandler}/>
+//             </div>
+//             <div>
+//                 <button onClick={onClickHandler}>Add post</button>
+//             </div>
+//         </form>
+//     );
+// };
+
+// const PostReduxForm = reduxForm<FormDataType>({form: 'post'})(PostForm)
+
+
 type MyPostsPropsType = {
     updateNewPostText: (text: string) => void,
     addPost: () => void,
@@ -30,6 +59,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                 <p>New post</p>
                 <textarea onChange={onChangePost} value={newPostText}/>
                 <button onClick={onClickAddPostHandler}>Add post</button>
+                {/*<PostReduxForm addPost={onClickAddPostHandler} changePost={onChangePost}/>*/}
             </div>
             <div className={s.posts}>
                 {myPostElements}
