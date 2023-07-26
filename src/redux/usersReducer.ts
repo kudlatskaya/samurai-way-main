@@ -29,10 +29,10 @@ type StateType = {
     currentPage: number,
     isFetching: boolean
     followingProgress: number[],
-    filter: {
-        term: string
-    }
+    filter: FilterType
 }
+
+export type FilterType = typeof initialState.filter
 
 // export const images = [
 //     'https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg',
@@ -48,7 +48,8 @@ const initialState = {
     isFetching: true,
     followingProgress: [],
     filter: {
-        term: ''
+        term: '',
+        friend: null as null | boolean
     }
 }
 
@@ -133,7 +134,7 @@ type SetToggleIsFetchingACType = ReturnType<typeof setToggleIsFetching>
 export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 
 type SetFilterACType = ReturnType<typeof setFilter>
-export const setFilter = (term: string) => ({type: SET_FILTER, payload: {term}} as const)
+export const setFilter = (filter: FilterType) => ({type: SET_FILTER, payload: filter} as const)
 
 type SetToggleIsFollowingProgressACType = ReturnType<typeof setToggleIsFollowingProgress>
 export const setToggleIsFollowingProgress = (isFetching: boolean, userId: number) => ({
@@ -142,12 +143,12 @@ export const setToggleIsFollowingProgress = (isFetching: boolean, userId: number
     userId
 } as const)
 
-export const getUsersTC = (currentPage: number, pageSize: number, term: string) => {
+export const getUsersTC = (currentPage: number, pageSize: number, filter: FilterType) => {
     return (dispatch: Dispatch) => {
         dispatch(setToggleIsFetching(true))
-        dispatch(setFilter(term))
+        dispatch(setFilter(filter))
 
-        userAPI.getUsers(currentPage, pageSize, term)
+        userAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
             .then(data => {
                 dispatch(setToggleIsFetching(false))
                 dispatch(setUsers(data.items))

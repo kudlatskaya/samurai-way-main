@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../redux/usersReducer";
+import {FilterType, followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../redux/usersReducer";
 import {useEffect} from "react";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
@@ -18,14 +18,16 @@ const UsersAPIContainer = ({
                                followingProgress,
                                getUsersTC,
                                followTC,
-                               unfollowTC
+                               unfollowTC,
+                               filter
                            }: UsersAPIContainerPropsType) => {
 
     useEffect(() => {
-        getUsersTC(currentPage, pageSize,'')
+        getUsersTC(currentPage, pageSize, filter)
     }, [])
 
-    const onPageChanged = (currentPage: number) => getUsersTC(currentPage, pageSize,'')
+    const onPageChanged = (currentPage: number) => getUsersTC(currentPage, pageSize, filter)
+    const onFilterChanged = (filter: FilterType) => getUsersTC(1, pageSize, filter)
 
     return <>
         {isFetching ? <Preloader/> : null}
@@ -35,6 +37,7 @@ const UsersAPIContainer = ({
             pageSize={pageSize}
             totalUsersCount={totalUsersCount}
             onPageChanged={onPageChanged}
+            onFilterChanged={onFilterChanged}
             followingProgress={followingProgress}
             followTC={followTC}
             unfollowTC={unfollowTC}/>
@@ -47,7 +50,8 @@ type MapStateToPropsType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingProgress: number[]
+    followingProgress: number[],
+    filter: FilterType
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -57,13 +61,14 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         totalUsersCount: state.usersReducer.totalUsersCount,
         currentPage: state.usersReducer.currentPage,
         isFetching: state.usersReducer.isFetching,
-        followingProgress: state.usersReducer.followingProgress
+        followingProgress: state.usersReducer.followingProgress,
+        filter: state.usersReducer.filter
     }
 }
 
 type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void,
-    getUsersTC: (currentPage: number, pageSize: number, term: string) => void,
+    getUsersTC: (currentPage: number, pageSize: number, filter: FilterType) => void,
     followTC: (userId: number) => void,
     unfollowTC: (userId: number) => void,
 }

@@ -1,4 +1,4 @@
-import {UserType} from "../../redux/usersReducer";
+import {FilterType, UserType} from "../../redux/usersReducer";
 import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
 import {NavLink} from "react-router-dom";
@@ -13,6 +13,7 @@ type UsersPropsType = {
     followingProgress: number[],
     followTC: (userId: number) => void,
     unfollowTC: (userId: number) => void,
+    onFilterChanged: (filter: FilterType) => void,
 }
 
 const Users = ({
@@ -22,14 +23,15 @@ const Users = ({
                    onPageChanged,
                    followingProgress,
                    followTC,
-                   unfollowTC
+                   unfollowTC,
+                   onFilterChanged
                }: UsersPropsType) => {
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
 
     return (
         <div>
-            <UsersSearchForm/>
+            <UsersSearchForm onFilterChanged={onFilterChanged}/>
             <div>
                 <PaginationBlock count={pagesCount} onPageChanged={onPageChanged}/>
             </div>
