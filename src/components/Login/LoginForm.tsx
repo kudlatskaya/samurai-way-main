@@ -1,5 +1,5 @@
 import {useFormik} from "formik";
-import * as Yup from 'yup';
+import {loginFormValidator} from "../../utils/validators";
 
 type FormikErrorType = {
     login?: string
@@ -11,17 +11,6 @@ type PropsType = {
     submit: (values: FormikErrorType) => void
 }
 
-const validationSchema = Yup.object().shape({
-    login: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
-    password: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
-});
-
 const LoginForm: React.FC<PropsType> = ({submit}) => {
 
     const formik = useFormik({
@@ -30,7 +19,7 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
             password: '',
             rememberMe: false
         },
-        validationSchema,
+        validationSchema: loginFormValidator('login', 'password'),
         onSubmit: values => {
             submit(values)
             formik.resetForm()
@@ -58,7 +47,8 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
 
             <div>
                 <label htmlFor="rememberMe">
-                    <input type='checkbox'  name={"rememberMe"}  onChange={formik.handleChange} checked={formik.values.rememberMe} />
+                    <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
+                           checked={formik.values.rememberMe}/>
                     remember me
                 </label>
             </div>

@@ -1,16 +1,10 @@
 import React from 'react';
 import {useFormik} from "formik";
-import * as Yup from "yup";
+import {textareaValidator} from "../../utils/validators";
 
 type PropsType = {
     submit: (text: string) => void,
 }
-
-const validationSchema = Yup.object().shape({
-    message: Yup.string()
-        .max(1000, 'Too Long!')
-        .required('Required'),
-});
 
 const DialogForm: React.FC<PropsType> = ({ submit}) => {
 
@@ -18,7 +12,7 @@ const DialogForm: React.FC<PropsType> = ({ submit}) => {
         initialValues: {
             message: '',
         },
-        validationSchema,
+        validationSchema: textareaValidator('message'),
         onSubmit: values => {
             submit(values.message);
             formik.resetForm()
