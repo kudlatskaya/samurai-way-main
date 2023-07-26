@@ -54,7 +54,8 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let messagesElements = messages.map(message => <Message key={message.id} message={message.message}/>);
 
-    if (!isAuth) return <Redirect to={'/login'}/>
+    // должно быть !isAuth
+    if (isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>

@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
 import {NavLink} from "react-router-dom";
 import PaginationBlock from "../Pagination/PaginationBlock";
+import UsersSearchForm from "./UsersSearchForm";
 
 type UsersPropsType = {
     users: UserType[],
@@ -28,6 +29,7 @@ const Users = ({
 
     return (
         <div>
+            <UsersSearchForm/>
             <div>
                 <PaginationBlock count={pagesCount} onPageChanged={onPageChanged}/>
             </div>
@@ -63,5 +65,6 @@ const Users = ({
         </div>
     );
 };
+
 
 export default Users;

@@ -22,10 +22,10 @@ const UsersAPIContainer = ({
                            }: UsersAPIContainerPropsType) => {
 
     useEffect(() => {
-        getUsersTC(currentPage, pageSize)
+        getUsersTC(currentPage, pageSize,'')
     }, [])
 
-    const onPageChanged = (currentPage: number) => getUsersTC(currentPage, pageSize)
+    const onPageChanged = (currentPage: number) => getUsersTC(currentPage, pageSize,'')
 
     return <>
         {isFetching ? <Preloader/> : null}
@@ -63,7 +63,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void,
-    getUsersTC: (currentPage: number, pageSize: number) => void,
+    getUsersTC: (currentPage: number, pageSize: number, term: string) => void,
     followTC: (userId: number) => void,
     unfollowTC: (userId: number) => void,
 }
