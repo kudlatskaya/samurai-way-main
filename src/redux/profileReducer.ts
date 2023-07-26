@@ -3,12 +3,10 @@ import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
 type ActionType = AddPostActionCreatorType
-    | UpdateNewPostTextActionCreatorType
     | SetUserProfileACType
     | SetUserStatusACType
 
@@ -19,7 +17,6 @@ let initialState = {
         {id: 3, message: 'Hello', likesCount: 10},
         {id: 4, message: 'Good by', likesCount: 11},
     ] as PostType[],
-    newPostText: '',
     profile: {
         aboutMe: null,
         contacts: {
@@ -52,20 +49,13 @@ const profileReducer = (state: StateType = initialState, action: ActionType): St
         case ADD_POST:
             const newPost: PostType = {
                 id: Math.random(),
-                message: state.newPostText,
+                message: action.payload.post,
                 likesCount: 0,
             }
 
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: '',
-            };
-
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText,
             };
 
         case SET_USER_PROFILE:
@@ -80,11 +70,7 @@ const profileReducer = (state: StateType = initialState, action: ActionType): St
 }
 
 type AddPostActionCreatorType = ReturnType<typeof addPostActionCreator>
-export const addPostActionCreator = () => ({type: ADD_POST} as const)
-
-type UpdateNewPostTextActionCreatorType = ReturnType<typeof updateNewPostTextActionCreator>
-export const updateNewPostTextActionCreator = (text: string) =>
-    ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
+export const addPostActionCreator = (post: string) => ({type: ADD_POST, payload: {post}} as const)
 
 type SetUserProfileACType = ReturnType<typeof setUserProfile>
 export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)
