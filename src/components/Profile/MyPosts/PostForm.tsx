@@ -1,5 +1,6 @@
 import React from 'react';
 import {useFormik} from "formik";
+import * as Yup from 'yup';
 
 type PropsType = {
     submit: (post: string) => void
@@ -9,36 +10,31 @@ type FormikErrorType = {
     post?: string
 }
 
+const validationSchema = Yup.object().shape({
+    post: Yup.string()
+        .max(1000, 'Too Long!')
+        .required('Required'),
+});
+
 const PostForm: React.FC<PropsType> = ({submit}) => {
 
     const formik = useFormik({
         initialValues: {
             post: '',
         },
-        validate: (values) => {
-            const errors: FormikErrorType = {}
-
-            if (!values.post) {
-                errors.post = 'Required'
-            }
-
-            return errors
-        },
+        validationSchema,
         onSubmit: values => {
             submit(values.post);
             formik.resetForm()
         },
-
     })
 
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <div>
-                        <textarea placeholder={'Enter your post'}
-                                  name={'post'}
-                                  onChange={formik.handleChange}
-                                  value={formik.values.post}/>
+                    <textarea placeholder={'Enter your post'}
+                              {...formik.getFieldProps('post')} />
                 </div>
 
                 {formik.touched.post && formik.errors.post ?
