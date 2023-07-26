@@ -27,7 +27,7 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = messages.map(message => <Message key={message.id} message={message.message}/>);
 
     // должно быть !isAuth
-    if (!isAuth) return <Redirect to={'/login'}/>
+    if (isAuth) return <Redirect to={'/login'}/>
 
     const submit = (message: string) => {
         sendMessage(message);

@@ -1,13 +1,16 @@
 import React from 'react';
 import {useFormik} from "formik";
-
-type FormikErrorType = {
-    message?: string
-}
+import * as Yup from "yup";
 
 type PropsType = {
     submit: (text: string) => void,
 }
+
+const validationSchema = Yup.object().shape({
+    message: Yup.string()
+        .max(1000, 'Too Long!')
+        .required('Required'),
+});
 
 const DialogForm: React.FC<PropsType> = ({ submit}) => {
 
@@ -15,29 +18,19 @@ const DialogForm: React.FC<PropsType> = ({ submit}) => {
         initialValues: {
             message: '',
         },
-        validate: (values) => {
-            const errors: FormikErrorType = {}
-
-            if (!values.message) {
-                errors.message = 'Required'
-            }
-
-            return errors
-        },
+        validationSchema,
         onSubmit: values => {
             submit(values.message);
             formik.resetForm()
         },
-
     })
 
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
-                <div><textarea placeholder={'Enter your message'}
-                               name={'message'}
-                               onChange={formik.handleChange}
-                               value={formik.values.message}/>
+                <div>
+                    <textarea placeholder={'Enter your message'}
+                              {...formik.getFieldProps('message')} />
                 </div>
 
                 {formik.touched.message && formik.errors.message ?
