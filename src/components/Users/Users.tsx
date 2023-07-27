@@ -1,4 +1,4 @@
-import {FilterType, UserType} from "../../redux/usersReducer";
+import {FilterType, UserType} from "../../state/usersReducer";
 import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
 import {NavLink} from "react-router-dom";

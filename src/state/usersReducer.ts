@@ -186,7 +186,7 @@ export const unfollowTC = (userId: number) => {
 }
 
 
-//getAuth
+//me
 
 export default usersReducer;
 

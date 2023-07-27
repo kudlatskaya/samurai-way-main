@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {UserType} from "../redux/usersReducer";
+import {UserType} from "../state/usersReducer";
 import {ProfileType} from "../components/Profile/ProfileContainer";
 
 const instance = axios.create({
@@ -38,9 +38,12 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-    getAuth() {
+    me() {
         return instance.get<ResponseType<AuthResponse>>(`auth/me`);
     },
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post<ResponseType<{userId: number}>>(`auth/login`, {email, password, rememberMe} );
+    }
 }
 
 // types

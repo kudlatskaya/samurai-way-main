@@ -2,13 +2,15 @@ import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
+// const SET_IS_LOGINED = 'SET_IS_LOGINED';
 
 
 type StateType = {
     userId: number | null,
     email: string | null,
     login: string | null,
-    isAuth: boolean
+    isAuth: boolean,
+    // isLogined: boolean
 }
 
 
@@ -16,10 +18,12 @@ const initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    // isLogined: false
 }
 
-type ActionType = setUsersDataACType
+type ActionType = SetUsersDataACType
+    // | SetIsLoginedACType
 
 
 const authReducer = (state: StateType = initialState, action: ActionType): StateType => {
@@ -31,24 +35,46 @@ const authReducer = (state: StateType = initialState, action: ActionType): State
                 isAuth: true
             }
 
+        // case "SET_IS_LOGINED":
+        //     return {
+        //         ...state,
+        //         isLogined: action.data.isLogined
+        //     }
+
         default:
             return state;
     }
     return state;
 }
 
-type setUsersDataACType = ReturnType<typeof setUserData>
+type SetUsersDataACType = ReturnType<typeof setUserData>
 export const setUserData = (userId: number, email: string, login: string) => ({
     type: 'SET_USER_DATA',
     data: {userId, email, login}
 } as const)
 
+// type SetIsLoginedACType = ReturnType<typeof setIsLogined>
+// export const setIsLogined = (userId: number, isLogined: boolean) => ({
+//     type: 'SET_IS_LOGINED',
+//     data: {userId, isLogined}
+// } as const)
+
 export const getAuthTC = () => (dispatch: Dispatch) => {
-    authAPI.getAuth()
+    authAPI.me()
         .then(response => {
             if(response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data
                 dispatch(setUserData(id, email, login))
+            }
+        })
+}
+
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(getAuthTC())
+                // dispatch(setIsLogined(response.data.data.userId, true))
             }
         })
 }

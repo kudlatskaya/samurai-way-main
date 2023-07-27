@@ -1,5 +1,5 @@
 import {Redirect} from "react-router-dom";
-import {AppStateType} from "../redux/redux-store";
+import {AppStateType} from "../state/redux-store";
 import {connect} from "react-redux";
 
 type MapStateToPropsType = {

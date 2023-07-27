@@ -1,9 +1,9 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfileTC, getStatusTC, updateStatusTC} from "../../redux/profileReducer";
+import {getProfileTC, getStatusTC, updateStatusTC} from "../../state/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../state/redux-store";
 import {compose} from "redux";
 
 

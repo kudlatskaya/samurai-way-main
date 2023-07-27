@@ -1,6 +1,6 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {FilterType} from "../../redux/usersReducer";
+import {FilterType} from "../../state/usersReducer";
 
 type PropsType = {
     onFilterChanged: (filter: FilterType) => void,

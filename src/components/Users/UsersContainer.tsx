@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
-import {FilterType, followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../redux/usersReducer";
+import {AppStateType} from "../../state/redux-store";
+import {FilterType, followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../state/usersReducer";
 import {useEffect} from "react";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
