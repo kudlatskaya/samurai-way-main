@@ -22,7 +22,7 @@ export type UserType = {
     followed: boolean,
 }
 
-type StateType = {
+ type StateType = {
     items: UserType[],
     pageSize: number,
     totalUsersCount: number,
@@ -53,7 +53,7 @@ const initialState = {
     }
 }
 
-type ActionType = FollowACType
+export type ActionType = FollowACType
     | UnfollowACType
     | SetUsersACType
     | SetCurrentPageACType

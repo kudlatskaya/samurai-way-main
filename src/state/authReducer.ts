@@ -1,5 +1,6 @@
-import {Dispatch} from "redux";
+import { Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {AppDispatchType, AppThunk} from "./redux-store";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 // const SET_IS_LOGINED = 'SET_IS_LOGINED';
@@ -20,9 +21,10 @@ const initialState = {
     login: null,
     isAuth: false,
     // isLogined: false
+
 }
 
-type ActionType = SetUsersDataACType
+export type ActionType = SetUsersDataACType
     // | SetIsLoginedACType
 
 
@@ -59,7 +61,8 @@ export const setUserData = (userId: number, email: string, login: string) => ({
 //     data: {userId, isLogined}
 // } as const)
 
-export const getAuthTC = () => (dispatch: Dispatch) => {
+// type GetAuthTCType = typeof getAuthTC
+export const getAuthTC = (): AppThunk => (dispatch: Dispatch) => {
     authAPI.me()
         .then(response => {
             if(response.data.resultCode === 0) {
@@ -69,7 +72,7 @@ export const getAuthTC = () => (dispatch: Dispatch) => {
         })
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: AppDispatchType) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if(response.data.resultCode === 0) {

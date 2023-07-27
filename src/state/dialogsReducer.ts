@@ -21,7 +21,7 @@ let initialState = {
 
 type StateType = typeof initialState
 
-type ActionType = SendMessageActionCreatorType
+export type ActionType = SendMessageActionCreatorType
 
 const dialogsReducer = (state: StateType = initialState, action: ActionType): StateType => {
 

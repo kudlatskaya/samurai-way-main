@@ -6,7 +6,7 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
-type ActionType = AddPostActionCreatorType
+export type ActionType = AddPostActionCreatorType
     | SetUserProfileACType
     | SetUserStatusACType
 
