@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {getAuthTC} from "../../state/authReducer";
+import {getAuthTC, logoutTC} from "../../state/authReducer";
 import {AppStateType} from "../../state/redux-store";
 
 type MapStateToPropsType = {
@@ -29,4 +29,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     login: state.authReducer.login
 })
 
-export default connect(mapStateToProps, {getAuthTC})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthTC, logoutTC})(HeaderContainer);

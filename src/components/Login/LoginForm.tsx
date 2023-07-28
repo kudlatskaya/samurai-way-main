@@ -1,8 +1,8 @@
 import {useFormik} from "formik";
 import {loginFormValidator} from "../../utils/validators";
 
-type FormikErrorType = {
-    login?: string
+export type FormikErrorType = {
+    email?: string
     password?: string
     rememberMe?: boolean
 }
@@ -15,11 +15,11 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
 
     const formik = useFormik({
         initialValues: {
-            login: '',
+            email: '',
             password: '',
             rememberMe: false
         },
-        validationSchema: loginFormValidator('login', 'password'),
+        validationSchema: loginFormValidator('email', 'password'),
         onSubmit: values => {
             submit(values)
             formik.resetForm()
@@ -29,13 +29,13 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <div>
-                <input type="login"
-                       {...formik.getFieldProps('login')}
+                <input type="email"
+                       {...formik.getFieldProps('email')}
                 />
             </div>
 
-            {formik.touched.login && formik.errors.login ?
-                <div style={{color: 'red'}}>{formik.errors.login}</div> : null}
+            {formik.touched.email && formik.errors.email ?
+                <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
 
             <div>
                 <input type="password"
