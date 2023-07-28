@@ -1,6 +1,7 @@
 import { Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {AppDispatchType, AppThunk} from "./redux-store";
+import setStatus from 'formik'
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -41,11 +42,13 @@ export const getAuthTC = (): AppThunk => (dispatch: Dispatch) => {
         })
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: AppDispatchType) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: (status: any) => void) => (dispatch: AppDispatchType) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if(response.data.resultCode === 0) {
                 dispatch(getAuthTC())
+            } else {
+                setStatus(response.data.messages[0])
             }
         })
 }

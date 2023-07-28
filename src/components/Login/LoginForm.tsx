@@ -8,7 +8,8 @@ export type FormikErrorType = {
 }
 
 type PropsType = {
-    submit: (values: FormikErrorType) => void
+    submit: (values: FormikErrorType, setStatus: (status: any) => void) => void
+    // setStatus: () => void
 }
 
 const LoginForm: React.FC<PropsType> = ({submit}) => {
@@ -20,8 +21,8 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
             rememberMe: false
         },
         validationSchema: loginFormValidator('email', 'password'),
-        onSubmit: values => {
-            submit(values)
+        onSubmit: (values) => {
+            submit(values, formik.setStatus)
             formik.resetForm()
         },
     })
@@ -44,7 +45,7 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
 
             {formik.touched.password && formik.errors.password ?
                 <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
-
+            {formik.status ? <span>{formik.status}</span> : null}
             <div>
                 <label htmlFor="rememberMe">
                     <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
