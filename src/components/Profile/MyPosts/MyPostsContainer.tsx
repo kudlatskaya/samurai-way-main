@@ -1,4 +1,4 @@
-import {addPostActionCreator} from '../../../state/profileReducer';
+import {addPostActionCreator} from '../../../state/reducers/profileReducer';
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../state/redux-store";

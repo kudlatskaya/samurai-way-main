@@ -9,7 +9,7 @@ import LoginContainer from "./components/Login/Login";
 import {useEffect} from "react";
 import {connect, useDispatch} from "react-redux";
 import {AnyAction, compose} from "redux";
-import {initializeApp} from "./state/appReducer";
+import {initializeApp} from "./state/reducers/appReducer";
 import {AppStateType, useAppDispatch} from "./state/redux-store";
 import Preloader from "./components/Preloader/Preloader";
 

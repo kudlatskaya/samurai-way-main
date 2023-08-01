@@ -1,13 +1,13 @@
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import profileReducer, {ActionType as ProfileActionType} from "./profileReducer";
-import dialogsReducer, {ActionType as DialogsActionType} from "./dialogsReducer";
-import sidebarReducer, {ActionType as SidebarActionType} from "./sidebarReducer";
-import usersReducer, {ActionType as UsersActionType} from "./usersReducer";
-import authReducer, {ActionType as AuthActionType} from "./authReducer";
+import profileReducer, {ActionType as ProfileActionType} from "./reducers/profileReducer";
+import dialogsReducer, {ActionType as DialogsActionType} from "./reducers/dialogsReducer";
+import sidebarReducer, {ActionType as SidebarActionType} from "./reducers/sidebarReducer";
+import usersReducer, {ActionType as UsersActionType} from "./reducers/usersReducer";
+import authReducer, {ActionType as AuthActionType} from "./reducers/authReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {reducer as form} from 'redux-form'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import appReducer from "./appReducer";
+import appReducer from "./reducers/appReducer";
 
 
 let rootReducer = combineReducers({

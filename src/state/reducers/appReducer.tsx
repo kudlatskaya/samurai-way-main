@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {getAuthTC} from "./authReducer";
 import {ThunkDispatch} from "redux-thunk";
-import {AppDispatchType} from "./redux-store";
+import {AppDispatchType} from "../redux-store";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 

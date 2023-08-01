@@ -1,6 +1,6 @@
-import {PostType} from "../components/Profile/MyPosts/MyPostsContainer";
+import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import {profileAPI} from "../../api/api";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';

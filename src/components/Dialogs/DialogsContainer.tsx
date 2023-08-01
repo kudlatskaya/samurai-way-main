@@ -1,4 +1,4 @@
-import {sendMessageActionCreator} from '../../state/dialogsReducer';
+import {sendMessageActionCreator} from '../../state/reducers/dialogsReducer';
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../state/redux-store";

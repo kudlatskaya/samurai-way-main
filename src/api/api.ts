@@ -1,7 +1,7 @@
 import axios from 'axios'
-import {UserType} from "../state/usersReducer";
+import {UserType} from "../state/reducers/usersReducer";
 import {ProfileType} from "../components/Profile/ProfileContainer";
-import {EmailType, PasswordType, RememberMeType} from "../state/authReducer";
+import {EmailType, PasswordType, RememberMeType} from "../state/reducers/authReducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',

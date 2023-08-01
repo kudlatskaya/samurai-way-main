@@ -1,4 +1,4 @@
-import {userAPI} from "../api/api";
+import {userAPI} from "../../api/api";
 import {Dispatch} from "redux";
 
 const FOLLOW = 'FOLLOW';

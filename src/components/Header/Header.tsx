@@ -1,6 +1,6 @@
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
-import {LoginType, logoutTC} from "../../state/authReducer";
+import {LoginType, logoutTC} from "../../state/reducers/authReducer";
 
 type HeaderPropsType = {
     isAuth: boolean

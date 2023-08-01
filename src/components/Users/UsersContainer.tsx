@@ -1,11 +1,20 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../state/redux-store";
-import {FilterType, followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../state/usersReducer";
+import {FilterType, followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../state/reducers/usersReducer";
 import {useEffect} from "react";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPageSelector,
+    getFilterSelector,
+    getFollowingProgressSelector,
+    getIsFetchingSelector,
+    getPageSizeSelector,
+    getTotalUsersCountSelector,
+    getUsersSelector
+} from "../../state/selectors/usersSelectors";
 
 type UsersAPIContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -54,15 +63,27 @@ type MapStateToPropsType = {
     filter: FilterType
 }
 
+// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+//     return {
+//         users: state.usersReducer.items,
+//         pageSize: state.usersReducer.pageSize,
+//         totalUsersCount: state.usersReducer.totalUsersCount,
+//         currentPage: state.usersReducer.currentPage,
+//         isFetching: state.usersReducer.isFetching,
+//         followingProgress: state.usersReducer.followingProgress,
+//         filter: state.usersReducer.filter
+//     }
+// }
+
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        users: state.usersReducer.items,
-        pageSize: state.usersReducer.pageSize,
-        totalUsersCount: state.usersReducer.totalUsersCount,
-        currentPage: state.usersReducer.currentPage,
-        isFetching: state.usersReducer.isFetching,
-        followingProgress: state.usersReducer.followingProgress,
-        filter: state.usersReducer.filter
+        users: getUsersSelector(state),
+        pageSize: getPageSizeSelector(state),
+        totalUsersCount: getTotalUsersCountSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        followingProgress: getFollowingProgressSelector(state),
+        filter: getFilterSelector(state),
     }
 }
 

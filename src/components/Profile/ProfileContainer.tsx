@@ -1,11 +1,11 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect, useSelector} from "react-redux";
-import {getProfileTC, getStatusTC, updateStatusTC} from "../../state/profileReducer";
+import {getProfileTC, getStatusTC, updateStatusTC} from "../../state/reducers/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType, useAppSelector} from "../../state/redux-store";
 import {compose} from "redux";
-import {UserIdType} from "../../state/authReducer";
+import {UserIdType} from "../../state/reducers/authReducer";
 
 
 type ContactsType = {

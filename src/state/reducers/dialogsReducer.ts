@@ -1,4 +1,4 @@
-import {DialogType, MessageType} from "../components/Dialogs/DialogsContainer";
+import {DialogType, MessageType} from "../../components/Dialogs/DialogsContainer";
 
 const SEND_MESSAGE = 'SEND-MESSAGE';
 

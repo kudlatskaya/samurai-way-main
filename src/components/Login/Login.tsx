@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import LoginForm, {FormikErrorType} from "./LoginForm";
-import {EmailType, loginTC, PasswordType, RememberMeType} from '../../state/authReducer'
+import {EmailType, loginTC, PasswordType, RememberMeType} from '../../state/reducers/authReducer'
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../state/redux-store";
 
