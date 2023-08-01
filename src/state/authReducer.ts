@@ -1,4 +1,4 @@
-import { Dispatch} from "redux";
+import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {AppDispatchType, AppThunk} from "./redux-store";
 import setStatus from 'formik'
@@ -26,7 +26,7 @@ const authReducer = (state: StateType = initialState, action: ActionType): State
     return state;
 }
 
-export const setUserData = (userId: UserIdType, email: LoginType, login: EmailType, isAuth: boolean) => ({
+export const setUserData = (userId: UserIdType, email: EmailType , login: LoginType, isAuth: boolean) => ({
     type: 'SET_USER_DATA',
     payload: {userId, email, login, isAuth}
 } as const)
@@ -35,17 +35,21 @@ export const setUserData = (userId: UserIdType, email: LoginType, login: EmailTy
 export const getAuthTC = (): AppThunk => (dispatch: Dispatch) => {
     authAPI.me()
         .then(response => {
-            if(response.data.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data
                 dispatch(setUserData(id, email, login, true))
             }
         })
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: (status: any) => void) => (dispatch: AppDispatchType) => {
+export const loginTC = (email: EmailType,
+                        password: PasswordType,
+                        rememberMe: RememberMeType,
+                        setStatus: (status: any) => void
+) => (dispatch: AppDispatchType) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
-            if(response.data.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(getAuthTC())
             } else {
                 setStatus(response.data.messages[0])
@@ -56,7 +60,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, se
 export const logoutTC = () => (dispatch: AppDispatchType) => {
     authAPI.logout()
         .then(response => {
-            if(response.data.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(setUserData(null, null, null, false))
             }
         })
@@ -65,14 +69,16 @@ export const logoutTC = () => (dispatch: AppDispatchType) => {
 
 //types
 
-type UserIdType = number | null
-type LoginType = string | null
-type EmailType = string | null
+export type UserIdType = number | null | undefined
+export type LoginType = string | null | undefined
+export type EmailType = string | null | undefined
+export type PasswordType = string | null | undefined
+export type RememberMeType = boolean | undefined
 
 type StateType = {
     userId: UserIdType
-    email: LoginType
-    login: EmailType
+    email: EmailType
+    login: LoginType
     isAuth: boolean,
 }
 

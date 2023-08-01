@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {UserType} from "../state/usersReducer";
 import {ProfileType} from "../components/Profile/ProfileContainer";
+import {EmailType, PasswordType, RememberMeType} from "../state/authReducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -41,7 +42,7 @@ export const authAPI = {
     me() {
         return instance.get<ResponseType<AuthResponse>>(`auth/me`);
     },
-    login(email: string, password: string, rememberMe: boolean) {
+    login(email: EmailType, password: PasswordType, rememberMe: RememberMeType) {
         return instance.post<ResponseType<{userId: number}>>(`auth/login`, {email, password, rememberMe} );
     },
     logout() {
