@@ -46,7 +46,7 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
             {formik.touched.password && formik.errors.password ?
                 <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
 
-            {formik.status ? <span>{formik.status}</span> : null}
+            {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
 
             <div>
                 <label htmlFor="rememberMe">

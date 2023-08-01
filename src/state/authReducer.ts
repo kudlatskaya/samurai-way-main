@@ -1,7 +1,6 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {AppDispatchType, AppThunk} from "./redux-store";
-import setStatus from 'formik'
 
 const SET_USER_DATA = 'SET_USER_DATA';
 

@@ -1,10 +1,11 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {getProfileTC, getStatusTC, updateStatusTC} from "../../state/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
-import {AppStateType} from "../../state/redux-store";
+import {AppStateType, useAppSelector} from "../../state/redux-store";
 import {compose} from "redux";
+import {UserIdType} from "../../state/authReducer";
 
 
 type ContactsType = {
@@ -35,7 +36,9 @@ export type ProfileType = {
 
 type MapStatePropsType = {
     profile: ProfileType,
-    status: string
+    status: string,
+    authUserId: UserIdType,
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -53,23 +56,29 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & PropsType
 
 const ProfileContainer = (props: ProfileContainerPropsType) => {
     const params = useParams<{ userId: string }>();
+    // const authUserId = useAppSelector(state => state.authReducer.userId)
 
     useEffect(() => {
         let userId = params.userId;
-        if (!userId) userId = '28736';
+        if (!userId) userId = `${props.authUserId}`;
         props.getProfileTC(userId)
         props.getStatusTC(userId)
     }, [])
 
     return (
         <div>
-            <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatusTC}/>
+            <Profile {...props}
+                     profile={props.profile}
+                     status={props.status}
+                     updateStatus={props.updateStatusTC}/>
         </div>
     );
 };
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profileReducer.profile,
-    status: state.profileReducer.status
+    status: state.profileReducer.status,
+    authUserId: state.authReducer.userId,
+    isAuth: state.authReducer.isAuth
 })
 
 export default compose<React.ComponentType>(
