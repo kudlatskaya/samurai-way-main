@@ -1,13 +1,24 @@
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/Login";
+import {useEffect} from "react";
+import {connect} from "react-redux";
+import {getAuthTC} from "./state/authReducer";
+import {compose} from "redux";
 
-const App = () => {
+type PropsType = MapDispatchToPropsType
+
+const App = ({getAuthTC}: PropsType) => {
+
+    useEffect(() => {
+        getAuthTC()
+    }, [])
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -24,7 +35,14 @@ const App = () => {
     );
 }
 
+type MapDispatchToPropsType = {
+    getAuthTC: () => void
+}
+
+export default compose<React.ComponentType>(
+    withRouter,
+    connect(null,{getAuthTC})
+)(App)
 
 
 
-export default App;
