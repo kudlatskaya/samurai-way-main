@@ -45,7 +45,9 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
 
             {formik.touched.password && formik.errors.password ?
                 <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
+
             {formik.status ? <span>{formik.status}</span> : null}
+
             <div>
                 <label htmlFor="rememberMe">
                     <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}

@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {getAuthTC, logoutTC} from "../../state/authReducer";
+import {getAuthTC, LoginType, logoutTC} from "../../state/authReducer";
 import {AppStateType} from "../../state/redux-store";
 
 type MapStateToPropsType = {
     isAuth: boolean
-    login: string | null
+    login: LoginType
 }
 
 type MapDispatchToPropsType = {
     getAuthTC: () => void
+    logoutTC: () => void
 }
 
 type HeaderContainerPropsType = MapStateToPropsType & MapDispatchToPropsType

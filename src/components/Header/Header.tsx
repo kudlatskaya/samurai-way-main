@@ -1,20 +1,21 @@
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
+import {LoginType, logoutTC} from "../../state/authReducer";
 
 type HeaderPropsType = {
     isAuth: boolean
-    login: string | null
-    logout: () => void
+    login: LoginType
+    logoutTC: () => void
 }
 
-const Header = ({isAuth, login, logout}: HeaderPropsType) => {
+const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
 
     return (
         <header className={s.header}>
             <div className={s.loginBlock}>
                 {
                     isAuth
-                        ? <div>{login} <button onClick={logout}>Log out</button></div>
+                        ? <div>{login} <button onClick={logoutTC}>Log out</button></div>
                         : <NavLink to={'/login'}>Login</NavLink>
                 }
 
