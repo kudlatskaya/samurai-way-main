@@ -6,7 +6,8 @@ import usersReducer, {ActionType as UsersActionType} from "./usersReducer";
 import authReducer, {ActionType as AuthActionType} from "./authReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {reducer as form} from 'redux-form'
-import {TypedUseSelectorHook, useSelector} from "react-redux";
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import appReducer from "./appReducer";
 
 
 let rootReducer = combineReducers({
@@ -15,6 +16,7 @@ let rootReducer = combineReducers({
     sidebarReducer,
     usersReducer,
     authReducer,
+    appReducer,
     form
 });
 
@@ -25,6 +27,7 @@ const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export type AppDispatchType = ThunkDispatch<AppStateType, any, AnyAction>
 export type AppThunk<ReturnType = void> = ThunkAction<void, AppStateType, unknown, AppActionsType>
 export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
+export const useAppDispatch = () => useDispatch<AppDispatchType>()
 export type AppActionsType = AuthActionType
     | DialogsActionType
     | ProfileActionType

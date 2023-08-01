@@ -31,8 +31,8 @@ export const setUserData = (userId: UserIdType, email: EmailType , login: LoginT
 } as const)
 
 
-export const getAuthTC = (): AppThunk => (dispatch: Dispatch) => {
-    authAPI.me()
+export const getAuthTC = () => (dispatch: Dispatch) => {
+    return authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data

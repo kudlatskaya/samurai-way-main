@@ -1,4 +1,7 @@
 import {Dispatch} from "redux";
+import {getAuthTC} from "./authReducer";
+import {ThunkDispatch} from "redux-thunk";
+import {AppDispatchType} from "./redux-store";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
@@ -26,6 +29,13 @@ const appReducer = (state: StateType = InitialState, action: ActionType): StateT
 
 const initializedSuccess = () => ({type: 'INITIALIZED_SUCCESS'} as const)
 
-export const initialize = () => (dispatch: Dispatch) => {
+export const initializeApp = () => (dispatch: AppDispatchType) => {
+    let data = dispatch(getAuthTC());
+    data.then(() => {
+        dispatch(initializedSuccess())
+    })
+
 
 }
+
+export default appReducer

@@ -7,17 +7,24 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/Login";
 import {useEffect} from "react";
-import {connect} from "react-redux";
-import {getAuthTC} from "./state/authReducer";
-import {compose} from "redux";
+import {connect, useDispatch} from "react-redux";
+import {AnyAction, compose} from "redux";
+import {initializeApp} from "./state/appReducer";
+import {AppStateType, useAppDispatch} from "./state/redux-store";
+import Preloader from "./components/Preloader/Preloader";
 
-type PropsType = MapDispatchToPropsType
+type PropsType = MapDispatchToPropsType & MapStateToPropsType
 
-const App = ({getAuthTC}: PropsType) => {
+const App = ({initializeApp, initialized}: PropsType) => {
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        getAuthTC()
+         // dispatch(initializeApp())
+         initializeApp()
+
     }, [])
+
+    if(!initialized) return <Preloader />
 
     return (
         <BrowserRouter>
@@ -35,13 +42,19 @@ const App = ({getAuthTC}: PropsType) => {
     );
 }
 
-type MapDispatchToPropsType = {
-    getAuthTC: () => void
-}
+type MapDispatchToPropsType =  {
+     initializeApp: () => AnyAction
+ }
+
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>
+
+const mapStateToProps = (state: AppStateType) => ({
+    initialized: state.appReducer.initialized
+})
 
 export default compose<React.ComponentType>(
     withRouter,
-    connect(null,{getAuthTC})
+    connect(mapStateToProps,{initializeApp})
 )(App)
 
 

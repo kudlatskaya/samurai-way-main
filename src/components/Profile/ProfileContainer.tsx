@@ -60,10 +60,18 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
 
     useEffect(() => {
         let userId = params.userId;
-        if (!userId) userId = `${props.authUserId}`;
+        if (!userId) {
+            userId = `${props.authUserId}`
+
+            if(!props.authUserId) {
+                props.history.push('/login')
+            }
+        }
         props.getProfileTC(userId)
         props.getStatusTC(userId)
     }, [])
+
+     // if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div>
