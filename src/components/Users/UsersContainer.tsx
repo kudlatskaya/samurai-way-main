@@ -1,10 +1,16 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../state/redux-store";
-import {FilterType, followTC, getUsersTC, setCurrentPage, unfollowTC, UserType} from "../../state/reducers/usersReducer";
+import {
+    FilterType,
+    followTC,
+    getUsersTC,
+    setCurrentPage,
+    unfollowTC,
+    UserType
+} from "../../state/reducers/usersReducer";
 import {useEffect} from "react";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
     getCurrentPageSelector,
@@ -13,7 +19,7 @@ import {
     getIsFetchingSelector,
     getPageSizeSelector,
     getTotalUsersCountSelector,
-    getUsersSelector
+    getUsersSuperSelector
 } from "../../state/selectors/usersSelectors";
 
 type UsersAPIContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -77,7 +83,8 @@ type MapStateToPropsType = {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        users: getUsersSelector(state),
+        // users: getUsersSelector(state),
+        users: getUsersSuperSelector(state),
         pageSize: getPageSizeSelector(state),
         totalUsersCount: getTotalUsersCountSelector(state),
         currentPage: getCurrentPageSelector(state),
