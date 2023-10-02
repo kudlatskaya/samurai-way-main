@@ -60,6 +60,13 @@ const profileReducer = (state: StateType = initialState, action: ActionType): St
                 posts: [...state.posts, newPost],
             };
 
+        case DELETE_POST:
+
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.payload.postId),
+            };
+
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
 
@@ -75,7 +82,7 @@ type AddPostActionCreatorType = ReturnType<typeof addPostActionCreator>
 export const addPostActionCreator = (post: string) => ({type: ADD_POST, payload: {post}} as const)
 
 type DeletePostActionCreatorType = ReturnType<typeof deletePostActionCreator>
-export const deletePostActionCreator = (postId: string) => ({type: DELETE_POST, payload: {postId}} as const)
+export const deletePostActionCreator = (postId: number) => ({type: DELETE_POST, payload: {postId}} as const)
 
 type SetUserProfileACType = ReturnType<typeof setUserProfile>
 export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)

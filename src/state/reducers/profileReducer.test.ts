@@ -1,4 +1,4 @@
-import profileReducer, {addPostActionCreator} from "./profileReducer";
+import profileReducer, {addPostActionCreator, deletePostActionCreator} from "./profileReducer";
 import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 
 let initialState = {
@@ -46,9 +46,16 @@ test('new post should be added', () => {
     expect(newState.posts[4].message).toBe("hello")
 })
 
-test('after deleting length should be decremented', () => {
-    const action = deletePost(1)
+test('after deleting length should be decrement', () => {
+    const action = deletePostActionCreator(1)
     const newState = profileReducer(initialState, action)
 
     expect(newState.posts.length).toBe(3)
+})
+
+test(`after deleting length shouldn't be decrement if id is incorrect`, () => {
+    const action = deletePostActionCreator(1000)
+    const newState = profileReducer(initialState, action)
+
+    expect(newState.posts.length).toBe(4)
 })
