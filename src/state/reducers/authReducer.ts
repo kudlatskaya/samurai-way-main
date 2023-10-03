@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {authAPI} from "../../api/api";
 import {AppDispatchType, AppThunk} from "../redux-store";
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = 'network/auth/SET_USER_DATA';
 
 const initialState = {
     userId: null,
@@ -25,44 +25,41 @@ const authReducer = (state: StateType = initialState, action: ActionType): State
     return state;
 }
 
-export const setUserData = (userId: UserIdType, email: EmailType , login: LoginType, isAuth: boolean) => ({
-    type: 'SET_USER_DATA',
+export const setUserData = (userId: UserIdType, email: EmailType, login: LoginType, isAuth: boolean) => ({
+    type: 'network/auth/SET_USER_DATA',
     payload: {userId, email, login, isAuth}
 } as const)
 
 
-export const getAuthTC = () => (dispatch: Dispatch) => {
-    return authAPI.me()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                const {id, email, login} = response.data.data
-                dispatch(setUserData(id, email, login, true))
-            }
-        })
+export const getAuthTC = () => async (dispatch: Dispatch) => {
+    const response = await authAPI.me()
+
+    if (response.data.resultCode === 0) {
+        const {id, email, login} = response.data.data
+        dispatch(setUserData(id, email, login, true))
+    }
 }
 
 export const loginTC = (email: EmailType,
                         password: PasswordType,
                         rememberMe: RememberMeType,
                         setStatus: (status: any) => void
-) => (dispatch: AppDispatchType) => {
-    authAPI.login(email, password, rememberMe)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthTC())
-            } else {
-                setStatus(response.data.messages[0])
-            }
-        })
+) => async (dispatch: AppDispatchType) => {
+    const response = await authAPI.login(email, password, rememberMe)
+
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthTC())
+    } else {
+        setStatus(response.data.messages[0])
+    }
 }
 
-export const logoutTC = () => (dispatch: AppDispatchType) => {
-    authAPI.logout()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setUserData(null, null, null, false))
-            }
-        })
+export const logoutTC = () => async (dispatch: AppDispatchType) => {
+    const response = await authAPI.logout()
+
+    if (response.data.resultCode === 0) {
+        dispatch(setUserData(null, null, null, false))
+    }
 }
 
 
