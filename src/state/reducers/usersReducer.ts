@@ -155,27 +155,30 @@ export const getUsersTC = (currentPage: number, pageSize: number, filter: Filter
     }
 }
 
+const followUnfollowFlow = async (
+    dispatch: Dispatch,
+    userId: number,
+    apiMetod: (userId: number) => any,
+    setMetod: (userId: number) => any
+) => {
+    dispatch(setToggleIsFollowingProgress(true, userId))
+
+    const response = await apiMetod(userId)
+    if (response.data.resultCode === 0) {
+        dispatch(setMetod(userId))
+    }
+    dispatch(setToggleIsFollowingProgress(false, userId))
+}
+
 export const followTC = (userId: number) => {
     return async (dispatch: Dispatch) => {
-        dispatch(setToggleIsFollowingProgress(true, userId))
-
-        const response = await userAPI.follow(userId)
-        if (response.data.resultCode === 0) {
-            dispatch(setFollow(userId))
-        }
-        dispatch(setToggleIsFollowingProgress(false, userId))
+        followUnfollowFlow(dispatch, userId, userAPI.follow.bind(userAPI), setFollow)
     }
 }
 
 export const unfollowTC = (userId: number) => {
     return async (dispatch: Dispatch) => {
-        dispatch(setToggleIsFollowingProgress(true, userId))
-
-        const response = await userAPI.unfollow(userId)
-        if (response.data.resultCode === 0) {
-            dispatch(setUnfollow(userId))
-        }
-        dispatch(setToggleIsFollowingProgress(false, userId))
+        followUnfollowFlow(dispatch, userId, userAPI.unfollow.bind(userAPI), setUnfollow)
     }
 }
 
