@@ -1,5 +1,6 @@
 import {userAPI} from "../../api/api";
 import {Dispatch} from "redux";
+import {updateOnbjectInArray} from "../../utils/object-helpers";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -61,18 +62,19 @@ export type ActionType = FollowACType
     | SetToggleIsFetchingACType
     | SetToggleIsFollowingProgressACType
     | SetFilterACType
-
+//(items: UserType[], itemId: number, objPropName: string, newObjProps: {})
 const usersReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case FOLLOW:
             return {
                 ...state,
-                items: state.items.map(item => {
-                    if (item.id === action.id) {
-                        return {...item, followed: true}
-                    }
-                    return item
-                }),
+                users: updateOnbjectInArray(state.users, action.id, 'id', {followed: true})
+                // items: state.items.map(item => {
+                //     if (item.id === action.id) {
+                //         return {...item, followed: true}
+                //     }
+                //     return item
+                // }),
             }
 
         case UNFOLLOW:
