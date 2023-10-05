@@ -13,6 +13,7 @@ const SET_FILTER = 'SET_FILTER';
 
 export type UserType = {
     name: string,
+    // [key: string]: any;
     id: number,
     uniqueUrlName: string | null,
     photos: {
@@ -68,7 +69,7 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
         case FOLLOW:
             return {
                 ...state,
-                users: updateOnbjectInArray(state.users, action.id, 'id', {followed: true})
+                items: updateOnbjectInArray(state.items, action.id, 'id', {followed: true})
                 // items: state.items.map(item => {
                 //     if (item.id === action.id) {
                 //         return {...item, followed: true}
@@ -80,12 +81,7 @@ const usersReducer = (state: StateType = initialState, action: ActionType): Stat
         case UNFOLLOW:
             return {
                 ...state,
-                items: state.items.map(item => {
-                    if (item.id === action.id) {
-                        return {...item, followed: false}
-                    }
-                    return item
-                }),
+                items: updateOnbjectInArray(state.items, action.id, 'id', {followed: false}),
             }
 
         case SET_USERS:
