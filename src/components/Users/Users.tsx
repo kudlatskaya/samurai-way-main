@@ -2,8 +2,8 @@ import {FilterType, UserType} from "../../state/reducers/usersReducer";
 import s from './Users.module.css'
 import avatar from '../../asets/images/avatar.jpg';
 import {NavLink} from "react-router-dom";
-import PaginationBlock from "../Pagination/PaginationBlock";
 import UsersSearchForm from "./UsersSearchForm";
+import Paginator from "../common/Paginator/Paginator";
 
 type UsersPropsType = {
     users: UserType[],
@@ -18,23 +18,17 @@ type UsersPropsType = {
 
 const Users = ({
                    users,
-                   totalUsersCount,
-                   pageSize,
-                   onPageChanged,
+                   totalUsersCount, pageSize, onPageChanged,
                    followingProgress,
                    followTC,
                    unfollowTC,
                    onFilterChanged
                }: UsersPropsType) => {
 
-    let pagesCount = Math.ceil(totalUsersCount / pageSize);
-
     return (
         <div>
             <UsersSearchForm onFilterChanged={onFilterChanged}/>
-            <div>
-                <PaginationBlock count={pagesCount} onPageChanged={onPageChanged}/>
-            </div>
+            <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged}/>
             {
                 users.map(u => <div key={u.id}>
                     <span>
