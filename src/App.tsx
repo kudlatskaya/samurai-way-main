@@ -7,10 +7,10 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/Login";
 import {useEffect} from "react";
-import {connect, useDispatch} from "react-redux";
+import {connect, Provider, useDispatch} from "react-redux";
 import {AnyAction, compose} from "redux";
 import {initializeApp} from "./state/reducers/appReducer";
-import {AppStateType, useAppDispatch} from "./state/redux-store";
+import store, {AppStateType, useAppDispatch} from "./state/redux-store";
 import Preloader from "./components/Preloader/Preloader";
 
 type PropsType = MapDispatchToPropsType & MapStateToPropsType
@@ -19,12 +19,12 @@ const App = ({initializeApp, initialized}: PropsType) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-         // dispatch(initializeApp())
-         initializeApp()
+        // dispatch(initializeApp())
+        initializeApp()
 
     }, [])
 
-    if(!initialized) return <Preloader />
+    if (!initialized) return <Preloader/>
 
     return (
         <BrowserRouter>
@@ -33,18 +33,18 @@ const App = ({initializeApp, initialized}: PropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/profile/:userId' render={() => <ProfileContainer/>} />
+                    <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/login' render={() => <LoginContainer />}/>
+                    <Route path='/login' render={() => <LoginContainer/>}/>
                 </div>
             </div>
         </BrowserRouter>
     );
 }
 
-type MapDispatchToPropsType =  {
-     initializeApp: () => AnyAction
- }
+type MapDispatchToPropsType = {
+    initializeApp: () => AnyAction
+}
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
@@ -52,10 +52,20 @@ const mapStateToProps = (state: AppStateType) => ({
     initialized: state.appReducer.initialized
 })
 
-export default compose<React.ComponentType>(
+const AppContainer = compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps,{initializeApp})
+    connect(mapStateToProps, {initializeApp})
 )(App)
+
+export const MainApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
 
 
 
