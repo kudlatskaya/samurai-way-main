@@ -13,7 +13,6 @@ type UsersPropsType = {
 
 const User = ({user, followingProgress, followTC, unfollowTC}: UsersPropsType) => {
     return (
-
             <div key={user.id}>
                     <span>
                         <div>

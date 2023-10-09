@@ -69,21 +69,8 @@ type MapStateToPropsType = {
     filter: FilterType
 }
 
-// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-//     return {
-//         users: state.usersReducer.items,
-//         pageSize: state.usersReducer.pageSize,
-//         totalUsersCount: state.usersReducer.totalUsersCount,
-//         currentPage: state.usersReducer.currentPage,
-//         isFetching: state.usersReducer.isFetching,
-//         followingProgress: state.usersReducer.followingProgress,
-//         filter: state.usersReducer.filter
-//     }
-// }
-
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        // users: getUsersSelector(state),
         users: getUsersSuperSelector(state),
         pageSize: getPageSizeSelector(state),
         totalUsersCount: getTotalUsersCountSelector(state),

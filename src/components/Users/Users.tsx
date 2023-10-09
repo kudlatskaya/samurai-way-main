@@ -27,9 +27,16 @@ const Users = ({
         <div>
             <UsersSearchForm onFilterChanged={onFilterChanged}/>
             <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged}/>
-            {
-                users.map(u => <User user={u} followingProgress={followingProgress} followTC={followTC} unfollowTC={unfollowTC}/>)
-            }
+            <div>
+                {
+                    users.map(u => <User key={u.id}
+                                         user={u}
+                                         followingProgress={followingProgress}
+                                         followTC={followTC}
+                                         unfollowTC={unfollowTC}/>
+                    )
+                }
+            </div>
         </div>
     );
 };

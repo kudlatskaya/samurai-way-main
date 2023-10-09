@@ -1,4 +1,4 @@
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
 import profileReducer, {ActionType as ProfileActionType} from "./reducers/profileReducer";
 import dialogsReducer, {ActionType as DialogsActionType} from "./reducers/dialogsReducer";
 import sidebarReducer, {ActionType as SidebarActionType} from "./reducers/sidebarReducer";
@@ -8,7 +8,6 @@ import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {reducer as form} from 'redux-form'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import appReducer from "./reducers/appReducer";
-
 
 let rootReducer = combineReducers({
     profileReducer,
@@ -23,7 +22,16 @@ let rootReducer = combineReducers({
 export type AppStateType = ReturnType<typeof rootReducer>
 
 //export type StoreType = typeof store;
-const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = legacy_createStore(rootReducer,
+    composeEnhancers(applyMiddleware(thunkMiddleware)),
+);
+// const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export type AppDispatchType = ThunkDispatch<AppStateType, any, AnyAction>
 export type AppThunk<ReturnType = void> = ThunkAction<void, AppStateType, unknown, AppActionsType>
 export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
