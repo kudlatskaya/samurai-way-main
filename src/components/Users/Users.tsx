@@ -1,9 +1,7 @@
 import {FilterType, UserType} from "../../state/reducers/usersReducer";
-import s from './Users.module.css'
-import avatar from '../../asets/images/avatar.jpg';
-import {NavLink} from "react-router-dom";
 import UsersSearchForm from "./UsersSearchForm";
 import Paginator from "../common/Paginator/Paginator";
+import User from "./User/Users";
 
 type UsersPropsType = {
     users: UserType[],
@@ -30,33 +28,7 @@ const Users = ({
             <UsersSearchForm onFilterChanged={onFilterChanged}/>
             <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged}/>
             {
-                users.map(u => <div key={u.id}>
-                    <span>
-                        <div>
-                            <NavLink to={'/profile/' + '2'}>
-                                <img src={u.photos.small && avatar} className={s.userPhoto}/>
-                            </NavLink>
-                        </div>
-                        <div>
-                            {
-                                u.followed
-                                    ? <button disabled={followingProgress.some(id => id === u.id)} onClick={() => {
-                                        unfollowTC(u.id)
-                                    }}>Unfollow</button>
-
-                                    : <button disabled={followingProgress.some(id => id === u.id)} onClick={() => {
-                                        followTC(u.id)
-                                    }}>Follow</button>
-                            }
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                    </span>
-                </div>)
+                users.map(u => <User user={u} followingProgress={followingProgress} followTC={followTC} unfollowTC={unfollowTC}/>)
             }
         </div>
     );
