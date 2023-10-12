@@ -31,7 +31,7 @@ const App = ({initializeApp, initialized}: PropsType) => {
     if (!initialized) return <Preloader/>
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar/>
