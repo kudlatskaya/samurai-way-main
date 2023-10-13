@@ -59,23 +59,30 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
     // const authUserId = useAppSelector(state => state.authReducer.userId)
 
     useEffect(() => {
+
         let userId = params.userId;
+        console.log(params.userId)
         if (!userId) {
             userId = `${props.authUserId}`
 
-            if(!props.authUserId) {
+            if (!props.authUserId) {
                 props.history.push('/login')
             }
         }
         props.getProfileTC(userId)
         props.getStatusTC(userId)
-    }, [])
+    }, [params.userId])
 
-     // if (!isAuth) return <Redirect to={'/login'}/>
+    // useEffect(() => {
+    //
+    // },[])
+
+    // if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div>
             <Profile {...props}
+                     isOwner={!!props.match.params.userId}
                      profile={props.profile}
                      status={props.status}
                      updateStatus={props.updateStatusTC}/>
