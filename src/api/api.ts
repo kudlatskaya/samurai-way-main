@@ -2,6 +2,7 @@ import {UserType} from "../state/reducers/usersReducer";
 import {ProfileType} from "../components/Profile/ProfileContainer";
 import {EmailType, PasswordType, RememberMeType} from "../state/reducers/authReducer";
 import axios from "axios";
+import {PhotosType} from "../state/reducers/profileReducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -35,6 +36,16 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put<ResponseType>(`profile/status`, {status});
+    },
+    savePhoto(file: File) {
+        const formData = new FormData()
+        formData.append('image', file)
+
+        return instance.put<ResponseType<PhotosType>>(`/profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

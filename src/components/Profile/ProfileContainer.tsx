@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect, useSelector} from "react-redux";
-import {getProfileTC, getStatusTC, updateStatusTC} from "../../state/reducers/profileReducer";
+import {getProfileTC, getStatusTC, PhotosType, savePhoto, updateStatusTC} from "../../state/reducers/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType, useAppSelector} from "../../state/redux-store";
 import {compose} from "redux";
@@ -19,10 +19,10 @@ type ContactsType = {
     mainLink: string | null
 }
 
-type PhotosType = {
-    small: string | null,
-    large: string | null
-}
+// type PhotosType = {
+//     small: string | null,
+//     large: string | null
+// }
 
 export type ProfileType = {
     aboutMe: string | null,
@@ -31,7 +31,7 @@ export type ProfileType = {
     lookingForAJobDescription: string | null,
     fullName: string,
     userId: string | undefined,
-    photos: PhotosType
+    photos: PhotosType;
 }
 
 type MapStatePropsType = {
@@ -45,6 +45,7 @@ type MapDispatchPropsType = {
     getProfileTC: (userId: string) => void,
     getStatusTC: (userId: string) => void,
     updateStatusTC: (status: string) => void,
+    savePhoto: (file: File) => void
 }
 
 type PathParamsType = {
@@ -85,7 +86,8 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
                      isOwner={!!props.match.params.userId}
                      profile={props.profile}
                      status={props.status}
-                     updateStatus={props.updateStatusTC}/>
+                     updateStatus={props.updateStatusTC}
+                     savePhoto={props.savePhoto}/>
         </div>
     );
 };
@@ -97,6 +99,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC}),
+    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC, savePhoto}),
     withRouter
 )(ProfileContainer)

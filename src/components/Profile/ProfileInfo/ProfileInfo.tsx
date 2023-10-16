@@ -2,16 +2,24 @@ import s from "./ProfileInfo.module.css";
 import Preloader from "../../Preloader/Preloader";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import userPhoto from '../../../asets/images/avatar.jpg'
+import {ChangeEvent} from "react";
 
 type ProfileInfoPropsType = {
     profile: null | any
     status: string
     updateStatus: (status: string) => void,
-    isOwner: boolean
+    isOwner: boolean,
+    savePhoto: (file: File) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile) return <Preloader/>
+
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files?.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
 
     return (
         <div className={s.userInfo}>
@@ -19,7 +27,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img
                     src={props.profile.photos.large || userPhoto}
                     alt=""/>
-                {props.isOwner && <input type={'file'}/>}
+                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
             </div>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <div className={s.userName}>
