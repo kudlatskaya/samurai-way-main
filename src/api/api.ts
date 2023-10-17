@@ -41,7 +41,7 @@ export const profileAPI = {
         const formData = new FormData()
         formData.append('image', file)
 
-        return instance.put<ResponseType<PhotosType>>(`/profile/photo`, formData, {
+        return instance.put<ResponseType<{ photos: PhotosType}>>(`/profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -75,10 +75,11 @@ type AuthResponse = {
     email: string
 }
 
+
 export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
-    fieldsErrors: Array<string>
+    fieldsErrors?: Array<string>
     data: D
 }
 

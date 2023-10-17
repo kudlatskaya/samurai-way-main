@@ -11,6 +11,7 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
+    // console.log('Profile')
     return (
         <main>
             <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}

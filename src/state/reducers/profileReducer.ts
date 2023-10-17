@@ -45,7 +45,7 @@ let initialState = {
         photos: {
             small: null,
             large: null
-        } as PhotosType
+        }
     },
     status: 'initial status'
 }
@@ -101,7 +101,7 @@ type SetUserStatusACType = ReturnType<typeof setUserStatus>
 export const setUserStatus = (status: string) => ({type: SET_STATUS, status} as const)
 
 type SetPhotoSuccessACType = ReturnType<typeof setPhotoSuccess>
-export const setPhotoSuccess = (photos: PhotosType) => ({type: SET_PHOTOS_SUCCESS, photos} as const)
+export const setPhotoSuccess = (photos: any) => ({type: SET_PHOTOS_SUCCESS, photos} as const)
 
 
 //getProfile
@@ -124,8 +124,10 @@ export const updateStatusTC = (status: string) => async (dispatch: Dispatch) => 
 
 export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
     const response = await profileAPI.savePhoto(file)
+
     if (response.data.resultCode === 0) {
-        dispatch(setPhotoSuccess(response.data));
+        // console.log(response)
+        dispatch(setPhotoSuccess(response.data.data.photos));
     }
 }
 

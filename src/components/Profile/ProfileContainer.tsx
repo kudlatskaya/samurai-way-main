@@ -1,9 +1,9 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
-import {connect, useSelector} from "react-redux";
+import {connect} from "react-redux";
 import {getProfileTC, getStatusTC, PhotosType, savePhoto, updateStatusTC} from "../../state/reducers/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
-import {AppStateType, useAppSelector} from "../../state/redux-store";
+import {AppStateType} from "../../state/redux-store";
 import {compose} from "redux";
 import {UserIdType} from "../../state/reducers/authReducer";
 
@@ -18,11 +18,6 @@ type ContactsType = {
     github: string | null,
     mainLink: string | null
 }
-
-// type PhotosType = {
-//     small: string | null,
-//     large: string | null
-// }
 
 export type ProfileType = {
     aboutMe: string | null,
@@ -58,11 +53,11 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & PropsType
 const ProfileContainer = (props: ProfileContainerPropsType) => {
     const params = useParams<{ userId: string }>();
     // const authUserId = useAppSelector(state => state.authReducer.userId)
-
+    // console.log('ProfileContainer')
     useEffect(() => {
-
+// debugger
         let userId = params.userId;
-        console.log(params.userId)
+        // console.log(params.userId)
         if (!userId) {
             userId = `${props.authUserId}`
 

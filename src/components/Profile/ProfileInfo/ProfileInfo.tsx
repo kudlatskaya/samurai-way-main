@@ -14,9 +14,9 @@ type ProfileInfoPropsType = {
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile) return <Preloader/>
-
+    // console.log('ProfileInfo')
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files?.length) {
+        if (e.target.files?.length) {
             props.savePhoto(e.target.files[0])
         }
     }
@@ -29,6 +29,14 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     alt=""/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
             </div>
+
+            <div>
+                <div>Full name: {props.profile.fullName}</div>
+                <div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
+                <div>About me: {props.profile.aboutMe}</div>
+                <div>My professional skills: {props.profile.lookingForAJobDescription }</div>
+            </div>
+
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <div className={s.userName}>
                 <p>My name</p>
