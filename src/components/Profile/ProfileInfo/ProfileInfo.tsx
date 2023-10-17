@@ -33,8 +33,10 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div>
                 <div>Full name: {props.profile.fullName}</div>
                 <div>Looking for a job: {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
+
+                <div>My professional skills: {props.profile.lookingForAJobDescription}</div>
                 <div>About me: {props.profile.aboutMe}</div>
-                <div>My professional skills: {props.profile.lookingForAJobDescription }</div>
+                <div>Contacts: {Object.keys(props.profile.contacts)} </div>
             </div>
 
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
@@ -50,5 +52,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     );
 };
+
+
 
 export default ProfileInfo;
