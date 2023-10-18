@@ -1,9 +1,10 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "./ProfileContainer";
 
 
 type ProfilePropsType = {
-    profile: null | any
+    profile: null | ProfileType
     status: string
     updateStatus: (status: string) => void,
     isOwner: boolean
@@ -11,7 +12,7 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
-    // console.log('Profile')
+
     return (
         <main>
             <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}

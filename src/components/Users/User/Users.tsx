@@ -16,7 +16,7 @@ const User = ({user, followingProgress, followTC, unfollowTC}: UsersPropsType) =
             <div key={user.id}>
                     <span>
                         <div>
-                            <NavLink to={'/profile/' + '2'}>
+                            <NavLink to={'/profile/' + user.id}>
                                 <img src={user.photos.small && avatar} className={s.userPhoto}/>
                             </NavLink>
                         </div>

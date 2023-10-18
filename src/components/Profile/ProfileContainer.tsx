@@ -8,7 +8,7 @@ import {compose} from "redux";
 import {UserIdType} from "../../state/reducers/authReducer";
 
 
-type ContactsType = {
+export type ContactsType = {
     facebook: string | null,
     website: string | null,
     vk: string | null,
@@ -52,12 +52,11 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & PropsType
 
 const ProfileContainer = (props: ProfileContainerPropsType) => {
     const params = useParams<{ userId: string }>();
-    // const authUserId = useAppSelector(state => state.authReducer.userId)
-    // console.log('ProfileContainer')
+
     useEffect(() => {
-// debugger
+
         let userId = params.userId;
-        // console.log(params.userId)
+
         if (!userId) {
             userId = `${props.authUserId}`
 
@@ -68,10 +67,6 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
         props.getProfileTC(userId)
         props.getStatusTC(userId)
     }, [params.userId])
-
-    // useEffect(() => {
-    //
-    // },[])
 
     // if (!isAuth) return <Redirect to={'/login'}/>
 
