@@ -1,30 +1,72 @@
 import React from 'react';
-import s from "../ProfileInfo/ProfileInfo.module.css";
 import Contact from "../Contacts/Contact";
 import {ContactsType, ProfileType} from "../ProfileContainer";
+import {Field, Form, Formik, useFormik} from "formik";
 
-
-type ProfileDataType = {
-    profile: ProfileType | null
+export type ProfileDataFormErrorType = {
+    fullname?: string | null
+    jobLooking?: string | null
+    skills?: string | null
+    aboutMe?: string | null
 }
 
-const ProfileDataForm = ({profile}: ProfileDataType) => {
+type ProfileDataFormPropsType = {
+    profile: ProfileType | null
+    submit: (values: ProfileDataFormErrorType, setStatus: (status: any) => void) => void
+}
+
+const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
+
     return (
         <div>
-            <div>
-                <div>Full name: {profile?.fullName}</div>
-                <div>Looking for a job: {profile?.lookingForAJob ? 'yes' : 'no'}</div>
-                <div>My professional skills: {profile?.lookingForAJobDescription}</div>
-                <div>About me: {profile?.aboutMe}</div>
+            <Formik
+                initialValues={{
+                    // social: {
+                    //     facebook: '',
+                    //     twitter: '',
+                    // },
+                    fullname: profile?.fullName || '',
+                    jobLooking: profile?.lookingForAJob ? 'yes' : 'no',
+                    skills: profile?.lookingForAJobDescription || '',
+                    aboutMe: profile?.aboutMe || ''
+                }}
+                onSubmit={(values, actions) => {
+                    actions.setSubmitting(false);
+                }}
+            >
+                <Form>
+                    <div>
+                        <button type="submit">save</button>
+                    </div>
+                    <div>
+                        <label htmlFor="fullname">Full name:</label>
+                        <Field id="fullname" name="fullname"/>
+                    </div>
+                    <div>
+                        <label htmlFor="jobLooking">Looking for a job: </label>
+                        <Field id="jobLooking" name="jobLooking"/>
+                    </div>
+                    <div>
+                        <label htmlFor="skills">My professional skills: </label>
+                        <Field id="skills" name="skills"/>
+                    </div>
+                    <div>
+                        <label htmlFor="aboutMe">About me: </label>
+                        <Field id="aboutMe" name="aboutMe"/>
+                    </div>
+                            <div>
+                                Contacts: {
+                                profile && Object.keys(profile.contacts).map(key =>
+                                    <Field key={key} name="lastName" placeholder="Doe" component={
+                                        <Contact key={key} contactTitle={key}
+                                                 contactValue={profile?.contacts[key as keyof ContactsType]}/>
+                                    } />
+                            }
+                            </div>
 
-                <div>
-                    Contacts: {
-                    profile && Object.keys(profile.contacts).map(key =>
-                        <Contact key={key} contactTitle={key} contactValue={profile?.contacts[key as keyof ContactsType]}/>
-                    )
-                }
-                </div>
-            </div>
+                </Form>
+            </Formik>
+
         </div>
     );
 };

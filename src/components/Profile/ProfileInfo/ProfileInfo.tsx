@@ -5,7 +5,8 @@ import userPhoto from '../../../asets/images/avatar.jpg'
 import {ChangeEvent, useEffect, useState} from "react";
 import ProfileData from "../ProfileData/ProfileData";
 import {ProfileType} from "../ProfileContainer";
-import ProfileDataForm from "../ProfileDataForm/ProfileDataForm";
+import ProfileDataForm, {ProfileDataFormErrorType} from "../ProfileDataForm/ProfileDataForm";
+import {FormikErrorType} from "../../Login/LoginForm";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -26,6 +27,12 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         }
     }
 
+    const submit = (formData: ProfileDataFormErrorType, setStatus: (status: any) => void) => {
+        // const {email, password, rememberMe} = formData
+        console.log('ku')
+        // loginTC(email, password, rememberMe, setStatus)
+    }
+
     return (
         <div className={s.userInfo}>
             <div className={s.userAvatar}>
@@ -36,7 +43,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             </div>
             {
                 editMode
-                    ? <ProfileDataForm profile={props.profile}/>
+                    ? <ProfileDataForm profile={props.profile} submit={submit}/>
                     : <ProfileData profile={props.profile} activateEditMode={() => setEditMode(true)}
                                    isOwner={props.isOwner}/>
             }
