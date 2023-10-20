@@ -1,7 +1,7 @@
 import React from 'react';
 import Contact from "../Contacts/Contact";
 import {ContactsType, ProfileType} from "../ProfileContainer";
-import {Field, Form, Formik, useFormik} from "formik";
+import {Field, FieldArray, Form, Formik, useFormik} from "formik";
 
 export type ProfileDataFormErrorType = {
     fullname?: string | null
@@ -21,10 +21,7 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
         <div>
             <Formik
                 initialValues={{
-                    // social: {
-                    //     facebook: '',
-                    //     twitter: '',
-                    // },
+                    social: profile && Object.keys(profile.contacts),
                     fullname: profile?.fullName || '',
                     jobLooking: profile?.lookingForAJob ? 'yes' : 'no',
                     skills: profile?.lookingForAJobDescription || '',
@@ -54,15 +51,33 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                         <label htmlFor="aboutMe">About me: </label>
                         <Field id="aboutMe" name="aboutMe"/>
                     </div>
+                            {/*<div>*/}
+                            {/*    Contacts: {*/}
+                            {/*    initialValues.social.map(key =>*/}
+                            {/*        <Field key={key} name="lastName" placeholder="Doe" component={*/}
+                            {/*            <Contact key={key} contactTitle={key}*/}
+                            {/*                     contactValue={profile?.contacts[key as keyof ContactsType]}/>*/}
+                            {/*        } />)*/}
+                            {/*}*/}
+                            {/*</div>*/}
+                    <FieldArray
+                        name="social"
+                        render={arrayHelpers => (
                             <div>
-                                Contacts: {
-                                profile && Object.keys(profile.contacts).map(key =>
-                                    <Field key={key} name="lastName" placeholder="Doe" component={
-                                        <Contact key={key} contactTitle={key}
-                                                 contactValue={profile?.contacts[key as keyof ContactsType]}/>
-                                    } />
-                            }
+                                {values.social && values.social.length > 0 && (
+                                    values.social.map((s, index) => (
+                                        <div key={index}>
+                                            <Field name={`social.${index}`} />
+
+                                        </div>
+                                    ))
+                                )}
+                                <div>
+                                    <button type="submit">Submit</button>
+                                </div>
                             </div>
+                        )}
+                    />
 
                 </Form>
             </Formik>
