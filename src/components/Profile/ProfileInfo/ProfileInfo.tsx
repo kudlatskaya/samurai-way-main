@@ -4,7 +4,7 @@ import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import userPhoto from '../../../asets/images/avatar.jpg'
 import {ChangeEvent, useEffect, useState} from "react";
 import ProfileData from "../ProfileData/ProfileData";
-import {ProfileType} from "../ProfileContainer";
+import {ContactsType, ProfileType} from "../ProfileContainer";
 import ProfileDataForm, {ProfileDataFormErrorType} from "../ProfileDataForm/ProfileDataForm";
 import {FormikErrorType} from "../../Login/LoginForm";
 
@@ -18,7 +18,7 @@ type ProfileInfoPropsType = {
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
     let [editMode, setEditMode] = useState<boolean>(false)
-
+    // console.log(editMode)
     if (!props.profile) return <Preloader/>
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +27,9 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         }
     }
 
-    const submit = (formData: ProfileDataFormErrorType, setStatus: (status: any) => void) => {
-        // const {email, password, rememberMe} = formData
-        console.log('ku')
+    const submit = (formData: ProfileDataFormErrorType) => {
+         const {social, fullname, jobLooking, skills, aboutMe} = formData
+        // console.log('ku')
         // loginTC(email, password, rememberMe, setStatus)
     }
 

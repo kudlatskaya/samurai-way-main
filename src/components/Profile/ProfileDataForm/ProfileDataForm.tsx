@@ -1,9 +1,10 @@
 import React from 'react';
 import Contact from "../Contacts/Contact";
 import {ContactsType, ProfileType} from "../ProfileContainer";
-import {Field, FieldArray, Form, Formik, useFormik} from "formik";
+import {Field, Form, Formik} from "formik";
 
 export type ProfileDataFormErrorType = {
+    social?: ContactsType | undefined | null
     fullname?: string | null
     jobLooking?: string | null
     skills?: string | null
@@ -12,7 +13,7 @@ export type ProfileDataFormErrorType = {
 
 type ProfileDataFormPropsType = {
     profile: ProfileType | null
-    submit: (values: ProfileDataFormErrorType, setStatus: (status: any) => void) => void
+    submit: (values: ProfileDataFormErrorType) => void
 }
 
 const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
@@ -21,16 +22,19 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
         <div>
             <Formik
                 initialValues={{
-                    social: profile && Object.keys(profile.contacts),
+                    social: profile?.contacts || null,
                     fullname: profile?.fullName || '',
                     jobLooking: profile?.lookingForAJob ? 'yes' : 'no',
                     skills: profile?.lookingForAJobDescription || '',
                     aboutMe: profile?.aboutMe || ''
                 }}
                 onSubmit={(values, actions) => {
-                    actions.setSubmitting(false);
+                    // console.log(values)
+                    submit(values)
+                    // actions.resetForm()
                 }}
             >
+                {props => (
                 <Form>
                     <div>
                         <button type="submit">save</button>
@@ -51,37 +55,21 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                         <label htmlFor="aboutMe">About me: </label>
                         <Field id="aboutMe" name="aboutMe"/>
                     </div>
-                            {/*<div>*/}
-                            {/*    Contacts: {*/}
-                            {/*    initialValues.social.map(key =>*/}
-                            {/*        <Field key={key} name="lastName" placeholder="Doe" component={*/}
-                            {/*            <Contact key={key} contactTitle={key}*/}
-                            {/*                     contactValue={profile?.contacts[key as keyof ContactsType]}/>*/}
-                            {/*        } />)*/}
-                            {/*}*/}
-                            {/*</div>*/}
-                    <FieldArray
-                        name="social"
-                        render={arrayHelpers => (
-                            <div>
-                                {values.social && values.social.length > 0 && (
-                                    values.social.map((s, index) => (
-                                        <div key={index}>
-                                            <Field name={`social.${index}`} />
 
-                                        </div>
-                                    ))
-                                )}
-                                <div>
-                                    <button type="submit">Submit</button>
+                    <div>
+                        Contacts:
+                        {profile && Object.keys(profile?.contacts).length > 0 && (
+                            Object.keys(profile?.contacts).map((key, index) => (
+                                <div key={index}>
+                                    <label htmlFor={`${key}`}>{key}: </label>
+                                    <Field id={`${key}`} name={`${key}`}/>
                                 </div>
-                            </div>
+                            ))
                         )}
-                    />
-
+                    </div>
                 </Form>
+                )}
             </Formik>
-
         </div>
     );
 };
