@@ -2,11 +2,11 @@ import s from "./ProfileInfo.module.css";
 import Preloader from "../../Preloader/Preloader";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import userPhoto from '../../../asets/images/avatar.jpg'
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useState} from "react";
 import ProfileData from "../ProfileData/ProfileData";
-import {ContactsType, ProfileType} from "../ProfileContainer";
-import ProfileDataForm, {ProfileDataFormErrorType} from "../ProfileDataForm/ProfileDataForm";
-import {FormikErrorType} from "../../Login/LoginForm";
+import {ProfileType} from "../ProfileContainer";
+import ProfileDataForm, {ProfileDataFormType} from "../ProfileDataForm/ProfileDataForm";
+import {setProfileTC} from "../../../state/reducers/profileReducer";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -18,7 +18,7 @@ type ProfileInfoPropsType = {
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
     let [editMode, setEditMode] = useState<boolean>(false)
-    // console.log(editMode)
+
     if (!props.profile) return <Preloader/>
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +27,9 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         }
     }
 
-    const submit = (formData: ProfileDataFormErrorType) => {
-         const {social, fullname, jobLooking, skills, aboutMe} = formData
-        // console.log('ku')
-        // loginTC(email, password, rememberMe, setStatus)
+    const submit = (formData: ProfileDataFormType | ProfileType) => {
+         // formData.userId = props.profile?.userId
+        setProfileTC(formData as ProfileType)
     }
 
     return (
@@ -43,7 +42,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             </div>
             {
                 editMode
-                    ? <ProfileDataForm profile={props.profile} submit={submit}/>
+                    ? <ProfileDataForm profile={props.profile} submit={submit} deactivateEditMode={() => setEditMode(false)}/>
                     : <ProfileData profile={props.profile} activateEditMode={() => setEditMode(true)}
                                    isOwner={props.isOwner}/>
             }

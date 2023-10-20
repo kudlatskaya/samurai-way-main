@@ -1,6 +1,7 @@
 import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
+import {ProfileType} from "../../components/Profile/ProfileContainer";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -107,6 +108,11 @@ export const setPhotoSuccess = (photos: any) => ({type: SET_PHOTOS_SUCCESS, phot
 //getProfile
 export const getProfileTC = (userId: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data));
+}
+
+export const setProfileTC = (profile: ProfileType) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.setProfile(profile)
     dispatch(setUserProfile(response.data));
 }
 

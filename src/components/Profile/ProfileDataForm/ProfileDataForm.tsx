@@ -2,54 +2,66 @@ import React from 'react';
 import Contact from "../Contacts/Contact";
 import {ContactsType, ProfileType} from "../ProfileContainer";
 import {Field, Form, Formik} from "formik";
+import {PhotosType} from "../../../state/reducers/profileReducer";
 
-export type ProfileDataFormErrorType = {
-    social?: ContactsType | undefined | null
-    fullname?: string | null
-    jobLooking?: string | null
-    skills?: string | null
+export type ProfileDataFormType = {
+    contacts?: ContactsType | undefined | null
+    fullName?: string | null
+    lookingForAJob?: string | null
+    lookingForAJobDescription?: string | null
     aboutMe?: string | null
 }
 
 type ProfileDataFormPropsType = {
     profile: ProfileType | null
-    submit: (values: ProfileDataFormErrorType) => void
+    submit: (values: ProfileType) => void
+    deactivateEditMode: () => void
 }
 
-const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
+// export type ProfileType = {
+//     aboutMe: string | null,
+//     contacts: ContactsType,
+//     lookingForAJob: boolean,
+//     lookingForAJobDescription: string | null,
+//     fullName: string,
+//     userId: string | undefined,
+//     photos: PhotosType;
+// }
+
+const ProfileDataForm = ({profile, submit, deactivateEditMode}: ProfileDataFormPropsType) => {
 
     return (
         <div>
             <Formik
                 initialValues={{
-                    social: profile?.contacts || null,
-                    fullname: profile?.fullName || '',
-                    jobLooking: profile?.lookingForAJob ? 'yes' : 'no',
-                    skills: profile?.lookingForAJobDescription || '',
+                    contacts: profile?.contacts || null,
+                    fullName: profile?.fullName || '',
+                    lookingForAJob: profile?.lookingForAJob ? 'yes' : 'no',
+                    lookingForAJobDescription: profile?.lookingForAJobDescription || '',
                     aboutMe: profile?.aboutMe || ''
                 }}
-                onSubmit={(values, actions) => {
+                onSubmit={(values: ProfileDataFormType | ProfileType, actions) => {
                     // console.log(values)
-                    submit(values)
+                    submit(values as ProfileType)
                     // actions.resetForm()
                 }}
             >
                 {props => (
                 <Form>
                     <div>
-                        <button type="submit">save</button>
+                        <button type="submit" onClick={deactivateEditMode}>save</button>
                     </div>
                     <div>
-                        <label htmlFor="fullname">Full name:</label>
-                        <Field id="fullname" name="fullname"/>
+                        <label htmlFor="fullName">Full name:</label>
+                        <Field id="fullName" name="fullName"/>
                     </div>
                     <div>
-                        <label htmlFor="jobLooking">Looking for a job: </label>
-                        <Field id="jobLooking" name="jobLooking"/>
+                        <label htmlFor="lookingForAJob">Looking for a job: </label>
+                        <Field id="lookingForAJob" name="lookingForAJob"/>
                     </div>
                     <div>
-                        <label htmlFor="skills">My professional skills: </label>
-                        <Field id="skills" name="skills"/>
+                        <label htmlFor="lookingForAJobDescription">My professional skills: </label>
+                        <Field id="lookingForAJobDescription" name="lookingForAJobDescription"/>
                     </div>
                     <div>
                         <label htmlFor="aboutMe">About me: </label>
