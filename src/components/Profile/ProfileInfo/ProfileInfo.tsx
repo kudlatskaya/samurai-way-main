@@ -6,7 +6,6 @@ import {ChangeEvent, useState} from "react";
 import ProfileData from "../ProfileData/ProfileData";
 import {ProfileType} from "../ProfileContainer";
 import ProfileDataForm, {ProfileDataFormType} from "../ProfileDataForm/ProfileDataForm";
-import {setProfileTC} from "../../../state/reducers/profileReducer";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -14,41 +13,42 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void,
     isOwner: boolean,
     savePhoto: (file: File) => void
+    saveProfile: (profile: ProfileDataFormType | ProfileType) => void
 }
 
-const ProfileInfo = (props: ProfileInfoPropsType) => {
+const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateStatus}: ProfileInfoPropsType) => {
     let [editMode, setEditMode] = useState<boolean>(false)
 
-    if (!props.profile) return <Preloader/>
+    if (!profile) return <Preloader/>
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length) {
-            props.savePhoto(e.target.files[0])
+            savePhoto(e.target.files[0])
         }
     }
 
     const submit = (formData: ProfileDataFormType | ProfileType) => {
          // formData.userId = props.profile?.userId
-        console.log(formData)
-        setProfileTC(formData as ProfileType)
+         saveProfile(formData)
+
     }
 
     return (
         <div className={s.userInfo}>
             <div className={s.userAvatar}>
                 <img
-                    src={props.profile?.photos.large || userPhoto}
+                    src={profile?.photos.large || userPhoto}
                     alt=""/>
-                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+                {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
             </div>
             {
                 editMode
-                    ? <ProfileDataForm profile={props.profile} submit={submit} deactivateEditMode={() => setEditMode(false)}/>
-                    : <ProfileData profile={props.profile} activateEditMode={() => setEditMode(true)}
-                                   isOwner={props.isOwner}/>
+                    ? <ProfileDataForm profile={profile} submit={submit} deactivateEditMode={() => setEditMode(false)}/>
+                    : <ProfileData profile={profile} activateEditMode={() => setEditMode(true)}
+                                   isOwner={isOwner}/>
             }
             <div>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     );

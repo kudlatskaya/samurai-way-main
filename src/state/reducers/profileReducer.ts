@@ -2,6 +2,8 @@ import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
 import {ProfileType} from "../../components/Profile/ProfileContainer";
+import {ProfileDataFormType} from "../../components/Profile/ProfileDataForm/ProfileDataForm";
+import {AppStateType} from "../redux-store";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -106,14 +108,19 @@ export const setPhotoSuccess = (photos: any) => ({type: SET_PHOTOS_SUCCESS, phot
 
 
 //getProfile
-export const getProfileTC = (userId: string) => async (dispatch: Dispatch) => {
+export const getProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
 }
 
-export const setProfileTC = (profile: ProfileType) => async (dispatch: Dispatch) => {
+export const saveProfile = (profile: ProfileDataFormType | ProfileType) => async (dispatch: any, getState: any) => {
+      const userId = getState().authReducer.userId
+     // console.log(getState().authReducer.userId)
     const response = await profileAPI.setProfile(profile)
-    dispatch(setUserProfile(response.data));
+
+    if (response.data.resultCode === 0) {
+         dispatch(getProfileTC(userId));
+    }
 }
 
 export const getStatusTC = (userId: string) => async (dispatch: Dispatch) => {

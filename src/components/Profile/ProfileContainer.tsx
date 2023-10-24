@@ -1,11 +1,19 @@
 import {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfileTC, getStatusTC, PhotosType, savePhoto, updateStatusTC} from "../../state/reducers/profileReducer";
+import {
+    getProfileTC,
+    getStatusTC,
+    PhotosType,
+    savePhoto,
+    saveProfile,
+    updateStatusTC
+} from "../../state/reducers/profileReducer";
 import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../state/redux-store";
 import {compose} from "redux";
 import {UserIdType} from "../../state/reducers/authReducer";
+import {ProfileDataFormType} from "./ProfileDataForm/ProfileDataForm";
 
 
 export type ContactsType = {
@@ -41,6 +49,7 @@ type MapDispatchPropsType = {
     getStatusTC: (userId: string) => void,
     updateStatusTC: (status: string) => void,
     savePhoto: (file: File) => void
+    saveProfile: (profile: ProfileDataFormType | ProfileType) => void
 }
 
 type PathParamsType = {
@@ -54,7 +63,6 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
     const params = useParams<{ userId: string }>();
 
     useEffect(() => {
-
         let userId = params.userId;
 
         if (!userId) {
@@ -68,6 +76,11 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
         props.getStatusTC(userId)
     }, [params.userId])
 
+    // const saveProfile = (data: ProfileDataFormType | ProfileType) => {
+    //     console.log(data)
+    //     saveProfile(data as ProfileType)
+    // }
+
     // if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
@@ -77,7 +90,8 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
                      profile={props.profile}
                      status={props.status}
                      updateStatus={props.updateStatusTC}
-                     savePhoto={props.savePhoto}/>
+                     savePhoto={props.savePhoto}
+                     saveProfile={props.saveProfile}/>
         </div>
     );
 };
@@ -89,6 +103,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC, savePhoto}),
+    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC, savePhoto, saveProfile}),
     withRouter
 )(ProfileContainer)

@@ -18,16 +18,6 @@ type ProfileDataFormPropsType = {
     deactivateEditMode: () => void
 }
 
-// export type ProfileType = {
-//     aboutMe: string | null,
-//     contacts: ContactsType,
-//     lookingForAJob: boolean,
-//     lookingForAJobDescription: string | null,
-//     fullName: string,
-//     userId: string | undefined,
-//     photos: PhotosType;
-// }
-
 const ProfileDataForm = ({profile, submit, deactivateEditMode}: ProfileDataFormPropsType) => {
 
     return (
