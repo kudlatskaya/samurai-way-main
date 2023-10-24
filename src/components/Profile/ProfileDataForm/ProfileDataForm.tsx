@@ -7,7 +7,7 @@ import {PhotosType} from "../../../state/reducers/profileReducer";
 export type ProfileDataFormType = {
     contacts?: ContactsType | undefined | null
     fullName?: string | null
-    lookingForAJob?: string | null
+    lookingForAJob?: boolean | null
     lookingForAJobDescription?: string | null
     aboutMe?: string | null
 }
@@ -36,20 +36,21 @@ const ProfileDataForm = ({profile, submit, deactivateEditMode}: ProfileDataFormP
                 initialValues={{
                     contacts: profile?.contacts || null,
                     fullName: profile?.fullName || '',
-                    lookingForAJob: profile?.lookingForAJob ? 'yes' : 'no',
+                    lookingForAJob: profile?.lookingForAJob ? true : false,
                     lookingForAJobDescription: profile?.lookingForAJobDescription || '',
                     aboutMe: profile?.aboutMe || ''
                 }}
                 onSubmit={(values: ProfileDataFormType | ProfileType, actions) => {
-                    // console.log(values)
+                    deactivateEditMode()
                     submit(values as ProfileType)
+
                     // actions.resetForm()
                 }}
             >
                 {props => (
                 <Form>
                     <div>
-                        <button type="submit" onClick={deactivateEditMode}>save</button>
+                        <button type="submit">save</button>
                     </div>
                     <div>
                         <label htmlFor="fullName">Full name:</label>
@@ -57,15 +58,15 @@ const ProfileDataForm = ({profile, submit, deactivateEditMode}: ProfileDataFormP
                     </div>
                     <div>
                         <label htmlFor="lookingForAJob">Looking for a job: </label>
-                        <Field id="lookingForAJob" name="lookingForAJob"/>
+                        <Field type="checkbox" id="lookingForAJob" name="lookingForAJob"/>
                     </div>
                     <div>
                         <label htmlFor="lookingForAJobDescription">My professional skills: </label>
-                        <Field id="lookingForAJobDescription" name="lookingForAJobDescription"/>
+                        <Field as="textarea" id="lookingForAJobDescription" name="lookingForAJobDescription"/>
                     </div>
                     <div>
                         <label htmlFor="aboutMe">About me: </label>
-                        <Field id="aboutMe" name="aboutMe"/>
+                        <Field as="textarea" id="aboutMe" name="aboutMe"/>
                     </div>
 
                     <div>

@@ -29,6 +29,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     const submit = (formData: ProfileDataFormType | ProfileType) => {
          // formData.userId = props.profile?.userId
+        console.log(formData)
         setProfileTC(formData as ProfileType)
     }
 
