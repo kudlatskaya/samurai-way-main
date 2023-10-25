@@ -1,8 +1,5 @@
-import React from 'react';
-import Contact from "../Contacts/Contact";
 import {ContactsType, ProfileType} from "../ProfileContainer";
 import {Field, Form, Formik} from "formik";
-import {PhotosType} from "../../../state/reducers/profileReducer";
 
 export type ProfileDataFormType = {
     contacts?: ContactsType | undefined | null
@@ -15,10 +12,9 @@ export type ProfileDataFormType = {
 type ProfileDataFormPropsType = {
     profile: ProfileType | null
     submit: (values: ProfileType) => void
-    deactivateEditMode: () => void
 }
 
-const ProfileDataForm = ({profile, submit, deactivateEditMode}: ProfileDataFormPropsType) => {
+const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
 
     return (
         <div>
@@ -31,9 +27,7 @@ const ProfileDataForm = ({profile, submit, deactivateEditMode}: ProfileDataFormP
                     aboutMe: profile?.aboutMe || ''
                 }}
                 onSubmit={(values: ProfileDataFormType | ProfileType, actions) => {
-                    deactivateEditMode()
                     submit(values as ProfileType)
-
                     // actions.resetForm()
                 }}
             >

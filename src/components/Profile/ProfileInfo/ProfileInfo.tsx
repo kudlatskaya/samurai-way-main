@@ -28,9 +28,8 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
     }
 
     const submit = (formData: ProfileDataFormType | ProfileType) => {
-         // formData.userId = props.profile?.userId
-         saveProfile(formData)
-
+        setEditMode(false)
+        saveProfile(formData)
     }
 
     return (
@@ -43,7 +42,7 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
             </div>
             {
                 editMode
-                    ? <ProfileDataForm profile={profile} submit={submit} deactivateEditMode={() => setEditMode(false)}/>
+                    ? <ProfileDataForm profile={profile} submit={submit}/>
                     : <ProfileData profile={profile} activateEditMode={() => setEditMode(true)}
                                    isOwner={isOwner}/>
             }

@@ -114,7 +114,7 @@ export const getProfileTC = (userId: number) => async (dispatch: Dispatch) => {
 }
 
 export const saveProfile = (profile: ProfileDataFormType | ProfileType) => async (dispatch: any, getState: any) => {
-      const userId = getState().authReducer.userId
+    const userId = getState().authReducer.userId
      // console.log(getState().authReducer.userId)
     const response = await profileAPI.setProfile(profile)
 
