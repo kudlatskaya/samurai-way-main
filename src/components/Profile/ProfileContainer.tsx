@@ -13,7 +13,6 @@ import {RouteComponentProps, useParams, withRouter} from "react-router-dom";
 import {AppStateType} from "../../state/redux-store";
 import {compose} from "redux";
 import {UserIdType} from "../../state/reducers/authReducer";
-import {ProfileDataFormType} from "./ProfileDataForm/ProfileDataForm";
 
 
 export type ContactsType = {
@@ -49,7 +48,7 @@ type MapDispatchPropsType = {
     getStatusTC: (userId: string) => void,
     updateStatusTC: (status: string) => void,
     savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileDataFormType | ProfileType) => void
+    saveProfile: (profile: ProfileType,  setStatus: (status: any) => void) => void
 }
 
 type PathParamsType = {
@@ -75,11 +74,6 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
         props.getProfileTC(userId)
         props.getStatusTC(userId)
     }, [params.userId])
-
-    // const saveProfile = (data: ProfileDataFormType | ProfileType) => {
-    //     console.log(data)
-    //     saveProfile(data as ProfileType)
-    // }
 
     // if (!isAuth) return <Redirect to={'/login'}/>
 

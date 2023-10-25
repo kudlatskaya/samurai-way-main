@@ -2,8 +2,6 @@ import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
 import {ProfileType} from "../../components/Profile/ProfileContainer";
-import {ProfileDataFormType} from "../../components/Profile/ProfileDataForm/ProfileDataForm";
-import {AppStateType} from "../redux-store";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -114,12 +112,14 @@ export const getProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     dispatch(setUserProfile(response.data));
 }
 
-export const saveProfile = (profile: ProfileDataFormType | ProfileType) => async (dispatch: any, getState: any) => {
+export const saveProfile = (profile: ProfileType, setStatus: (status: any) => void) => async (dispatch: any, getState: any) => {
     const userId = getState().authReducer.userId
     const response = await profileAPI.setProfile(profile)
 
     if (response.data.resultCode === 0) {
          dispatch(getProfileTC(userId));
+    } else {
+        setStatus(response.data.messages)
     }
 }
 

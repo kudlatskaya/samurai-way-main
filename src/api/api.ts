@@ -3,7 +3,6 @@ import {ProfileType} from "../components/Profile/ProfileContainer";
 import {EmailType, PasswordType, RememberMeType} from "../state/reducers/authReducer";
 import axios from "axios";
 import {PhotosType} from "../state/reducers/profileReducer";
-import {ProfileDataFormType} from "../components/Profile/ProfileDataForm/ProfileDataForm";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -48,7 +47,7 @@ export const profileAPI = {
             }
         })
     },
-    setProfile(profile: ProfileDataFormType | ProfileType) {
+    setProfile(profile: ProfileType) {
         return instance.put<ResponseType<{profile: ProfileType}>>('/profile', profile)
     }
 }

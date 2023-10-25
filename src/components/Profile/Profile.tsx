@@ -1,7 +1,6 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "./ProfileContainer";
-import {ProfileDataFormType} from "./ProfileDataForm/ProfileDataForm";
 
 
 type ProfilePropsType = {
@@ -10,7 +9,7 @@ type ProfilePropsType = {
     updateStatus: (status: string) => void,
     isOwner: boolean
     savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileDataFormType | ProfileType) => void
+    saveProfile: (profile: ProfileType,  setStatus: (status: any) => void) => void
 }
 
 const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}: ProfilePropsType) => {

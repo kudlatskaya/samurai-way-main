@@ -5,7 +5,7 @@ import userPhoto from '../../../asets/images/avatar.jpg'
 import {ChangeEvent, useState} from "react";
 import ProfileData from "../ProfileData/ProfileData";
 import {ProfileType} from "../ProfileContainer";
-import ProfileDataForm, {ProfileDataFormType} from "../ProfileDataForm/ProfileDataForm";
+import ProfileDataForm from "../ProfileDataForm/ProfileDataForm";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -13,7 +13,7 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void,
     isOwner: boolean,
     savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileDataFormType | ProfileType) => void
+    saveProfile: (profile: ProfileType,  setStatus: (status: any) => void) => void
 }
 
 const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateStatus}: ProfileInfoPropsType) => {
@@ -27,9 +27,9 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
         }
     }
 
-    const submit = (formData: ProfileDataFormType | ProfileType) => {
+    const submit = (formData: ProfileType,  setStatus: (status: any) => void) => {
         setEditMode(false)
-        saveProfile(formData)
+        saveProfile(formData, setStatus)
     }
 
     return (

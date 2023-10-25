@@ -25,8 +25,8 @@ const ProfileData = ({profile, isOwner, activateEditMode}: ProfileDataType) => {
 
                 <div>
                     Contacts: {
-                    profile && Object.keys(profile.contacts).map(key =>
-                        <Contact key={key} contactTitle={key} contactValue={profile?.contacts[key as keyof ContactsType]}/>
+                    profile?.contacts && Object.keys(profile.contacts).map(key =>
+                        <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
                     )
                 }
                 </div>
