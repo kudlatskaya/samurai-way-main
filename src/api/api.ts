@@ -49,7 +49,7 @@ export const profileAPI = {
         })
     },
     setProfile(profile: ProfileDataFormType | ProfileType) {
-        return instance.put<ResponseType>('/profile', profile)
+        return instance.put<ResponseType<{profile: ProfileType}>>('/profile', profile)
     }
 }
 

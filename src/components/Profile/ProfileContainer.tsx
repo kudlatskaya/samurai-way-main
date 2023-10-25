@@ -33,8 +33,8 @@ export type ProfileType = {
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null,
     fullName: string,
-    userId: string | undefined,
-    photos: PhotosType;
+    userId: number | undefined,
+    photos?: PhotosType;
 }
 
 type MapStatePropsType = {

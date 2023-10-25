@@ -20,6 +20,7 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
         <div>
             <Formik
                 initialValues={{
+                    userId: profile?.userId,
                     contacts: profile?.contacts || null,
                     fullName: profile?.fullName || '',
                     lookingForAJob: profile?.lookingForAJob ? true : false,
@@ -28,7 +29,7 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                 }}
                 onSubmit={(values: ProfileDataFormType | ProfileType, actions) => {
                     submit(values as ProfileType)
-                    // actions.resetForm()
+                     // actions.resetForm()
                 }}
             >
                 {props => (
@@ -59,7 +60,7 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                             Object.keys(profile?.contacts).map((key, index) => (
                                 <div key={index}>
                                     <label htmlFor={`${key}`}>{key}: </label>
-                                    <Field id={`${key}`} name={`${key}`}/>
+                                    <Field id={`${key}`} name={`contacts.${key}`}/>
                                 </div>
                             ))
                         )}

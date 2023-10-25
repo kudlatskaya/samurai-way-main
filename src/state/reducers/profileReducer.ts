@@ -110,12 +110,12 @@ export const setPhotoSuccess = (photos: any) => ({type: SET_PHOTOS_SUCCESS, phot
 //getProfile
 export const getProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getProfile(userId)
+
     dispatch(setUserProfile(response.data));
 }
 
 export const saveProfile = (profile: ProfileDataFormType | ProfileType) => async (dispatch: any, getState: any) => {
     const userId = getState().authReducer.userId
-     // console.log(getState().authReducer.userId)
     const response = await profileAPI.setProfile(profile)
 
     if (response.data.resultCode === 0) {
