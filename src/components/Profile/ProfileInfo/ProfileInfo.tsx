@@ -17,6 +17,7 @@ type ProfileInfoPropsType = {
 }
 
 const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateStatus}: ProfileInfoPropsType) => {
+    // console.log('ProfileInfo')
     let [editMode, setEditMode] = useState<boolean>(false)
 
     if (!profile) return <Preloader/>
@@ -28,8 +29,9 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
     }
 
     const submit = (formData: ProfileType,  setStatus: (status: any) => void) => {
-        setEditMode(false)
+        // setEditMode(false)
         saveProfile(formData, setStatus)
+        // console.log('ProfileInfo submit')
     }
 
     return (

@@ -29,6 +29,7 @@ export const userAPI = {
 
 export const profileAPI = {
     getProfile(userId: number) {
+        // console.log('getProfile api submit')
         return instance.get<ProfileType>(`profile/${userId}`);
     },
     getStatus(userId: string) {
@@ -48,6 +49,7 @@ export const profileAPI = {
         })
     },
     setProfile(profile: ProfileType) {
+        // console.log('setProfile api submit')
         return instance.put<ResponseType<{profile: ProfileType}>>('/profile', profile)
     }
 }

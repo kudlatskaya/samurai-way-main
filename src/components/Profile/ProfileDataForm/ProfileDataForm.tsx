@@ -1,5 +1,6 @@
 import {ContactsType, ProfileType} from "../ProfileContainer";
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import {useEffect, useState} from "react";
 
 // export type ProfileDataFormType = {
 //     contacts?: ContactsType | undefined | null
@@ -16,6 +17,16 @@ type ProfileDataFormPropsType = {
 
 const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
 
+    // console.log('ProfileDataForm')
+
+    // const [state, setState] = useState({});
+    //
+    // useEffect(() => {
+    //     return () => {
+    //         setState({}); // This worked for me
+    //     };
+    // }, []);
+
     return (
         <div>
             <Formik
@@ -29,10 +40,11 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                 }}
                 onSubmit={(values: ProfileType, actions) => {
                     submit(values as ProfileType, actions.setStatus)
-                     // actions.resetForm()
+                    // console.log('ProfileDataForm submit')
+                    //   actions.resetForm()
                 }}
             >
-                {props => (
+                {({ errors, touched, status }) => (
                 <Form>
                     <div>
                         <button type="submit">save</button>
@@ -40,27 +52,30 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                     <div>
                         <label htmlFor="fullName">Full name:</label>
                         <Field id="fullName" name="fullName"/>
-
-                        {props.touched.fullName && props.errors.fullName ?
-                            <div style={{color: 'red'}}>{props.errors.fullName}</div> : null}
+                        <ErrorMessage component="div" name="fullName" />
+                        {console.log(errors)}
+                        {/*{touched.fullName && errors.fullName ?*/}
+                        {/*    <div style={{color: 'red'}}>{errors.fullName}</div> : null}*/}
                     </div>
                     <div>
                         <label htmlFor="lookingForAJob">Looking for a job: </label>
                         <Field type="checkbox" id="lookingForAJob" name="lookingForAJob"/>
-                        {props.touched.lookingForAJob && props.errors.lookingForAJob ?
-                            <div style={{color: 'red'}}>{props.errors.lookingForAJob}</div> : null}
+                        <ErrorMessage component="div" name="lookingForAJob" />
+                        {/*{touched.lookingForAJob && errors.lookingForAJob ?*/}
+                        {/*    <div style={{color: 'red'}}>{errors.lookingForAJob}</div> : null}*/}
                     </div>
                     <div>
                         <label htmlFor="lookingForAJobDescription">My professional skills: </label>
                         <Field as="textarea" id="lookingForAJobDescription" name="lookingForAJobDescription"/>
-                        {props.touched.lookingForAJobDescription && props.errors.lookingForAJobDescription ?
-                            <div style={{color: 'red'}}>{props.errors.lookingForAJobDescription}</div> : null}
+                        <ErrorMessage component="div" name="lookingForAJobDescription" />
+                        {/*{touched.lookingForAJobDescription && errors.lookingForAJobDescription ?*/}
+                        {/*    <div style={{color: 'red'}}>{errors.lookingForAJobDescription}</div> : null}*/}
                     </div>
                     <div>
                         <label htmlFor="aboutMe">About me: </label>
                         <Field as="textarea" id="aboutMe" name="aboutMe"/>
-                        {props.touched.aboutMe && props.errors.aboutMe ?
-                            <div style={{color: 'red'}}>{props.errors.aboutMe}</div> : null}
+                        {touched.aboutMe && errors.aboutMe ?
+                            <div style={{color: 'red'}}>{errors.aboutMe}</div> : null}
                     </div>
 
                     <div>
@@ -71,8 +86,8 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                                     <label htmlFor={`${key}`}>{key}: </label>
                                     <Field id={`${key}`} name={`contacts.${key}`}/>
                                     {
-                                        props.touched.contacts && props.errors.contacts
-                                            ? <div style={{color: 'red'}}>{props.errors.contacts[key as keyof ContactsType]}</div>
+                                        touched.contacts && errors.contacts
+                                            ? <div style={{color: 'red'}}>{errors.contacts[key as keyof ContactsType]}</div>
                                             : null
                                     }
                                 </div>

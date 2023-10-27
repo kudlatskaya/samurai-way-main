@@ -110,6 +110,7 @@ export const getProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getProfile(userId)
 
     dispatch(setUserProfile(response.data));
+    // console.log('getProfileTC submit')
 }
 
 export const saveProfile = (profile: ProfileType, setStatus: (status: any) => void) => async (dispatch: any, getState: any) => {
@@ -119,8 +120,11 @@ export const saveProfile = (profile: ProfileType, setStatus: (status: any) => vo
     if (response.data.resultCode === 0) {
          dispatch(getProfileTC(userId));
     } else {
+
         setStatus(response.data.messages)
+        console.log(response.data.messages)
     }
+    // console.log('saveProfile submit')
 }
 
 export const getStatusTC = (userId: string) => async (dispatch: Dispatch) => {

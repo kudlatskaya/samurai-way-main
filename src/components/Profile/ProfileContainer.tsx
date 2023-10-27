@@ -59,6 +59,7 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & PropsType
 
 const ProfileContainer = (props: ProfileContainerPropsType) => {
+    // console.log('ProfileContainer')
     const params = useParams<{ userId: string }>();
 
     useEffect(() => {

@@ -13,7 +13,7 @@ type ProfilePropsType = {
 }
 
 const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}: ProfilePropsType) => {
-
+    // console.log('Profile')
     return (
         <main>
             <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}
