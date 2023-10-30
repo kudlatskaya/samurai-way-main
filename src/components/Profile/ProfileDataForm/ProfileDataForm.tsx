@@ -2,7 +2,7 @@ import {ContactsType, ProfileType} from "../ProfileContainer";
 import {ErrorMessage, Field, Form, Formik, useFormik} from "formik";
 import {useEffect, useState} from "react";
 import {loginFormValidator} from "../../../utils/validators";
-import {isObject} from "../../../utils/object-helpers";
+import {createErrorsObject, isObject} from "../../../utils/object-helpers";
 import {PhotosType} from "../../../state/reducers/profileReducer";
 
 // export type ProfileDataFormType = {
@@ -17,6 +17,8 @@ type ProfileDataFormPropsType = {
     profile: ProfileType
     submit: (values: ProfileType, setStatus: (status: any) => void) => void
 }
+
+
 
 const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
 
@@ -35,26 +37,18 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                 onSubmit={(values: ProfileType, actions) => {
                     submit(values as ProfileType, actions.setStatus)
                     // console.log('ProfileDataForm submit')
-                    //   actions.resetForm()
+                    // actions.resetForm()
                 }}
             >
                 {({errors, touched, status}) => {
-                    // let fieldsError = {}
-                    // Object.keys(profile).map((key) => {
-                    //     if(isObject(profile[key as keyof ProfileType])) {
-                    //         Object.keys(profile[key as keyof (ContactsType | PhotosType)]).map((_key) => {
-                    //             fieldsError[_key as keyof (ContactsType | PhotosType)] = ''
-                    //         })
-                    //     }
-                    //     fieldsError[key as keyof ProfileType] = ''
-                    //     // e.toLowerCase().includes(key.toLowerCase()) && console.log(key) //fieldsError[key as keyof ProfileType]
-                    //     // console.log(e)
-                    //     // console.log(key)
-                    // })
-                    // status?.errors.map((e: string) => {
-                    //
-                    //
-                    // })
+                    let errorsList = createErrorsObject(profile)
+                    status?.errors.map((e: string) => {
+                        errorsList.map((el) => {
+                            e.toLowerCase().includes(el.toLowerCase()) && console.log(el) //fieldsError[key as keyof ProfileType]
+                        })
+
+
+                    })
 
                     return (<Form>
                         <div>
