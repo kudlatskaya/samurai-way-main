@@ -8,3 +8,13 @@ export const updateOnbjectInArray = (items: UserType[], itemId: number, objPropN
         return item
     })
 }
+
+
+export const isObject = (value: any): boolean => {
+    return (
+        typeof value === 'object' &&
+        value !== null &&
+        !Array.isArray(value)
+    );
+}
+

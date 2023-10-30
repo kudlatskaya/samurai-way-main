@@ -2,6 +2,7 @@ import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
 import {ProfileType} from "../../components/Profile/ProfileContainer";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -120,9 +121,8 @@ export const saveProfile = (profile: ProfileType, setStatus: (status: any) => vo
     if (response.data.resultCode === 0) {
          dispatch(getProfileTC(userId));
     } else {
-
-        setStatus(response.data.messages)
-        console.log(response.data.messages)
+        setStatus({errors: response.data.messages})
+        return Promise.reject(response.data.messages)
     }
     // console.log('saveProfile submit')
 }

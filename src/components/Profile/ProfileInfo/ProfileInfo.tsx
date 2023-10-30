@@ -28,10 +28,9 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
         }
     }
 
-    const submit = (formData: ProfileType,  setStatus: (status: any) => void) => {
-        // setEditMode(false)
-        saveProfile(formData, setStatus)
-        // console.log('ProfileInfo submit')
+    const submit = async (formData: ProfileType,  setStatus: (status: any) => void) => {
+        await saveProfile(formData, setStatus)
+        setEditMode(false)
     }
 
     return (
