@@ -1,14 +1,16 @@
 import {Dispatch} from "redux";
-import {authAPI} from "../../api/api";
+import {authAPI, securityAPI} from "../../api/api";
 import {AppDispatchType, AppThunk} from "../redux-store";
 
 const SET_USER_DATA = 'network/auth/SET_USER_DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'network/auth/GET_CAPTCHA_URL_SUCCESS';
 
 const initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
+    captchaUrl: null
 }
 
 const authReducer = (state: StateType = initialState, action: ActionType): StateType => {
@@ -30,6 +32,10 @@ export const setUserData = (userId: UserIdType, email: EmailType, login: LoginTy
     payload: {userId, email, login, isAuth}
 } as const)
 
+export const getCaptchaUrlSuccess = (captchaUrl: string) => ({
+    type: 'network/auth/GET_CAPTCHA_URL_SUCCESS',
+    payload: {captchaUrl}
+} as const)
 
 export const getAuthTC = () => async (dispatch: Dispatch) => {
     const response = await authAPI.me()
@@ -62,6 +68,12 @@ export const logoutTC = () => async (dispatch: AppDispatchType) => {
     }
 }
 
+export const getCaptchaUrl = () => async (dispatch: AppDispatchType) => {
+    const response = await securityAPI.getCaptchaUrl()
+    const captchaUrl = response.data.url
+    dispatch(getCaptchaUrlSuccess(captchaUrl))
+}
+
 
 //types
 
@@ -79,6 +91,7 @@ type StateType = {
 }
 
 export type ActionType = ReturnType<typeof setUserData>
+    | ReturnType<typeof getCaptchaUrlSuccess>
 
 
 export default authReducer;

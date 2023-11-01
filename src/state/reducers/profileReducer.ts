@@ -2,7 +2,6 @@ import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
 import {ProfileType} from "../../components/Profile/ProfileContainer";
-import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -105,13 +104,10 @@ export const setUserStatus = (status: string) => ({type: SET_STATUS, status} as 
 type SetPhotoSuccessACType = ReturnType<typeof setPhotoSuccess>
 export const setPhotoSuccess = (photos: any) => ({type: SET_PHOTOS_SUCCESS, photos} as const)
 
-
-//getProfile
 export const getProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getProfile(userId)
 
     dispatch(setUserProfile(response.data));
-    // console.log('getProfileTC submit')
 }
 
 export const saveProfile = (profile: ProfileType, setStatus: (status: any) => void) => async (dispatch: any, getState: any) => {
@@ -124,7 +120,6 @@ export const saveProfile = (profile: ProfileType, setStatus: (status: any) => vo
         setStatus({errors: response.data.messages})
         return Promise.reject(response.data.messages)
     }
-    // console.log('saveProfile submit')
 }
 
 export const getStatusTC = (userId: string) => async (dispatch: Dispatch) => {
@@ -143,7 +138,6 @@ export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
     const response = await profileAPI.savePhoto(file)
 
     if (response.data.resultCode === 0) {
-        // console.log(response)
         dispatch(setPhotoSuccess(response.data.data.photos));
     }
 }

@@ -66,7 +66,17 @@ export const authAPI = {
     }
 }
 
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get<CaptchaResponse>(`security/get-captcha-url`);
+    },
+}
+
 // types
+
+export type CaptchaResponse = {
+    url: string
+}
 
 export type UsersType = {
     items: UserType[]
@@ -79,7 +89,6 @@ type AuthResponse = {
     login: string,
     email: string
 }
-
 
 export type ResponseType<D = {}> = {
     resultCode: number
