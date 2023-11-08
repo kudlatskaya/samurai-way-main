@@ -50,16 +50,16 @@ export const getAuthTC = () => async (dispatch: Dispatch) => {
 export const loginTC = (email: EmailType,
                         password: PasswordType,
                         rememberMe: RememberMeType,
-                        captchaUrl: string | null,
+                        captchaUrl: string | null | undefined,
                         setStatus: (status: any) => void
 ) => async (dispatch: AppDispatchType) => {
-    const response = await authAPI.login(email, password, rememberMe)
+    const response = await authAPI.login(email, password, rememberMe, captchaUrl)
 
     if (response.data.resultCode === 0) {
         dispatch(getAuthTC())
     } else {
         if (response.data.resultCode === 10) {
-            dispatch(getCaptchaUrl())
+            dispatch(getCaptchaUrl)
         }
         setStatus(response.data.messages[0])
     }
@@ -76,6 +76,7 @@ export const logoutTC = () => async (dispatch: AppDispatchType) => {
 export const getCaptchaUrl = () => async (dispatch: AppDispatchType) => {
     const response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.data.url
+
     dispatch(getCaptchaUrlSuccess(captchaUrl))
 }
 
