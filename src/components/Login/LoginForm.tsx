@@ -5,20 +5,23 @@ export type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
+    captchaUrl?: string | null
 }
 
 type PropsType = {
     submit: (values: FormikErrorType, setStatus: (status: any) => void) => void
     // setStatus: () => void
+    captchaUrl: string | null | undefined,
 }
 
-const LoginForm: React.FC<PropsType> = ({submit}) => {
+const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captchaUrl: ''
         },
         validationSchema: loginFormValidator('email', 'password'),
         onSubmit: (values) => {
@@ -55,6 +58,11 @@ const LoginForm: React.FC<PropsType> = ({submit}) => {
                     remember me
                 </label>
             </div>
+
+            {captchaUrl && <img src={captchaUrl} />}
+            {captchaUrl &&
+                <input {...formik.getFieldProps('captchaUrl')}/>}
+
             <div>
                 <button type={'submit'}>
                     Login

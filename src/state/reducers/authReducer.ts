@@ -16,6 +16,7 @@ const initialState = {
 const authReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case SET_USER_DATA:
+        case GET_CAPTCHA_URL_SUCCESS:
             return {
                 ...state,
                 ...action.payload,
@@ -49,6 +50,7 @@ export const getAuthTC = () => async (dispatch: Dispatch) => {
 export const loginTC = (email: EmailType,
                         password: PasswordType,
                         rememberMe: RememberMeType,
+                        captchaUrl: string | null,
                         setStatus: (status: any) => void
 ) => async (dispatch: AppDispatchType) => {
     const response = await authAPI.login(email, password, rememberMe)
@@ -56,6 +58,9 @@ export const loginTC = (email: EmailType,
     if (response.data.resultCode === 0) {
         dispatch(getAuthTC())
     } else {
+        if (response.data.resultCode === 10) {
+            dispatch(getCaptchaUrl())
+        }
         setStatus(response.data.messages[0])
     }
 }
@@ -88,6 +93,7 @@ type StateType = {
     email: EmailType
     login: LoginType
     isAuth: boolean,
+    captchaUrl: string | null
 }
 
 export type ActionType = ReturnType<typeof setUserData>
