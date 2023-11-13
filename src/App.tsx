@@ -22,10 +22,19 @@ type PropsType = MapDispatchToPropsType & MapStateToPropsType
 const App = ({initializeApp, initialized}: PropsType) => {
     const dispatch = useDispatch()
 
+    let catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
+        alert('Some error occured')
+        // console.log(promiseRejectionEvent)
+    }
+
     useEffect(() => {
         // dispatch(initializeApp())
         initializeApp()
+        window.addEventListener("unhandledrejection", catchAllUnhandledErrors)
 
+        return () => {
+            window.removeEventListener("unhandledrejection", catchAllUnhandledErrors)
+        }
     }, [])
 
     if (!initialized) return <Preloader/>
