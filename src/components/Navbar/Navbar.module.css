@@ -11,10 +11,12 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+
 }
 
 .logoBlock img {
     width: 3.5rem;
+
 }
 
 .title {
@@ -23,9 +25,16 @@
 
 .userInfo {
     background: var(--main-bg-color);
-    border-radius: 0.7rem;
     width: 100%;
     height: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    position: relative;
+    margin: 1rem auto -65px;
+    box-shadow: 0 15px 100px rgba(58,46,68,0.06);
 }
 
 .link {
@@ -45,7 +54,8 @@
     height: 100%;
     width: auto;
     border-radius: 1.5rem;
-    /*margin: 0 auto;*/
+    display: block;
+    margin: 0 auto;
 }
 
 .active {
