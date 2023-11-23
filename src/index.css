@@ -12,4 +12,15 @@ code {
     monospace;
 }
 
+:root {
+  --main-bg-color: #ffffff;
+  --element-bg-color: #f8f9fb;
+  --section-bg-color: rgba(130, 36, 227, 0.04);
+  --dark-bg-color: #4f5261;
+  --text-color: #29292d;
+  --mute-text: #bbbbdc;
+  --icon-color: #838daa;
+  --accent-color: #8224e3;
+}
+
 

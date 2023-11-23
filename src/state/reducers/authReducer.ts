@@ -59,7 +59,7 @@ export const loginTC = (email: EmailType,
         dispatch(getAuthTC())
     } else {
         if (response.data.resultCode === 10) {
-            dispatch(getCaptchaUrl)
+            dispatch(getCaptchaUrl())
         }
         setStatus(response.data.messages[0])
     }
@@ -74,10 +74,14 @@ export const logoutTC = () => async (dispatch: AppDispatchType) => {
 }
 
 export const getCaptchaUrl = () => async (dispatch: AppDispatchType) => {
-    const response = await securityAPI.getCaptchaUrl()
-    const captchaUrl = response.data.url
+    try{
+        const response = await securityAPI.getCaptchaUrl()
+       dispatch(getCaptchaUrlSuccess(response.data.url))
 
-    dispatch(getCaptchaUrlSuccess(captchaUrl))
+    } catch(e) {
+        console.log('captcha error')
+    }
+
 }
 
 

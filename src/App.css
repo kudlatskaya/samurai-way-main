@@ -1,10 +1,12 @@
+
+
 .app-wrapper {
   display: grid;
   grid-template-columns: 2fr 10fr;
   grid-template-rows: 60px 10fr;
   /*grid-gap: 10px;*/
 
-  grid-template-areas: "header header"
+  grid-template-areas: "nav header"
                        "nav content";
 }
 
