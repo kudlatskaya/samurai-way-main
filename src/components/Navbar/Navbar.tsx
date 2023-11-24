@@ -14,16 +14,20 @@ const Navbar = () => {
                     <div className={s.avatar}>
                         <img src={avatar} alt=""/>
                     </div>
+                    <div className={`${s.active} ${s.login}`}>
+                        <NavLink to="/profile/28736" className={s.link}
+                                 activeClassName={s.active}>@kudlatskaya</NavLink>
+                        <p className={s.member}>Member</p>
+                    </div>
+                    <hr/>
                 </div>
             </div>
-            <div className={`${s.item} ${s.active}`}>
-                <NavLink to="/profile/28736" className={s.link} activeClassName={s.active}>Profile</NavLink>
-            </div>
+
             <div className={s.item}>
                 <NavLink to="/dialogs" className={s.link} activeClassName={s.active}>Messages</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to="/users" className={s.link} activeClassName={s.active}>Users</NavLink>
+            <NavLink to="/users" className={s.link} activeClassName={s.active}>Users</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to="/news" className={s.link} activeClassName={s.active}>News</NavLink>

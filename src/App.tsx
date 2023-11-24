@@ -42,17 +42,20 @@ const App = ({initializeApp, initialized}: PropsType) => {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className='app-wrapper'>
-                <HeaderContainer/>
                 <Navbar/>
-                <div className='app-wrapper-content'>
-                    {/*<Route path='/dialogs' render={withSuspense(DialogsContainer)}/>*/}
-                    {/*<Route path='/profile/:userId' render={withSuspense(ProfileContainer)}/>*/}
-                    <Suspense fallback={<div><Preloader/></div>}>
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <LoginContainer/>}/>
-                    </Suspense>
+                <div className='app-wrapper-block'>
+                    <HeaderContainer/>
+
+                    <div className='app-wrapper-content'>
+                        {/*<Route path='/dialogs' render={withSuspense(DialogsContainer)}/>*/}
+                        {/*<Route path='/profile/:userId' render={withSuspense(ProfileContainer)}/>*/}
+                        <Suspense fallback={<div><Preloader/></div>}>
+                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                            <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>
+                            <Route path='/users' render={() => <UsersContainer/>}/>
+                            <Route path='/login' render={() => <LoginContainer/>}/>
+                        </Suspense>
+                    </div>
                 </div>
             </div>
         </BrowserRouter>

@@ -1,18 +1,23 @@
 
 
 .app-wrapper {
-  display: grid;
-  grid-template-columns: 2fr 10fr;
-  grid-template-rows: 60px 10fr;
+  display: flex;
+  /*grid-template-columns: fit-content(2fr) 8fr;*/
+  /*grid-template-rows: 60px 10fr;*/
   /*grid-gap: 10px;*/
 
-  grid-template-areas: "nav header"
-                       "nav content";
+  /*grid-template-areas: "nav header"*/
+  /*                     "nav content";*/
+}
+
+.app-wrapper-block {
+    display: flex;
+    flex-direction: column;
 }
 
 .app-wrapper-content {
-    grid-area: content;
-    background: gray;
+    /*grid-area: content;*/
+    /*background: gray;*/
 }
 
 
