@@ -2,8 +2,8 @@ import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import logo from '../../asets/images/logo-icon.svg'
-import avatar from '../../asets/images/avatar.jpg'
 import {Icon} from '@iconify/react';
+import Avatar from "../common/Avatar/Avatar";
 
 const Navbar = () => {
     const iconColor = "#838daa";
@@ -14,9 +14,7 @@ const Navbar = () => {
                 <img src={logo} alt=""/>
                 <p className={s.title}>Social Network</p>
                 <div className={s.userInfo}>
-                    <div className={s.avatar}>
-                        <img src={avatar} alt=""/>
-                    </div>
+                    <Avatar/>
                     <div className={`${s.active} ${s.login}`}>
                         <NavLink to="/profile/28736" className={s.link}
                                  activeClassName={s.active}>@kudlatskaya</NavLink>
@@ -26,7 +24,7 @@ const Navbar = () => {
                             <div><span className={s.count}>3</span><p className={s.mute}>Groups</p></div>
                         </div>
                     </div>
-                    <hr/>
+
                 </div>
             </div>
             <div className={s.menu}>

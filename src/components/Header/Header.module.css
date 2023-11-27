@@ -1,6 +1,9 @@
 .header {
-    grid-area: header;
-    background: greenyellow;
+    display: flex;
+    align-items: center;
+    height:80px;
+    border-bottom: 1px solid var(--mute-text);
+    justify-content: flex-end;
 }
 
 .loginBlock {
@@ -9,7 +12,8 @@
 }
 
 .loginBlock a {
-    color: darkslategray;
+    /*color: darkslategray;*/
     text-decoration: none;
+
 }
 

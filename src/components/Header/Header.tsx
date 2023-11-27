@@ -1,6 +1,7 @@
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import {LoginType, logoutTC} from "../../state/reducers/authReducer";
+import Avatar from "../common/Avatar/Avatar";
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -15,10 +16,15 @@ const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
             <div className={s.loginBlock}>
                 {
                     isAuth
-                        ? <div>{login} <button onClick={logoutTC}>Log out</button></div>
+                        ? <>
+                            <div>
+                                <Avatar/>
+                                {login}
+                                {/*<button onClick={logoutTC}>Log out</button>*/}
+                            </div>
+                        </>
                         : <NavLink to={'/login'}>Login</NavLink>
                 }
-
             </div>
         </header>
     );
