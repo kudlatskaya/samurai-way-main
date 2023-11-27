@@ -15,7 +15,7 @@ code {
 :root {
   --main-bg-color: #ffffff;
   --element-bg-color: #f8f9fb;
-  --section-bg-color: rgba(130, 36, 227, 0.04);
+  --section-bg-color: #34323C; /*rgba(130, 36, 227, 0.04);*/
   --dark-bg-color: #4f5261;
   --text-color: #29292d;
   --mute-text: #bbbbdc;
