@@ -21,10 +21,10 @@ const Navbar = () => {
                         <NavLink to="/profile/28736" className={s.link}
                                  activeClassName={s.active}>@kudlatskaya</NavLink>
                         <p className={s.member}>Member</p>
-                        <ul className={s.connections}>
-                            <li><span className={s.count}>0</span><p className={s.mute}>Friends</p></li>
-                            <li><span className={s.count}>3</span><p className={s.mute}>Groups</p></li>
-                        </ul>
+                        <div className={s.connections}>
+                            <div><span className={s.count}>0</span><p className={s.mute}>Friends</p></div>
+                            <div><span className={s.count}>3</span><p className={s.mute}>Groups</p></div>
+                        </div>
                     </div>
                     <hr/>
                 </div>

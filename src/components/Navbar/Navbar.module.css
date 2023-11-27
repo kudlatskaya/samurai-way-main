@@ -24,11 +24,12 @@
 
 .userInfo {
     background: var(--main-bg-color);
-    height: 200px;
+    /*height: 200px;*/
+    width: 80%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 1.5rem 2rem;
+    padding: 2rem;
     border-radius: 12px;
     position: relative;
     /*margin: 1rem auto -65px;*/
@@ -81,15 +82,17 @@
 
 .connections{
     padding-top: 0.8rem;
-    /*margin-top: 0.75rem;*/
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-top: 1px solid var(--mute-text);
     list-style-type: none;
     display: flex;
     gap: 2rem;
     justify-content: space-between;
-    padding-inline-start: 0px;
+    /*padding-inline-start: 0;*/
+    /*margin-block-start: 0;*/
+    /*margin-block-end: 0;*/
 }
 
 .connections li {
@@ -110,7 +113,20 @@
 }
 
 .menu {
-    padding-top: 5rem;
+    font-size: 1.4rem;
+    padding: 5rem 2.75rem 2.75rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.item {
+    padding: 1rem 0.25rem;
+    text-align: center;
+}
+
+.link p {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
 }
 
 @media (min-width: 992px) {
