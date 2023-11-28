@@ -4,16 +4,18 @@
     height:80px;
     border-bottom: 1px solid var(--mute-text);
     justify-content: flex-end;
+    padding: 0 2rem;
+    gap: 1rem;
 }
 
-.loginBlock {
-    float: right;
 
-}
 
-.loginBlock a {
-    /*color: darkslategray;*/
-    text-decoration: none;
+/*.loginBlock {*/
+/*    float: right;*/
+/*}*/
 
-}
+/*.loginBlock a {*/
+/*    !*color: darkslategray;*!*/
+/*    text-decoration: none;*/
+/*}*/
 

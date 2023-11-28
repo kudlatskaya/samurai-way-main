@@ -1,13 +1,5 @@
-
-
 .app-wrapper {
   display: flex;
-  /*grid-template-columns: fit-content(2fr) 8fr;*/
-  /*grid-template-rows: 60px 10fr;*/
-  /*grid-gap: 10px;*/
-
-  /*grid-template-areas: "nav header"*/
-  /*                     "nav content";*/
 }
 
 .app-wrapper-block {
@@ -18,9 +10,9 @@
 }
 
 .app-wrapper-content {
-    /*grid-area: content;*/
-    /*background: gray;*/
 }
+
+
 
 
 
