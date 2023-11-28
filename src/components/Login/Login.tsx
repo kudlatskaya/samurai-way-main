@@ -27,7 +27,7 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
         loginTC(email, password, rememberMe, captchaUrl, setStatus)
     }
 
-    if (isAuth) return <Redirect to={'/profile'}/>
+     if (isAuth) return <Redirect to={'/profile'}/>
 
     return (
         <div>
