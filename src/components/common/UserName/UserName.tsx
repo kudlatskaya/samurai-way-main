@@ -4,13 +4,14 @@ import {NavLink} from "react-router-dom";
 import {LoginType} from "../../../state/reducers/authReducer";
 
 type UserNamePropsType = {
-    login: LoginType
+    login: LoginType,
+    url: string
 }
 
-const UserName = ({login}: UserNamePropsType) => {
+const UserName = ({login, url}: UserNamePropsType) => {
     return (
         <div>
-            <NavLink to="/profile/28736" className={cs.link}
+            <NavLink to={url} className={cs.link}
                      activeClassName={cs.active}>@{login}</NavLink>
         </div>
     );

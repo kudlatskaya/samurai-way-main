@@ -8,7 +8,12 @@
     gap: 1rem;
 }
 
-
+.loginBlock {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
 
 /*.loginBlock {*/
 /*    float: right;*/

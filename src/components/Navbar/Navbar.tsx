@@ -20,7 +20,7 @@ const Navbar = () => {
                         <Avatar/>
                     </div>
                     <div className={`${cs.active} ${s.login}`}>
-                        <UserName login={'kudlatskaya'}/>
+                        <UserName login={'kudlatskaya'} url={"/profile/28736"}/>
                         {/*<NavLink to="/profile/28736" className={s.link}*/}
                         {/*         activeClassName={s.active}>@kudlatskaya</NavLink>*/}
                         <p className={s.member}>Member</p>
