@@ -13,6 +13,7 @@ import UserName from "../UserName/UserName";
 import {LoginType} from "../../../state/reducers/authReducer";
 import avatar from "../../../asets/images/avatar.jpg";
 import Avatar from "../Avatar/Avatar";
+import s from './AccountMenu.module.css'
 
 // import PersonAdd from '@mui/icons-material/PersonAdd';
 // import Settings from '@mui/icons-material/Settings';
@@ -90,31 +91,17 @@ export default function AccountMenu({login}: AccountMenuPropsType) {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleClose}>
-                    <AvatarMUI /> Profile
-                </MenuItem>
+
                 <MenuItem onClick={handleClose}>
                     <AvatarMUI /> My account
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
                     {/*<ListItemIcon>*/}
-                    {/*    <PersonAdd fontSize="small" />*/}
-                    {/*</ListItemIcon>*/}
-                    Add another account
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    {/*<ListItemIcon>*/}
-                    {/*    <Settings fontSize="small" />*/}
-                    {/*</ListItemIcon>*/}
-                    Settings
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    {/*<ListItemIcon>*/}
                     {/*    <Logout fontSize="small" />*/}
                     {/*</ListItemIcon>*/}
-                    <Icon icon="uil-comments" color={iconColor}/>
-                    Logout
+                    <Icon icon="material-symbols:logout" color={iconColor} />
+                    <span className={s.item}>Logout</span>
                 </MenuItem>
             </Menu>
         </React.Fragment>
