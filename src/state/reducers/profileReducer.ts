@@ -124,6 +124,7 @@ export const saveProfile = (profile: ProfileType, setStatus: (status: any) => vo
 
 export const getStatusTC = (userId: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getStatus(userId)
+    // console.log(response.data)
     dispatch(setUserStatus(response.data));
 }
 

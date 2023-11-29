@@ -47,8 +47,6 @@ const App = ({initializeApp, initialized}: PropsType) => {
                     <HeaderContainer/>
 
                     <div className='app-wrapper-content'>
-                        {/*<Route path='/dialogs' render={withSuspense(DialogsContainer)}/>*/}
-                        {/*<Route path='/profile/:userId' render={withSuspense(ProfileContainer)}/>*/}
                         <Suspense fallback={<div><Preloader/></div>}>
                             <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                             <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>

@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import {LoginType} from "../../state/reducers/authReducer";
 import React, {useState} from "react";
 import AccountMenu from "../common/AccountMenu/AccountMenu";
+import cs from "../common/common.module.css";
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -14,14 +15,14 @@ const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
     return (
         <header className={s.header}>
             <div className={s.loginBlock}>
-            {
-                isAuth && <>
+                {
+                    isAuth && <>
                         <AccountMenu login={login} logout={logoutTC}/>
+                        {/*<NavLink to={'/profile/:userId'} className={cs.link}>My account</NavLink>*/}
                         {/*{login}*/}
                         {/*<button onClick={logoutTC}>Log out</button>*/}
                     </>
-
-            }
+                }
                 {/*<NavLink to={'/login'}>Login</NavLink>*/}
             </div>
         </header>

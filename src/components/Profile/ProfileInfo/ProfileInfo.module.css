@@ -1,20 +1,19 @@
 .userName{
-    grid-area: name;
+    /*grid-area: name;*/
 }
 
 .userInfo {
-    display: grid;
-    grid-template-columns: 3fr 6fr;
-    grid-template-areas: "avatar name";
-
+    /*display: grid;*/
+    /*grid-template-columns: 3fr 6fr;*/
+    /*grid-template-areas: "avatar name";*/
 }
 
 .userAvatar {
-    grid-area: avatar;
+    /*grid-area: avatar;*/
 }
 
 .content .img {
     height: 5rem;
-    background: palevioletred;
+    /*background: palevioletred;*/
 }
 
