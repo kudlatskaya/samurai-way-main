@@ -31,44 +31,46 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
     })
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
-                <input type="email"
-                       {...formik.getFieldProps('email')}
-                />
-            </div>
 
-            {formik.touched.email && formik.errors.email ?
-                <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
+            <form onSubmit={formik.handleSubmit}>
+                <div>
+                    <input type="email"
+                           {...formik.getFieldProps('email')}
+                    />
+                </div>
 
-            <div>
-                <input type="password"
-                       {...formik.getFieldProps('password')}/>
-            </div>
+                {formik.touched.email && formik.errors.email ?
+                    <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
 
-            {formik.touched.password && formik.errors.password ?
-                <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
+                <div>
+                    <input type="password"
+                           {...formik.getFieldProps('password')}/>
+                </div>
 
-            {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
+                {formik.touched.password && formik.errors.password ?
+                    <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
 
-            <div>
-                <label htmlFor="rememberMe">
-                    <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
-                           checked={formik.values.rememberMe}/>
-                    remember me
-                </label>
-            </div>
+                {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
 
-            {captchaUrl && <img src={captchaUrl} />}
-            {captchaUrl &&
-                <input {...formik.getFieldProps('captchaUrl')}/>}
+                <div>
+                    <label htmlFor="rememberMe">
+                        <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
+                               checked={formik.values.rememberMe}/>
+                        remember me
+                    </label>
+                </div>
 
-            <div>
-                <button type={'submit'}>
-                    Login
-                </button>
-            </div>
-        </form>
+                {captchaUrl && <img src={captchaUrl}/>}
+                {captchaUrl &&
+                    <input {...formik.getFieldProps('captchaUrl')}/>}
+
+                <div>
+                    <button type={'submit'}>
+                        Login
+                    </button>
+                </div>
+            </form>
+
     );
 };
 

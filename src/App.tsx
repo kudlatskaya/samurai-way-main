@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Suspense, useEffect} from 'react'
+import React, {Suspense, useEffect, useState} from 'react'
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -10,7 +10,7 @@ import {AnyAction, compose} from "redux";
 import {initializeApp} from "./state/reducers/appReducer";
 import store, {AppStateType} from "./state/redux-store";
 import Preloader from "./components/Preloader/Preloader";
-import withSuspense from "./hoc/withSuspense";
+
 
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -21,6 +21,9 @@ type PropsType = MapDispatchToPropsType & MapStateToPropsType
 
 const App = ({initializeApp, initialized}: PropsType) => {
     const dispatch = useDispatch()
+    const [auth, setAuth] = useState(store.getState().authReducer.isAuth)
+    let wrapperStyle, wrapperBlock
+    // let isAuth = store.getState().authReducer.isAuth
 
     let catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
         alert('Some error occured')
@@ -39,11 +42,27 @@ const App = ({initializeApp, initialized}: PropsType) => {
 
     if (!initialized) return <Preloader/>
 
+    // const isAuth = store.getState().authReducer.isAuth
+
+    if (!auth) {
+        wrapperStyle = 'app-wrapper' + ` wrapperDirection`
+        wrapperBlock = 'wrapperBlockBackground'
+    } else {
+        wrapperStyle = 'app-wrapper'
+        wrapperBlock = null
+    }
+
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <div className='app-wrapper'>
-                <Navbar/>
-                <div className='app-wrapper-block'>
+            <div className={`${wrapperStyle}`}>
+                {
+                    auth
+                        // ? <Navbar/>
+                        ? <ProfileContainer/>
+                        : <LoginContainer/>
+                }
+
+                <div className={`app-wrapper-block ${wrapperBlock}`}>
                     <HeaderContainer/>
 
                     <div className='app-wrapper-content'>

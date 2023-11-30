@@ -12,6 +12,14 @@
 .app-wrapper-content {
 }
 
+.wrapperDirection {
+    flex-direction: column-reverse;
+    background: var(--dark-bg-color);
+}
+
+.wrapperBlockBackground {
+    background: var(--section-bg-color);
+}
 
 
 

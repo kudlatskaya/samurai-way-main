@@ -79,6 +79,7 @@ const ProfileContainer = (props: ProfileContainerPropsType) => {
     // if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
+
         <div>
             <Profile {...props}
                      isOwner={!!props.match.params.userId}

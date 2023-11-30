@@ -12,18 +12,23 @@ type HeaderPropsType = {
 }
 
 const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
+    const headerStyle = !isAuth
+        ? s.header + `borderBottom: none; `
+        : s.header
+
     return (
-        <header className={s.header}>
+        <header className={`${headerStyle}`}>
             <div className={s.loginBlock}>
                 {
-                    isAuth && <>
-                        <AccountMenu login={login} logout={logoutTC}/>
-                        {/*<NavLink to={'/profile/:userId'} className={cs.link}>My account</NavLink>*/}
-                        {/*{login}*/}
-                        {/*<button onClick={logoutTC}>Log out</button>*/}
-                    </>
+                    isAuth
+                        ? <>
+                            <AccountMenu login={login} logout={logoutTC}/>
+                            {/*<NavLink to={'/profile/:userId'} className={cs.link}>My account</NavLink>*/}
+                            {/*{login}*/}
+                            {/*<button onClick={logoutTC}>Log out</button>*/}
+                        </>
+                        : <NavLink to={'/login'}>Login</NavLink>
                 }
-                {/*<NavLink to={'/login'}>Login</NavLink>*/}
             </div>
         </header>
     );
