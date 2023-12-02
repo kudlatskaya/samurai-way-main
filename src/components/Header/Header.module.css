@@ -15,6 +15,22 @@
     gap: 0.5rem;
 }
 
+.headerLogin {
+    border-bottom: none;
+
+}
+
+.loginIcon {
+    background: var(--dark-bg-color);
+    border-radius: 2rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+/*.loginIcon svg {*/
+/*    margin: 0 auto;*/
+/*           }*/
+
 /*.loginBlock {*/
 /*    float: right;*/
 /*}*/

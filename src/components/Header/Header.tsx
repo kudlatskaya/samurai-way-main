@@ -4,6 +4,7 @@ import {LoginType} from "../../state/reducers/authReducer";
 import React, {useState} from "react";
 import AccountMenu from "../common/AccountMenu/AccountMenu";
 import cs from "../common/common.module.css";
+import {Icon} from "@iconify/react";
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -13,8 +14,14 @@ type HeaderPropsType = {
 
 const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
     const headerStyle = !isAuth
-        ? s.header + `borderBottom: none; `
+        ? `${s.header} ${s.headerLogin}`
         : s.header
+
+    const linkStyle = !isAuth
+        ? `${cs.link} ${cs.loginLink}`
+        : cs.link
+
+    const iconColor = '#ffffff'
 
     return (
         <header className={`${headerStyle}`}>
@@ -23,11 +30,13 @@ const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
                     isAuth
                         ? <>
                             <AccountMenu login={login} logout={logoutTC}/>
-                            {/*<NavLink to={'/profile/:userId'} className={cs.link}>My account</NavLink>*/}
-                            {/*{login}*/}
-                            {/*<button onClick={logoutTC}>Log out</button>*/}
                         </>
-                        : <NavLink to={'/login'}>Login</NavLink>
+                        : <NavLink to="/login" className={`${linkStyle}`} activeClassName={cs.active}>
+                            <div className={s.loginIcon}>
+                                <Icon icon="uil-comments" color={iconColor}/>
+                            </div>
+                            <span>Login</span>
+                        </NavLink>
                 }
             </div>
         </header>

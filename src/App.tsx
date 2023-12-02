@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Suspense, useEffect, useState} from 'react'
+import React, {Suspense, useEffect} from 'react'
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -19,19 +19,17 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 
 type PropsType = MapDispatchToPropsType & MapStateToPropsType
 
-const App = ({initializeApp, initialized}: PropsType) => {
+const App = ({initializeApp, initialized, isAuth}: PropsType) => {
     const dispatch = useDispatch()
-    const [auth, setAuth] = useState(store.getState().authReducer.isAuth)
+    // const [auth, setAuth] = useState(store.getState().authReducer.isAuth)
     let wrapperStyle, wrapperBlock
     // let isAuth = store.getState().authReducer.isAuth
 
     let catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
         alert('Some error occured')
-        // console.log(promiseRejectionEvent)
     }
 
     useEffect(() => {
-        // dispatch(initializeApp())
         initializeApp()
         window.addEventListener("unhandledrejection", catchAllUnhandledErrors)
 
@@ -44,7 +42,7 @@ const App = ({initializeApp, initialized}: PropsType) => {
 
     // const isAuth = store.getState().authReducer.isAuth
 
-    if (!auth) {
+    if (!isAuth) {
         wrapperStyle = 'app-wrapper' + ` wrapperDirection`
         wrapperBlock = 'wrapperBlockBackground'
     } else {
@@ -56,9 +54,8 @@ const App = ({initializeApp, initialized}: PropsType) => {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className={`${wrapperStyle}`}>
                 {
-                    auth
-                        // ? <Navbar/>
-                        ? <ProfileContainer/>
+                    isAuth
+                        ? <Navbar/>
                         : <LoginContainer/>
                 }
 
@@ -86,7 +83,8 @@ type MapDispatchToPropsType = {
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
 const mapStateToProps = (state: AppStateType) => ({
-    initialized: state.appReducer.initialized
+    initialized: state.appReducer.initialized,
+    isAuth: state.authReducer.isAuth
 })
 
 const AppContainer = compose<React.ComponentType>(
