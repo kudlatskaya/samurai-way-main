@@ -16,13 +16,7 @@
     margin-block-end: 0.3em;
 }
 
-.loginLink {
-    font-size: 14px;
-    color: var(--main-bg-color);
-    display: flex;
-    gap: 1rem;
 
-}
 
 /*.loginLink span {*/
 /*    margin-left: 1rem;*/

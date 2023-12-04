@@ -9,10 +9,18 @@
 }
 
 .loginBlock {
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: flex-end;*/
+    /*gap: 0.5rem;*/
+}
+
+.loginLink {
+    font-size: 14px;
+    color: var(--main-bg-color);
     display: flex;
+    gap: 1rem;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0.5rem;
 }
 
 .headerLogin {
@@ -25,6 +33,19 @@
     border-radius: 2rem;
     height: 2rem;
     width: 2rem;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.loginIcon p {
+    text-align: center;
+    /*margin: auto 0;*/
+    line-height: 2rem;
+}
+
+.loginIcon p svg {
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 /*.loginIcon svg {*/

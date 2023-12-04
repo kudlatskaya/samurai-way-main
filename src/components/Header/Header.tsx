@@ -18,14 +18,14 @@ const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
         : s.header
 
     const linkStyle = !isAuth
-        ? `${cs.link} ${cs.loginLink}`
+        ? `${cs.link} ${s.loginLink}`
         : cs.link
 
     const iconColor = '#ffffff'
 
     return (
         <header className={`${headerStyle}`}>
-            <div className={s.loginBlock}>
+
                 {
                     isAuth
                         ? <>
@@ -33,12 +33,12 @@ const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
                         </>
                         : <NavLink to="/login" className={`${linkStyle}`} activeClassName={cs.active}>
                             <div className={s.loginIcon}>
-                                <Icon icon="uil-comments" color={iconColor}/>
+                                <p><Icon icon="material-symbols:login" color={iconColor}/></p>
                             </div>
-                            <span>Login</span>
+                            <p>Login</p>
                         </NavLink>
                 }
-            </div>
+
         </header>
     );
 };
