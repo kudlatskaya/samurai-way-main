@@ -26,6 +26,7 @@
 .headerLogin {
     border-bottom: none;
     height: 60px;
+    background-color: var(--section-bg-color);
 }
 
 .loginIcon {
