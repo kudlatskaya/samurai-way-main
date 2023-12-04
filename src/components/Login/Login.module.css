@@ -1,6 +1,6 @@
 .login {
     display: flex;
-margin: 0 auto;
+    margin: 0 auto;
 }
 
 .loginSidebar,
@@ -8,7 +8,13 @@ margin: 0 auto;
     width: 50%;
 }
 
+.loginSidebar {
+    background: var(--accent-color);
+}
 
+.loginForm {
+    background: var(--main-bg-color);
+}
 
 
 @media (min-width: 992px) {

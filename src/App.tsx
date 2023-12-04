@@ -53,23 +53,25 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className={`${wrapperStyle}`}>
-                {
-                    isAuth
-                        ? <Navbar/>
-                        : <LoginContainer/>
-                }
+
 
                 <div className={`app-wrapper-block ${wrapperBlock}`}>
                     <HeaderContainer/>
-
-                    <div className='app-wrapper-content'>
-                        <Suspense fallback={<div><Preloader/></div>}>
-                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                            <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>
-                            <Route path='/users' render={() => <UsersContainer/>}/>
-                            <Route path='/login' render={() => <LoginContainer/>}/>
-                        </Suspense>
-                    </div>
+                    {
+                        isAuth
+                            ? <Navbar/>
+                            : <div className='login-container'><LoginContainer/></div>
+                    }
+                    {
+                        isAuth && <div className='app-wrapper-content'>
+                            <Suspense fallback={<div><Preloader/></div>}>
+                                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                                <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>
+                                <Route path='/users' render={() => <UsersContainer/>}/>
+                                <Route path='/login' render={() => <LoginContainer/>}/>
+                            </Suspense>
+                        </div>
+                    }
                 </div>
             </div>
         </BrowserRouter>
