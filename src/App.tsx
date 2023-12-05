@@ -57,6 +57,7 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
 
                 <div className={`app-wrapper-block ${wrapperBlock}`}>
                     <HeaderContainer/>
+                    <div className='content'>
                     {
                         isAuth
                             ? <Navbar/>
@@ -72,6 +73,7 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
                             </Suspense>
                         </div>
                     }
+                    </div>
                 </div>
             </div>
         </BrowserRouter>

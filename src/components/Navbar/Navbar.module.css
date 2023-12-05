@@ -3,6 +3,7 @@
     background: var(--main-bg-color);
     color: var(--icon-color);
     /*max-width: 335px;*/
+    margin-top: -80px;
 }
 
 .logoBlock {
