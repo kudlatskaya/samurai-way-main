@@ -6,9 +6,10 @@ import logo from '../../asets/images/logo-icon.svg'
 import {Icon} from '@iconify/react';
 import Avatar from "../common/Avatar/Avatar";
 import UserName from "../common/UserName/UserName";
+import {iconColor} from '../../constants';
 
 const Navbar = () => {
-    const iconColor = "#838daa";
+
 
     return (
         <nav className={s.nav}>

@@ -7,6 +7,7 @@ import s from "./Login.module.css"
 import cs from "../common/common.module.css"
 import {Icon} from "@iconify/react";
 import React from "react";
+import {iconColor} from '../../constants';
 
 type MapStateToPropsType = {
     captchaUrl: string | null | undefined,
@@ -42,7 +43,26 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
 
     return (
         <div className={s.login}>
-            <div className={s.loginSidebar}></div>
+            <div className={s.loginSidebar}>
+
+                    <p className={s.loginSidebarTitle} >Join us</p>
+                    <p className={s.loginSidebarText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus.</p>
+
+                        <div className={s.loginSidebarIcon}>
+                            <Icon icon="uil-comments" color={iconColor}/>
+                            <p>Community</p>
+                        </div>
+                        <div className={s.loginSidebarIcon}>
+                            <Icon icon="uil-comments" color={iconColor}/>
+                            <p>Music</p>
+                        </div>
+                        <div className={s.loginSidebarIcon}>
+                            <Icon icon="uil-comments" color={iconColor}/>
+                            <p>News</p>
+                        </div>
+
+
+            </div>
             <div className={s.loginForm}>
                 <div>
 

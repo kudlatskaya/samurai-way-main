@@ -6,11 +6,34 @@
 .loginSidebar,
 .loginForm {
     width: 50%;
+    padding: 5rem 3rem;
 }
 
 .loginSidebar {
     background: var(--accent-color);
+    color: var(--main-bg-color);
 }
+.loginSidebarTitle {
+    font-size: 1.616em;
+    font-weight: 700;
+}
+
+.loginSidebarText {
+    font-size: 15px;
+    line-height: 2rem;
+}
+
+.loginSidebarIcon {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/*.loginSidebarContent {*/
+/*    */
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
 .loginForm {
     background: var(--main-bg-color);

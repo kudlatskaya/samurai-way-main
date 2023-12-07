@@ -22,7 +22,7 @@ type PropsType = MapDispatchToPropsType & MapStateToPropsType
 const App = ({initializeApp, initialized, isAuth}: PropsType) => {
     const dispatch = useDispatch()
     // const [auth, setAuth] = useState(store.getState().authReducer.isAuth)
-    let wrapperStyle, wrapperBlock
+    let wrapperStyle, wrapperBlockStyle, contentStyle
     // let isAuth = store.getState().authReducer.isAuth
 
     let catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
@@ -44,10 +44,12 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
 
     if (!isAuth) {
         wrapperStyle = 'app-wrapper' + ` wrapperDirection`
-        wrapperBlock = 'wrapperBlockBackground'
+        wrapperBlockStyle = 'wrapperBlockBackground'
+        contentStyle = 'content'
     } else {
         wrapperStyle = 'app-wrapper'
-        wrapperBlock = null
+        wrapperBlockStyle = null
+        contentStyle = 'content' + 'contentMargin'
     }
 
     return (
@@ -55,7 +57,7 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
             <div className={`${wrapperStyle}`}>
 
 
-                <div className={`app-wrapper-block ${wrapperBlock}`}>
+                <div className={`app-wrapper-block ${wrapperBlockStyle}`}>
                     <HeaderContainer/>
                     <div className='content'>
                     {
