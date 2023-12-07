@@ -45,21 +45,37 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
         <div className={s.login}>
             <div className={s.loginSidebar}>
 
-                    <p className={s.loginSidebarTitle} >Join us</p>
-                    <p className={s.loginSidebarText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus.</p>
+                <h2 className={s.loginSidebarTitle}>Join us</h2>
+                <p className={s.loginSidebarText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+                    tellus, luctus.</p>
 
-                        <div className={s.loginSidebarIcon}>
-                            <Icon icon="uil-comments" color={iconColor}/>
-                            <p>Community</p>
-                        </div>
-                        <div className={s.loginSidebarIcon}>
-                            <Icon icon="uil-comments" color={iconColor}/>
-                            <p>Music</p>
-                        </div>
-                        <div className={s.loginSidebarIcon}>
-                            <Icon icon="uil-comments" color={iconColor}/>
-                            <p>News</p>
-                        </div>
+                <div className={s.loginSidebarIcon}>
+                    <div className={s.iconBlock}>
+                        <Icon icon="uil-comments"/>
+                    </div>
+                    <p>
+                        <h3>Community</h3>
+                        <p>At vero eos et accusamus et.</p>
+                    </p>
+                </div>
+                <div className={s.loginSidebarIcon}>
+                    <div className={s.iconBlock}>
+                        <Icon icon="uil-play"/>
+                    </div>
+                    <p>
+                        <h3>Music</h3>
+                        <p>At vero eos et accusamus et.</p>
+                    </p>
+                </div>
+                <div className={s.loginSidebarIcon}>
+                    <div className={s.iconBlock}>
+                        <Icon icon="uil-newspaper"/>
+                    </div>
+                    <p>
+                        <h3>News</h3>
+                        <p>At vero eos et accusamus et.</p>
+                    </p>
+                </div>
 
 
             </div>
