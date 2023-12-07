@@ -45,11 +45,11 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
     if (!isAuth) {
         wrapperStyle = 'app-wrapper' + ` wrapperDirection`
         wrapperBlockStyle = 'wrapperBlockBackground'
-        contentStyle = 'content'
+        contentStyle = 'content' + ` contentMargin`
     } else {
         wrapperStyle = 'app-wrapper'
         wrapperBlockStyle = null
-        contentStyle = 'content' + 'contentMargin'
+        contentStyle = 'content'
     }
 
     return (
@@ -59,7 +59,7 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
 
                 <div className={`app-wrapper-block ${wrapperBlockStyle}`}>
                     <HeaderContainer/>
-                    <div className='content'>
+                    <div className={`${contentStyle}`}>
                     {
                         isAuth
                             ? <Navbar/>

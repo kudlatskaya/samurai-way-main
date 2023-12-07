@@ -1,5 +1,11 @@
-import {useFormik} from "formik";
+import {Field, useFormik} from "formik";
 import {loginFormValidator} from "../../utils/validators";
+import {Icon} from "@iconify/react";
+import React, {FocusEventHandler, MouseEventHandler} from "react";
+import {InputAdornment, TextField} from "@mui/material";
+import {iconColor} from "../../constants";
+// import AccountCircle from '@mui/icons-material/AccountCircle';
+import s from '../common/common.module.css'
 
 export type FormikErrorType = {
     email?: string
@@ -30,46 +36,58 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
         },
     })
 
+    const onClickHandler = (e: MouseEventHandler<HTMLInputElement>) {
+
+    }
+
     return (
 
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <input type="email"
+        <form onSubmit={formik.handleSubmit}>
+            <div>
+                <div className={s.inputBlock}>
+                    <div className={s.inputIconBlock}>
+                        <Icon icon="uil-newspaper" color={iconColor}/>
+                    </div>
+                    <input type="email" placeholder={"email"}
                            {...formik.getFieldProps('email')}
+                        onClick={onClickHandler}
                     />
                 </div>
 
-                {formik.touched.email && formik.errors.email ?
-                    <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
 
-                <div>
-                    <input type="password"
-                           {...formik.getFieldProps('password')}/>
-                </div>
+            </div>
 
-                {formik.touched.password && formik.errors.password ?
-                    <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
+            {formik.touched.email && formik.errors.email ?
+                <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
 
-                {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
+            <div>
+                <input type="password" placeholder={"password"}
+                       {...formik.getFieldProps('password')}/>
+            </div>
 
-                <div>
-                    <label htmlFor="rememberMe">
-                        <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
-                               checked={formik.values.rememberMe}/>
-                        remember me
-                    </label>
-                </div>
+            {formik.touched.password && formik.errors.password ?
+                <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
 
-                {captchaUrl && <img src={captchaUrl}/>}
-                {captchaUrl &&
-                    <input {...formik.getFieldProps('captchaUrl')}/>}
+            {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
 
-                <div>
-                    <button type={'submit'}>
-                        Login
-                    </button>
-                </div>
-            </form>
+            <div>
+                <label htmlFor="rememberMe">
+                    <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
+                           checked={formik.values.rememberMe}/>
+                    remember me
+                </label>
+            </div>
+
+            {captchaUrl && <img src={captchaUrl}/>}
+            {captchaUrl &&
+                <input {...formik.getFieldProps('captchaUrl')}/>}
+
+            <div>
+                <button type={'submit'}>
+                    Login
+                </button>
+            </div>
+        </form>
 
     );
 };

@@ -1,13 +1,12 @@
 import {connect} from "react-redux";
 import LoginForm, {FormikErrorType} from "./LoginForm";
 import {EmailType, loginTC, PasswordType, RememberMeType} from '../../state/reducers/authReducer'
-import {NavLink, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../state/redux-store";
 import s from "./Login.module.css"
-import cs from "../common/common.module.css"
 import {Icon} from "@iconify/react";
 import React from "react";
-import {iconColor} from '../../constants';
+import logo from "../../asets/images/logo-icon.svg";
 
 type MapStateToPropsType = {
     captchaUrl: string | null | undefined,
@@ -80,11 +79,14 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
 
             </div>
             <div className={s.loginForm}>
-                <div>
 
-
+                    <div className={s.loginLogo}>
+                        <img src={logo} alt=""/>
+                    </div>
+                    <h2 className={s.loginSidebarTitle}>Welcome</h2>
+                    <p>Join gazillions of people online</p>
                     <LoginForm submit={submit} captchaUrl={captchaUrl}/>
-                </div>
+
             </div>
         </div>
     );
