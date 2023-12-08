@@ -46,24 +46,39 @@
     border: none;
 }
 
+.inputField input::before,
+.inputField::before {
+    border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
+}
+
+.inputField input::after,
+.inputField::after {
+    border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
+    /*outline: none;*/
+}
+
 /*.inputBlock input:focus {*/
 /*    border: none;*/
 /*}*/
 
-input:focus {
-    outline: none;
-}
+/*input:focus {*/
+/*    outline: none;*/
+/*}*/
 
-.inputIconBlock {
-    height: 2.6rem;
-    border-radius: 2rem;
-    background-color: var(--main-bg-color);
-    width: 2.6rem;
-    margin-right: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/*.inputField {*/
+/*    outline: none;*/
+/*}*/
+
+/*.inputIconBlock {*/
+/*    height: 2.6rem;*/
+/*    border-radius: 2rem;*/
+/*    background-color: var(--main-bg-color);*/
+/*    width: 2.6rem;*/
+/*    margin-right: 0.5rem;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
 ::placeholder {
     color: var(--mute-text);

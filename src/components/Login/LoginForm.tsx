@@ -2,10 +2,11 @@ import {Field, useFormik} from "formik";
 import {loginFormValidator} from "../../utils/validators";
 import {Icon} from "@iconify/react";
 import React, {FocusEventHandler, MouseEventHandler} from "react";
-import {InputAdornment, TextField} from "@mui/material";
+import {Input, InputAdornment, TextField} from "@mui/material";
 import {iconColor} from "../../constants";
 // import AccountCircle from '@mui/icons-material/AccountCircle';
 import s from '../common/common.module.css'
+import {AccountCircle} from "@mui/icons-material";
 
 export type FormikErrorType = {
     email?: string
@@ -36,21 +37,31 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
         },
     })
 
-    const onClickHandler = (e: MouseEventHandler<HTMLInputElement>) {
-
-    }
+    // const onClickHandler = (e: MouseEventHandler<HTMLInputElement>) {
+    //
+    // }
 
     return (
 
         <form onSubmit={formik.handleSubmit}>
             <div>
                 <div className={s.inputBlock}>
-                    <div className={s.inputIconBlock}>
-                        <Icon icon="uil-newspaper" color={iconColor}/>
-                    </div>
-                    <input type="email" placeholder={"email"}
-                           {...formik.getFieldProps('email')}
-                        onClick={onClickHandler}
+                    {/*<div className={s.inputIconBlock}>*/}
+                    {/*    <Icon icon="uil-newspaper" color={iconColor}/>*/}
+                    {/*</div>*/}
+                    {/*<input type="email" placeholder={"email"}*/}
+                    {/*       {...formik.getFieldProps('email')}*/}
+
+                    {/*/>*/}
+                    <Input className={s.inputField}
+                        type="email" placeholder={"email"}
+                        id="input-with-icon-adornment"
+                        {...formik.getFieldProps('email')}
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <AccountCircle />
+                            </InputAdornment>
+                        }
                     />
                 </div>
 
