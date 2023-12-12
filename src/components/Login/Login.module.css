@@ -56,15 +56,8 @@
     margin: 0;
 }
 
-/*.loginSidebarContent {*/
-/*    */
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
 .remember {
     display: flex;
-    font-size: 0.85rem;
     font-weight: normal;
     justify-content: space-between;
     align-items: center;
@@ -74,12 +67,10 @@
 .remember label {
     display: flex;
     margin-left: 0.05rem;
-
 }
 
-.remember label input svg {
+.remember span {
     font-size: 0.85rem;
-    background-color: #00cc22;
 }
 
 .loginForm {

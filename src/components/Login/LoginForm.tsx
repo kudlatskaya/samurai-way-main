@@ -6,6 +6,7 @@ import cs from '../common/common.module.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import s from './Login.module.css'
+import {accentColor, elementBgColor, iconColor} from "../../constants";
 
 export type FormikErrorType = {
     email?: string
@@ -81,18 +82,17 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
             {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
 
             <div className={s.remember}>
-                {/*<label htmlFor="rememberMe">*/}
-                <FormControlLabel control={<Checkbox defaultChecked/>} label="Remember" name={"rememberMe"}
+                <FormControlLabel control={<Checkbox defaultChecked sx={{
+                    color: iconColor,
+                    '&.Mui-checked': {
+                        color: elementBgColor,
+                        backgroundColor: accentColor
+                    },
+                }}/>} label="Remember" name={"rememberMe"}
                                   onChange={formik.handleChange}
                                   checked={formik.values.rememberMe}
-                                  sx={{ '& .MuiSvgIcon-root': { fontSize: 23 } }}/>
-                {/*<Checkbox {...label} name={"rememberMe"} onChange={formik.handleChange}*/}
-                {/*          checked={formik.values.rememberMe}/>*/}
-                {/*<input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}*/}
-                {/*       checked={formik.values.rememberMe}/>*/}
-                {/*    Remember*/}
-                {/*</label>*/}
-
+                                  sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
+                />
                 <span>Lost Password?</span>
             </div>
 
