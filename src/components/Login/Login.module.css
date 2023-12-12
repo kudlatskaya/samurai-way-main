@@ -62,10 +62,29 @@
 /*    flex-direction: column;*/
 /*}*/
 
+.remember {
+    display: flex;
+    font-size: 0.85rem;
+    font-weight: normal;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.8rem 0;
+}
+
+.remember label {
+    display: flex;
+    margin-left: 0.05rem;
+
+}
+
+.remember label input svg {
+    font-size: 0.85rem;
+    background-color: #00cc22;
+}
+
 .loginForm {
     background: var(--main-bg-color);
     color: var(--icon-color);
-
     text-align: center;
     font-size: 14px;
 }

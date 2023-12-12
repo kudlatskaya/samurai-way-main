@@ -1,15 +1,11 @@
-import {Field, useFormik} from "formik";
+import {useFormik} from "formik";
 import {loginFormValidator} from "../../utils/validators";
-import {Icon} from "@iconify/react";
-import React, {FocusEventHandler, MouseEventHandler} from "react";
-import {Input, InputAdornment, TextField} from "@mui/material";
-import {iconColor} from "../../constants";
-// import AccountCircle from '@mui/icons-material/AccountCircle';
-import s from '../common/common.module.css'
-import {AccountCircle} from "@mui/icons-material";
+import React from "react";
+import {Checkbox, FormControlLabel, Input, InputAdornment} from "@mui/material";
+import cs from '../common/common.module.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-// import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import s from './Login.module.css'
 
 export type FormikErrorType = {
     email?: string
@@ -40,37 +36,23 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
         },
     })
 
-    // const onClickHandler = (e: MouseEventHandler<HTMLInputElement>) {
-    //
-    // }
-
     return (
 
         <form onSubmit={formik.handleSubmit}>
             <div>
-                <div className={s.inputBlock}>
-                    {/*<div className={s.inputIconBlock}>*/}
-                    {/*    <Icon icon="uil-newspaper" color={iconColor}/>*/}
-                    {/*</div>*/}
-                    {/*<input type="email" placeholder={"email"}*/}
-                    {/*       {...formik.getFieldProps('email')}*/}
+                <div className={cs.inputBlock}>
+                    <Input className={cs.inputField}
+                           type="email" placeholder={"email"}
+                           id="input-with-icon-adornment"
+                           {...formik.getFieldProps('email')}
+                           startAdornment={
 
-                    {/*/>*/}
-                    <Input className={s.inputField}
-                        type="email" placeholder={"email"}
-                        id="input-with-icon-adornment"
-                        {...formik.getFieldProps('email')}
-                        startAdornment={
-
-                            <InputAdornment position="start">
-                                {/*<AccountCircle />*/}
-                                <div className={s.inputIconBlock}>
-                                    <PermIdentityIcon/>
-                                </div>
-                            </InputAdornment>
-
-
-                        }
+                               <InputAdornment position="start">
+                                   <div className={cs.inputIconBlock}>
+                                       <PermIdentityIcon/>
+                                   </div>
+                               </InputAdornment>
+                           }
                     />
                 </div>
             </div>
@@ -79,25 +61,14 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
 
             <div>
-                {/*<input type="password" placeholder={"password"}*/}
-                {/*       {...formik.getFieldProps('password')}/>*/}
-                <div className={s.inputBlock}>
-                    {/*<div className={s.inputIconBlock}>*/}
-                    {/*    <Icon icon="uil-newspaper" color={iconColor}/>*/}
-                    {/*</div>*/}
-                    {/*<input type="email" placeholder={"email"}*/}
-                    {/*       {...formik.getFieldProps('email')}*/}
-
-                    {/*/>*/}
-                    <Input className={s.inputField}
+                <div className={cs.inputBlock}>
+                    <Input className={cs.inputField}
                            type={"password"} placeholder={"password"}
                            id="input-with-icon-adornment"
                            {...formik.getFieldProps('password')}
                            startAdornment={
-                               <InputAdornment position="start" >
-                                   {/*<AccountCircle/>*/}
-                                   {/*<VpnKeyIcon />*/}
-                                   <VpnKeyOutlinedIcon sx={{ fontSize: 20 }} />
+                               <InputAdornment position="start">
+                                   <VpnKeyOutlinedIcon sx={{fontSize: 20}}/>
                                </InputAdornment>
                            }
                     />
@@ -109,12 +80,20 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
             {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
 
-            <div>
-                <label htmlFor="rememberMe">
-                    <input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}
-                           checked={formik.values.rememberMe}/>
-                    remember me
-                </label>
+            <div className={s.remember}>
+                {/*<label htmlFor="rememberMe">*/}
+                <FormControlLabel control={<Checkbox defaultChecked/>} label="Remember" name={"rememberMe"}
+                                  onChange={formik.handleChange}
+                                  checked={formik.values.rememberMe}
+                                  sx={{ '& .MuiSvgIcon-root': { fontSize: 23 } }}/>
+                {/*<Checkbox {...label} name={"rememberMe"} onChange={formik.handleChange}*/}
+                {/*          checked={formik.values.rememberMe}/>*/}
+                {/*<input type='checkbox' name={"rememberMe"} onChange={formik.handleChange}*/}
+                {/*       checked={formik.values.rememberMe}/>*/}
+                {/*    Remember*/}
+                {/*</label>*/}
+
+                <span>Lost Password?</span>
             </div>
 
             {captchaUrl && <img src={captchaUrl}/>}
