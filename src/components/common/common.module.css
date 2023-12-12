@@ -40,6 +40,11 @@
     align-items: center;
 }
 
+.inputBlock svg {
+    margin-left: 0.5rem;
+}
+
+
 .inputBlock input {
     height: 2.3rem;
     background: var(--element-bg-color);
@@ -55,6 +60,10 @@
 .inputField::after {
     border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
     /*outline: none;*/
+}
+
+.inputBlock input::placeholder {
+    font-size: 14px;
 }
 
 /*.inputBlock input:focus {*/

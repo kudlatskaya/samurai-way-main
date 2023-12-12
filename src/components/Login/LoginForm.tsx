@@ -7,6 +7,9 @@ import {iconColor} from "../../constants";
 // import AccountCircle from '@mui/icons-material/AccountCircle';
 import s from '../common/common.module.css'
 import {AccountCircle} from "@mui/icons-material";
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+// import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
 export type FormikErrorType = {
     email?: string
@@ -58,22 +61,47 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                         id="input-with-icon-adornment"
                         {...formik.getFieldProps('email')}
                         startAdornment={
+
                             <InputAdornment position="start">
-                                <AccountCircle />
+                                {/*<AccountCircle />*/}
+                                <div className={s.inputIconBlock}>
+                                    <PermIdentityIcon/>
+                                </div>
                             </InputAdornment>
+
+
                         }
                     />
                 </div>
-
-
             </div>
 
             {formik.touched.email && formik.errors.email ?
                 <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
 
             <div>
-                <input type="password" placeholder={"password"}
-                       {...formik.getFieldProps('password')}/>
+                {/*<input type="password" placeholder={"password"}*/}
+                {/*       {...formik.getFieldProps('password')}/>*/}
+                <div className={s.inputBlock}>
+                    {/*<div className={s.inputIconBlock}>*/}
+                    {/*    <Icon icon="uil-newspaper" color={iconColor}/>*/}
+                    {/*</div>*/}
+                    {/*<input type="email" placeholder={"email"}*/}
+                    {/*       {...formik.getFieldProps('email')}*/}
+
+                    {/*/>*/}
+                    <Input className={s.inputField}
+                           type={"password"} placeholder={"password"}
+                           id="input-with-icon-adornment"
+                           {...formik.getFieldProps('password')}
+                           startAdornment={
+                               <InputAdornment position="start" >
+                                   {/*<AccountCircle/>*/}
+                                   {/*<VpnKeyIcon />*/}
+                                   <VpnKeyOutlinedIcon sx={{ fontSize: 20 }} />
+                               </InputAdornment>
+                           }
+                    />
+                </div>
             </div>
 
             {formik.touched.password && formik.errors.password ?
