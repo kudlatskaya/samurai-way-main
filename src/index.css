@@ -23,9 +23,10 @@ code {
   --section-bg-color: #34323C; /*rgba(130, 36, 227, 0.04);*/
   --dark-bg-color: #4f5261;
   --text-color: #29292d;
-  --mute-text: #bbbbdc;
+  --mute-text-color: #bbbbdc;
   --icon-color: #838daa;
   --accent-color: #8224e3;
+  --error-color: #f00;
 }
 
 

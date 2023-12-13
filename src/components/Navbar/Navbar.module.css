@@ -20,12 +20,12 @@
 }
 
 .avatarBlock {
-    border: 1px  solid  var(--mute-text);
+    border: 1px  solid  var(--mute-text-color);
     border-radius: 2rem;
 }
 
 .title {
-    color: var(--mute-text);
+    color: var(--mute-text-color);
 }
 
 .userInfo {
@@ -62,7 +62,7 @@
     margin-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    border-top: 1px solid var(--mute-text);
+    border-top: 1px solid var(--mute-text-color);
     list-style-type: none;
     display: flex;
     gap: 2rem;
@@ -85,7 +85,7 @@
 
 .mute {
     font-size: 0.8rem;
-    color: var(--mute-text);
+    color: var(--mute-text-color);
     margin-block-start: 0.2rem;
 }
 

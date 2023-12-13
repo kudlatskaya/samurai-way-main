@@ -6,7 +6,7 @@ import cs from '../common/common.module.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import s from './Login.module.css'
-import {accentColor, elementBgColor, iconColor} from "../../constants";
+import {accentColor, elementBgColor, errorColor, iconColor} from "../../constants";
 
 export type FormikErrorType = {
     email?: string
@@ -21,15 +21,27 @@ type PropsType = {
 }
 
 const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
-
+    // let isError: boolean = false
     let inputStyle = `${cs.inputBlock}`
 
+    const isError = (): boolean => {
+        return !!((formik.touched.email && formik.errors.email) || (formik.touched.password && formik.errors.password))
+    }
+
     const focusHandler = (e: FocusEvent<HTMLDivElement>) => {
-        e.currentTarget.style.borderColor = accentColor
+         e.currentTarget.style.borderColor = accentColor
+
+        // isError() && (e.currentTarget.style.borderColor = errorColor)
+            // ? e.currentTarget.style.borderColor = errorColor
+            // : e.currentTarget.style.borderColor = accentColor
     }
 
     const blurHandler = (e: FocusEvent<HTMLDivElement>) => {
         e.currentTarget.style.borderColor = elementBgColor
+
+        // isError() && (e.currentTarget.style.borderColor = errorColor)
+            // ? e.currentTarget.style.borderColor = errorColor
+            // : e.currentTarget.style.borderColor = elementBgColor
     }
 
     const formik = useFormik({
@@ -53,11 +65,11 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
             {/*{formik.touched.email && formik.errors.email ?*/}
             {/*    <div style={{color: 'red'}}>{formik.errors.email}</div> : null}*/}
 
-            {/*{*/}
-            {/*    formik.touched.email && formik.errors.email*/}
-            {/*        ? inputStyle = inputStyle + ` ${cs.inputBlockError}`*/}
-            {/*        : inputStyle =`${cs.inputBlock}`*/}
-            {/*}*/}
+            {
+                (formik.touched.email && formik.errors.email)
+                    ? inputStyle = inputStyle + ` ${cs.inputBlockError}`
+                    : inputStyle = `${cs.inputBlock}`
+            }
             <div>
                 <div className={inputStyle} onFocus={(e) => focusHandler(e)}
                      onBlur={(e) => blurHandler(e)}>
@@ -77,10 +89,16 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 </div>
             </div>
 
+            {
+                formik.touched.password && formik.errors.password
+                    ? inputStyle = inputStyle + ` ${cs.inputBlockError}`
+                    : inputStyle = `${cs.inputBlock}`
+            }
+
             {/*{*/}
-            {/*    inputStyle = formik.touched.password && formik.errors.password*/}
-            {/*        ? inputStyle + ` ${cs.inputBlockError}`*/}
-            {/*        : `${cs.inputBlock}`*/}
+            {/*    (formik.touched.password && formik.errors.password)*/}
+            {/*        ? isError = true*/}
+            {/*        : isError = false*/}
             {/*}*/}
             <div>
                 <div className={inputStyle} onFocus={(e) => focusHandler(e)}
