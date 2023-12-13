@@ -25,8 +25,6 @@ type MapDispatchToPropsType = {
 type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) => {
-    // console.log('Login')
-    const [focused, setFocused] = useState<boolean>(false);
 
     const submit = (formData: FormikErrorType, setStatus: (status: any) => void) => {
         const {email, password, rememberMe, captchaUrl} = formData
@@ -78,7 +76,7 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
                 </div>
                 <h2 className={s.loginSidebarTitle}>Welcome</h2>
                 <p>Join gazillions of people online</p>
-                <LoginForm submit={submit} captchaUrl={captchaUrl} focused={focused} setFocused={setFocused}/>
+                <LoginForm submit={submit} captchaUrl={captchaUrl}/>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import {useFormik} from "formik";
 import {loginFormValidator} from "../../utils/validators";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {FocusEvent} from "react";
 import {Checkbox, FormControlLabel, Input, InputAdornment} from "@mui/material";
 import cs from '../common/common.module.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
@@ -17,27 +17,19 @@ export type FormikErrorType = {
 
 type PropsType = {
     submit: (values: FormikErrorType, setStatus: (status: any) => void) => void
-    focused: boolean,
-    setFocused: (value: boolean) => void,
     captchaUrl: string | null | undefined,
 }
 
-const LoginForm: React.FC<PropsType> = ({submit, captchaUrl, focused, setFocused}) => {
+const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
-    // console.log('LoginForm')
     let inputStyle = `${cs.inputBlock}`
 
-    // const inputElements = document.getElementsByClassName('inputField')
-    // console.log(inputElements)
-
-    const focusHandler = () => {
-        // console.log('true')
-        setFocused(true)
+    const focusHandler = (e: FocusEvent<HTMLDivElement>) => {
+        e.currentTarget.style.borderColor = accentColor
     }
 
-    const blurHandler = () => {
-        // console.log('false')
-        setFocused(false)
+    const blurHandler = (e: FocusEvent<HTMLDivElement>) => {
+        e.currentTarget.style.borderColor = elementBgColor
     }
 
     const formik = useFormik({
@@ -67,8 +59,8 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl, focused, setFocused
             {/*        : inputStyle =`${cs.inputBlock}`*/}
             {/*}*/}
             <div>
-                <div className={inputStyle} onFocus={(e) => focusHandler(e)} onBlur={(e) => blurHandler(e)}
-                     style={{borderColor: focused ? accentColor : elementBgColor}}>
+                <div className={inputStyle} onFocus={(e) => focusHandler(e)}
+                     onBlur={(e) => blurHandler(e)}>
                     <Input className={cs.inputField}
                            type="email" placeholder={"email"}
                            id="input-with-icon-adornment"
@@ -91,9 +83,8 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl, focused, setFocused
             {/*        : `${cs.inputBlock}`*/}
             {/*}*/}
             <div>
-                <div className={inputStyle} onFocus={focusHandler} onBlur={blurHandler}
-                     style={{borderColor: focused ? accentColor : elementBgColor}}
-                >
+                <div className={inputStyle} onFocus={(e) => focusHandler(e)}
+                     onBlur={(e) => blurHandler(e)}>
                     <Input className={cs.inputField}
                            type={"password"} placeholder={"password"}
                            id="input-with-icon-adornment"
