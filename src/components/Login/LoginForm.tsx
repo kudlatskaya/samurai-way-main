@@ -1,6 +1,6 @@
 import {useFormik} from "formik";
 import {loginFormValidator} from "../../utils/validators";
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Checkbox, FormControlLabel, Input, InputAdornment} from "@mui/material";
 import cs from '../common/common.module.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
@@ -17,11 +17,28 @@ export type FormikErrorType = {
 
 type PropsType = {
     submit: (values: FormikErrorType, setStatus: (status: any) => void) => void
-    // setStatus: () => void
+    focused: boolean,
+    setFocused: (value: boolean) => void,
     captchaUrl: string | null | undefined,
 }
 
-const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
+const LoginForm: React.FC<PropsType> = ({submit, captchaUrl, focused, setFocused}) => {
+
+    // console.log('LoginForm')
+    let inputStyle = `${cs.inputBlock}`
+
+    // const inputElements = document.getElementsByClassName('inputField')
+    // console.log(inputElements)
+
+    const focusHandler = () => {
+        // console.log('true')
+        setFocused(true)
+    }
+
+    const blurHandler = () => {
+        // console.log('false')
+        setFocused(false)
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -40,8 +57,18 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
     return (
 
         <form onSubmit={formik.handleSubmit}>
+
+            {/*{formik.touched.email && formik.errors.email ?*/}
+            {/*    <div style={{color: 'red'}}>{formik.errors.email}</div> : null}*/}
+
+            {/*{*/}
+            {/*    formik.touched.email && formik.errors.email*/}
+            {/*        ? inputStyle = inputStyle + ` ${cs.inputBlockError}`*/}
+            {/*        : inputStyle =`${cs.inputBlock}`*/}
+            {/*}*/}
             <div>
-                <div className={cs.inputBlock}>
+                <div className={inputStyle} onFocus={(e) => focusHandler(e)} onBlur={(e) => blurHandler(e)}
+                     style={{borderColor: focused ? accentColor : elementBgColor}}>
                     <Input className={cs.inputField}
                            type="email" placeholder={"email"}
                            id="input-with-icon-adornment"
@@ -58,11 +85,15 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 </div>
             </div>
 
-            {formik.touched.email && formik.errors.email ?
-                <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
-
+            {/*{*/}
+            {/*    inputStyle = formik.touched.password && formik.errors.password*/}
+            {/*        ? inputStyle + ` ${cs.inputBlockError}`*/}
+            {/*        : `${cs.inputBlock}`*/}
+            {/*}*/}
             <div>
-                <div className={cs.inputBlock}>
+                <div className={inputStyle} onFocus={focusHandler} onBlur={blurHandler}
+                     style={{borderColor: focused ? accentColor : elementBgColor}}
+                >
                     <Input className={cs.inputField}
                            type={"password"} placeholder={"password"}
                            id="input-with-icon-adornment"
@@ -76,10 +107,8 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 </div>
             </div>
 
-            {formik.touched.password && formik.errors.password ?
-                <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
 
-            {formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}
+            {/*{formik.status ? <span style={{color: 'red'}}>{formik.status}</span> : null}*/}
 
             <div className={s.remember}>
                 <FormControlLabel control={<Checkbox defaultChecked sx={{
@@ -93,7 +122,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                                   checked={formik.values.rememberMe}
                                   sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
                 />
-                <span>Lost Password?</span>
+                <a className={cs.link}>Lost Password?</a>
             </div>
 
             {captchaUrl && <img src={captchaUrl}/>}
@@ -102,7 +131,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
             <div>
                 <button type={'submit'}>
-                    Login
+                    Log into your account
                 </button>
             </div>
         </form>

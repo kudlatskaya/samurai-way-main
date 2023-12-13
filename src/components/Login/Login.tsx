@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../state/redux-store";
 import s from "./Login.module.css"
 import {Icon} from "@iconify/react";
-import React from "react";
+import React, {useState} from "react";
 import logo from "../../asets/images/logo-icon.svg";
 
 type MapStateToPropsType = {
@@ -25,8 +25,8 @@ type MapDispatchToPropsType = {
 type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) => {
-    // let loginStyle = {};
-
+    // console.log('Login')
+    const [focused, setFocused] = useState<boolean>(false);
 
     const submit = (formData: FormikErrorType, setStatus: (status: any) => void) => {
         const {email, password, rememberMe, captchaUrl} = formData
@@ -34,11 +34,6 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
     }
 
     if (isAuth) return <Redirect to={'/profile'}/>
-
-
-    // const wrapperStyle = !isAuth
-    //     ? 'app-wrapper' + ` wrapperDirection`
-    //     : 'app-wrapper'
 
     return (
         <div className={s.login}>
@@ -75,18 +70,15 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
                         <p>At vero eos et accusamus et.</p>
                     </p>
                 </div>
-
-
             </div>
+
             <div className={s.loginForm}>
-
-                    <div className={s.loginLogo}>
-                        <img src={logo} alt=""/>
-                    </div>
-                    <h2 className={s.loginSidebarTitle}>Welcome</h2>
-                    <p>Join gazillions of people online</p>
-                    <LoginForm submit={submit} captchaUrl={captchaUrl}/>
-
+                <div className={s.loginLogo}>
+                    <img src={logo} alt=""/>
+                </div>
+                <h2 className={s.loginSidebarTitle}>Welcome</h2>
+                <p>Join gazillions of people online</p>
+                <LoginForm submit={submit} captchaUrl={captchaUrl} focused={focused} setFocused={setFocused}/>
             </div>
         </div>
     );
