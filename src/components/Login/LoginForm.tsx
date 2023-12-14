@@ -116,7 +116,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
             {formik.status ? <span className={s.error}>{formik.status}</span> : null}
 
-            <div className={s.remember} style={{marginTop: formik.status ?  '0px' : '27px'}}>
+            <div className={s.remember} style={{marginTop: formik.status ? '0px' : '27px'}}>
                 <FormControlLabel control={<Checkbox defaultChecked sx={{
                     color: iconColor,
                     '&.Mui-checked': {
@@ -131,10 +131,19 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 <a className={cs.link}>Lost Password?</a>
             </div>
 
-            {captchaUrl && !formik.status  && <>
-                <img src={captchaUrl}/>
-                <input {...formik.getFieldProps('captchaUrl')}/>
-            </>}
+            {captchaUrl &&
+                <div className={s.captcha}>
+                    <img src={captchaUrl}/>
+                    {/*<input {...formik.getFieldProps('captchaUrl')}/>*/}
+                    <div className={cs.inputBlock}
+                         onFocus={(e) => focusHandler(e)}
+                         onBlur={(e) => blurHandler(e)}>
+                        <Input className={cs.inputField}
+                               {...formik.getFieldProps('captchaUrl')}
+                        />
+                    </div>
+                </div>
+            }
 
             <div>
                 <button type={'submit'}>

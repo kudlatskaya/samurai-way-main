@@ -47,12 +47,12 @@
     text-align: center;
 }
 
-.loginLogo img{
+.loginLogo img {
     width: 4rem;
 }
 
 .loginSidebar p,
-.loginSidebar h3{
+.loginSidebar h3 {
     margin: 0;
 }
 
@@ -61,7 +61,6 @@
     font-weight: normal;
     justify-content: space-between;
     align-items: center;
-    /*margin: 0.8rem 0;*/
     margin-bottom: 0.8rem;
     margin-top: 1.7rem;
 }
@@ -92,9 +91,29 @@ button[type='submit'] {
 
 .error {
     font-size: 0.9em;
-    /*z-index: 100;*/
     color: var(--error-color);
 }
+
+.captcha {
+    width: 10rem;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.captcha .inputBlock {
+    margin: 0;
+    padding: 0;
+}
+
+.captcha .inputBlock input {
+    height: 2rem;
+}
+
+/*.captcha img,*/
+/*.captcha input {*/
+/*    margin: 0 auto;*/
+/*}*/
 
 @media (min-width: 992px) {
     .login {
