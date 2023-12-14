@@ -54,7 +54,9 @@
 }
 
 .inputBlock:focus {
-    border: 1px solid var(--accent-color);
+    border-color: var(--accent-color);
+    border-width: 1px;
+    border-style: solid
 }
 
 .inputBlockError {
@@ -71,6 +73,13 @@ button {
     color: #fff;
     cursor: pointer;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
+}
+
+
 
 /*input[type="checkbox"] {*/
 /*    color: var(--accent-color);*/
