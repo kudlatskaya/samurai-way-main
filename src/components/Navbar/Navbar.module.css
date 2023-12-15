@@ -1,14 +1,11 @@
 .nav {
-    /*grid-area: nav;*/
     background: var(--main-bg-color);
     color: var(--icon-color);
-    /*max-width: 335px;*/
     margin-top: -80px;
 }
 
 .logoBlock {
     background: var(--dark-bg-color);
-    /*width: 100%;*/
     padding: 2.5rem 2.5rem 1rem;
     display: flex;
     align-items: center;
@@ -30,7 +27,6 @@
 
 .userInfo {
     background: var(--main-bg-color);
-    /*height: 200px;*/
     width: 80%;
     display: flex;
     align-items: center;
@@ -38,7 +34,6 @@
     padding: 2rem;
     border-radius: 12px;
     position: relative;
-    /*margin: 1rem auto -65px;*/
     margin-top: 1rem;
     margin-bottom: -65px;
     box-shadow: 0 15px 100px rgba(58,46,68,0.06);
@@ -67,9 +62,6 @@
     display: flex;
     gap: 2rem;
     justify-content: space-between;
-    /*padding-inline-start: 0;*/
-    /*margin-block-start: 0;*/
-    /*margin-block-end: 0;*/
 }
 
 .connections li {
@@ -90,7 +82,6 @@
 }
 
 .menu {
-    /*font-size: 1.4rem;*/
     padding: 5rem 2.75rem 2.75rem;
     display: grid;
     grid-template-columns: 50% 50%;

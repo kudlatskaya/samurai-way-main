@@ -22,20 +22,8 @@ type PropsType = {
 
 const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
-    const focusHandler = (e: FocusEvent<HTMLDivElement>) => {
-        e.currentTarget.style.borderColor = accentColor
-
-        // isError
-        //     ? e.currentTarget.style.borderColor = errorColor
-        //     : e.currentTarget.style.borderColor = accentColor
-    }
-
-    const blurHandler = (e: FocusEvent<HTMLDivElement>) => {
-        e.currentTarget.style.borderColor = elementBgColor
-
-        // isError
-        //     ? e.currentTarget.style.borderColor = errorColor
-        //     : e.currentTarget.style.borderColor = elementBgColor
+    const toggleFocus = (e: FocusEvent<HTMLDivElement>, color: string) => {
+        e.currentTarget.style.borderColor = color
     }
 
     const formik = useFormik({
@@ -56,23 +44,10 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
 
         <form onSubmit={formik.handleSubmit}>
 
-            {/*{formik.touched.email && formik.errors.email ?*/}
-            {/*    <div style={{color: 'red'}}>{formik.errors.email}</div> : null}*/}
-
-            {/*{*/}
-            {/*    (formik.touched.email && formik.errors.email)*/}
-            {/*        ? inputStyle = inputStyle + ` ${cs.inputBlockError}`*/}
-            {/*        : inputStyle = `${cs.inputBlock}`*/}
-            {/*}*/}
-            {/*{*/}
-            {/*    (formik.touched.email && formik.errors.email)*/}
-            {/*        ? setIsError(true)*/}
-            {/*        : setIsError(false)*/}
-            {/*}*/}
             <div>
                 <div className={cs.inputBlock}
-                     onFocus={(e) => focusHandler(e)}
-                     onBlur={(e) => blurHandler(e)}>
+                     onFocus={(e) => toggleFocus(e, accentColor)}
+                     onBlur={(e) => toggleFocus(e, elementBgColor)}>
                     <Input className={cs.inputField}
                            type={"email"} placeholder={"email"}
                            id="input-with-icon-adornment"
@@ -86,21 +61,10 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 </div>
             </div>
 
-            {/*{*/}
-            {/*    (formik.touched.password && formik.errors.password)*/}
-            {/*        ? setIsError(true)*/}
-            {/*        : setIsError(false)*/}
-            {/*}*/}
-
-            {/*{*/}
-            {/*    (formik.touched.password && formik.errors.password)*/}
-            {/*        ? isError = true*/}
-            {/*        : isError = false*/}
-            {/*}*/}
             <div>
                 <div className={cs.inputBlock}
-                     onFocus={(e) => focusHandler(e)}
-                     onBlur={(e) => blurHandler(e)}>
+                     onFocus={(e) => toggleFocus(e, accentColor)}
+                     onBlur={(e) => toggleFocus(e, elementBgColor)}>
                     <Input className={cs.inputField}
                            type={"password"} placeholder={"password"}
                            id="input-with-icon-adornment"
@@ -131,13 +95,13 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                 <a className={cs.link}>Lost Password?</a>
             </div>
 
-            {captchaUrl &&
+            {
+                captchaUrl &&
                 <div className={s.captcha}>
                     <img src={captchaUrl}/>
-                    {/*<input {...formik.getFieldProps('captchaUrl')}/>*/}
                     <div className={cs.inputBlock}
-                         onFocus={(e) => focusHandler(e)}
-                         onBlur={(e) => blurHandler(e)}>
+                         onFocus={(e) => toggleFocus(e, accentColor)}
+                         onBlur={(e) => toggleFocus(e, elementBgColor)}>
                         <Input className={cs.inputField}
                                {...formik.getFieldProps('captchaUrl')}
                         />
@@ -146,7 +110,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
             }
 
             <div>
-                <button type={'submit'}>
+                <button className={s.loginButton} type={'submit'}>
                     Log into your account
                 </button>
             </div>
