@@ -42,97 +42,101 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
     })
 
     return (
-
         <form onSubmit={formik.handleSubmit}>
-
             <div className={s.loginForm}>
                 {
-                    captchaUrl
-                        ? <div className={s.captcha}>
-                            <div>
-                                <img src={captchaUrl}/>
-                            </div>
+                    <>
+                        <div>
                             <div className={cs.inputBlock}
                                  onFocus={(e) => toggleFocus(e, accentColor)}
                                  onBlur={(e) => toggleFocus(e, elementBgColor)}>
-                                {/*<Input className={cs.inputField}*/}
-                                {/*       {...formik.getFieldProps('captchaUrl')}*/}
-                                {/*/>*/}
                                 <Input className={cs.inputField}
-                                       type={"captchaUrl"} placeholder={"Enter verification code"}
-                                       id="captcha-input-with-icon-adornment"
-                                       {...formik.getFieldProps('captchaUrl')}
+                                       type={"email"} placeholder={"email"}
+                                       id="email-input-with-icon-adornment"
+                                       {...formik.getFieldProps('email')}
                                        startAdornment={
                                            <InputAdornment position="start">
-                                               <TaskAltIcon/>
+                                               <PermIdentityIcon/>
                                            </InputAdornment>
                                        }
                                 />
                             </div>
                         </div>
-                        : <>
-                            <div>
-                                <div className={cs.inputBlock}
-                                     onFocus={(e) => toggleFocus(e, accentColor)}
-                                     onBlur={(e) => toggleFocus(e, elementBgColor)}>
-                                    <Input className={cs.inputField}
-                                           type={"email"} placeholder={"email"}
-                                           id="email-input-with-icon-adornment"
-                                           {...formik.getFieldProps('email')}
-                                           startAdornment={
-                                               <InputAdornment position="start">
-                                                   <PermIdentityIcon/>
-                                               </InputAdornment>
-                                           }
-                                    />
-                                </div>
-                            </div>
 
-                            <div>
-                                <div className={cs.inputBlock}
-                                     onFocus={(e) => toggleFocus(e, accentColor)}
-                                     onBlur={(e) => toggleFocus(e, elementBgColor)}>
-                                    <Input className={cs.inputField}
-                                           type={"password"} placeholder={"password"}
-                                           id="password-input-with-icon-adornment"
-                                           {...formik.getFieldProps('password')}
-                                           startAdornment={
-                                               <InputAdornment position="start">
-                                                   <VpnKeyOutlinedIcon sx={{fontSize: 20}}/>
-                                               </InputAdornment>
-                                           }
-                                    />
-                                </div>
-                            </div>
-
-                            {formik.status ? <span className={s.error}>{formik.status}</span> : null}
-
-                            <div className={s.remember} style={{marginTop: formik.status ? '0px' : '27px'}}>
-                                <FormControlLabel control={
-                                    <Checkbox defaultChecked sx={{
-                                        color: iconColor,
-                                        '&.Mui-checked': {
-                                            color: elementBgColor,
-                                            backgroundColor: accentColor
-                                        },
-                                    }}/>
-                                } label="Remember" name={"rememberMe"}
-                                                  onChange={formik.handleChange}
-                                                  checked={formik.values.rememberMe}
-                                                  sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
+                        <div>
+                            <div className={cs.inputBlock}
+                                 onFocus={(e) => toggleFocus(e, accentColor)}
+                                 onBlur={(e) => toggleFocus(e, elementBgColor)}>
+                                <Input className={cs.inputField}
+                                       type={"password"} placeholder={"password"}
+                                       id="password-input-with-icon-adornment"
+                                       {...formik.getFieldProps('password')}
+                                       startAdornment={
+                                           <InputAdornment position="start">
+                                               <VpnKeyOutlinedIcon sx={{fontSize: 20}}/>
+                                           </InputAdornment>
+                                       }
                                 />
-                                <a className={cs.link}>Lost Password?</a>
                             </div>
-                        </>
+                        </div>
+                        {/*<Input className={cs.inputField}*/}
+                        {/*       {...formik.getFieldProps('captchaUrl')}*/}
+                        {/*/>*/}
+                        <div className={s.captcha}>
+                            {/*{captchaUrl && <>*/}
+                            {/*    <div>*/}
+                            {/*        <img src={captchaUrl}/>*/}
+                            {/*    </div>*/}
+
+                            {/*    <div className={cs.inputBlock}*/}
+                            {/*         onFocus={(e) => toggleFocus(e, accentColor)}*/}
+                            {/*         onBlur={(e) => toggleFocus(e, elementBgColor)}>*/}
+
+                            {/*        <Input className={cs.inputField}*/}
+                            {/*               type={"captchaUrl"} placeholder={"Enter verification code"}*/}
+                            {/*               id="captcha-input-with-icon-adornment"*/}
+                            {/*               {...formik.getFieldProps('captchaUrl')}*/}
+                            {/*               startAdornment={*/}
+                            {/*                   <InputAdornment position="start">*/}
+                            {/*                       <TaskAltIcon/>*/}
+                            {/*                   </InputAdornment>*/}
+                            {/*               }*/}
+                            {/*        />*/}
+                            {/*    </div>*/}
+                            {/*</>*/}
+                            {/*}*/}
+                        </div>
+
+                        <div className={s.errorBlock}>
+                            {/*{formik.status ? <span className={s.error}>{formik.status}</span> : null}*/}
+                        </div>
+
+                        <div className={s.remember}>
+                            <FormControlLabel control={
+                                <Checkbox defaultChecked sx={{
+                                    color: iconColor,
+                                    '&.Mui-checked': {
+                                        color: elementBgColor,
+                                        backgroundColor: accentColor
+                                    },
+                                }}/>
+                            } label="Remember" name={"rememberMe"}
+                                              onChange={formik.handleChange}
+                                              checked={formik.values.rememberMe}
+                                              sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
+                            />
+                            <a className={cs.link}>Lost Password?</a>
+                        </div>
+                    </>
                 }
+                <div className={s.buttonBlock}>
+                    <button className={s.loginButton} type={'submit'}>
+                        Log into your account
+                    </button>
+                </div>
             </div>
 
 
-            <div>
-                <button className={s.loginButton} type={'submit'}>
-                    Log into your account
-                </button>
-            </div>
         </form>
 
     );
