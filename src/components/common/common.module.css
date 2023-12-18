@@ -18,7 +18,7 @@
 }
 
 .inputBlock {
-    width: 100%;
+    /*width: 100%;*/
     border: 1px solid var(--element-bg-color);
     border-radius: 2rem;
     background: var(--element-bg-color);
@@ -36,7 +36,14 @@
 .inputBlock input {
     height: 2.3rem;
     background: var(--element-bg-color);
-    border: none;
+    /*border: none;*/
+    width: 100%;
+    border: 0.5px solid  var(--element-bg-color);
+    border-radius: 2rem;
+}
+
+.inputField {
+    width: 100%;
 }
 
 .inputField input::before,

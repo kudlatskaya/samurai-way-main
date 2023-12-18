@@ -10,7 +10,7 @@ const initialState = {
     email: null,
     login: null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: undefined
 }
 
 const authReducer = (state: StateType = initialState, action: ActionType): StateType => {
@@ -98,7 +98,7 @@ type StateType = {
     email: EmailType
     login: LoginType
     isAuth: boolean,
-    captchaUrl: string | null
+    captchaUrl: string | undefined
 }
 
 export type ActionType = ReturnType<typeof setUserData>

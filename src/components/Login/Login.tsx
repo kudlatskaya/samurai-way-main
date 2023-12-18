@@ -9,7 +9,7 @@ import React, {useState} from "react";
 import logo from "../../asets/images/logo-icon.svg";
 
 type MapStateToPropsType = {
-    captchaUrl: string | null | undefined,
+    captchaUrl: string | undefined,
     isAuth: boolean,
 }
 
@@ -17,7 +17,7 @@ type MapDispatchToPropsType = {
     loginTC: (email: EmailType,
               password: PasswordType,
               rememberMe: RememberMeType,
-              captchaUrl: string | null | undefined,
+              captchaUrl: string | undefined,
               setStatus: (status: any) => void
     ) => void,
 }
@@ -70,7 +70,7 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
                 </div>
             </div>
 
-            <div className={s.loginForm}>
+            <div className={s.loginBlock}>
                 <div className={s.loginLogo}>
                     <img src={logo} alt=""/>
                 </div>
