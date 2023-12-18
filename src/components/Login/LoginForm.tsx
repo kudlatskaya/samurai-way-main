@@ -59,7 +59,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                                 {/*       {...formik.getFieldProps('captchaUrl')}*/}
                                 {/*/>*/}
                                 <Input className={cs.inputField}
-                                       type={"captchaUrl"} placeholder={"email"}
+                                       type={"captchaUrl"} placeholder={"Enter verification code"}
                                        id="captcha-input-with-icon-adornment"
                                        {...formik.getFieldProps('captchaUrl')}
                                        startAdornment={
