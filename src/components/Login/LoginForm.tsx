@@ -12,8 +12,8 @@ import {accentColor, elementBgColor, errorColor, iconColor} from "../../constant
 export type FormikErrorType = {
     email?: string
     password?: string
-    rememberMe?: boolean
-    captchaUrl?: string | undefined
+    rememberMe: boolean
+    captcha: boolean
 }
 
 type PropsType = {
@@ -32,7 +32,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
             email: '',
             password: '',
             rememberMe: false,
-            captchaUrl: ''
+            captcha: false
         },
         validationSchema: loginFormValidator('email', 'password'),
         onSubmit: (values) => {
@@ -83,28 +83,28 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                         {/*       {...formik.getFieldProps('captchaUrl')}*/}
                         {/*/>*/}
                         <div className={s.captcha}>
-                            {/*{captchaUrl && <>*/}
-                            {/*    <div>*/}
-                            {/*        <img src={captchaUrl}/>*/}
-                            {/*    </div>*/}
+                            {captchaUrl && <>
+                                <div>
+                                    <img src={captchaUrl}/>
+                                </div>
 
-                            {/*    <div className={cs.inputBlock}*/}
-                            {/*         onFocus={(e) => toggleFocus(e, accentColor)}*/}
-                            {/*         onBlur={(e) => toggleFocus(e, elementBgColor)}>*/}
+                                <div className={cs.inputBlock}
+                                     onFocus={(e) => toggleFocus(e, accentColor)}
+                                     onBlur={(e) => toggleFocus(e, elementBgColor)}>
 
-                            {/*        <Input className={cs.inputField}*/}
-                            {/*               type={"captchaUrl"} placeholder={"Enter verification code"}*/}
-                            {/*               id="captcha-input-with-icon-adornment"*/}
-                            {/*               {...formik.getFieldProps('captchaUrl')}*/}
-                            {/*               startAdornment={*/}
-                            {/*                   <InputAdornment position="start">*/}
-                            {/*                       <TaskAltIcon/>*/}
-                            {/*                   </InputAdornment>*/}
-                            {/*               }*/}
-                            {/*        />*/}
-                            {/*    </div>*/}
-                            {/*</>*/}
-                            {/*}*/}
+                                    <Input className={cs.inputField}
+                                           type={"captcha"} placeholder={"Enter verification code"}
+                                           id="captcha-input-with-icon-adornment"
+                                           {...formik.getFieldProps('captcha')}
+                                           startAdornment={
+                                               <InputAdornment position="start">
+                                                   <TaskAltIcon/>
+                                               </InputAdornment>
+                                           }
+                                    />
+                                </div>
+                            </>
+                            }
                         </div>
 
                         <div className={s.errorBlock}>
@@ -135,10 +135,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                     </button>
                 </div>
             </div>
-
-
         </form>
-
     );
 };
 

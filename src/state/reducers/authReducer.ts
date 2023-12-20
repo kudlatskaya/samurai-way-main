@@ -50,11 +50,11 @@ export const getAuthTC = () => async (dispatch: Dispatch) => {
 export const loginTC = (email: EmailType,
                         password: PasswordType,
                         rememberMe: RememberMeType,
-                        captchaUrl: string | null | undefined,
+                        captcha: boolean,
                         setStatus: (status: any) => void
 ) => async (dispatch: AppDispatchType) => {
-    const response = await authAPI.login(email, password, rememberMe, captchaUrl)
-
+    const response = await authAPI.login(email, password, rememberMe, captcha)
+    // console.log(response.data)
     if (response.data.resultCode === 0) {
         dispatch(getAuthTC())
     } else {

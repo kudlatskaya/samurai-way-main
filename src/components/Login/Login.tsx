@@ -17,7 +17,7 @@ type MapDispatchToPropsType = {
     loginTC: (email: EmailType,
               password: PasswordType,
               rememberMe: RememberMeType,
-              captchaUrl: string | undefined,
+              captcha: boolean,
               setStatus: (status: any) => void
     ) => void,
 }
@@ -27,8 +27,9 @@ type PropsType = MapStateToPropsType & MapDispatchToPropsType
 const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) => {
 
     const submit = (formData: FormikErrorType, setStatus: (status: any) => void) => {
-        const {email, password, rememberMe, captchaUrl} = formData
-        loginTC(email, password, rememberMe, captchaUrl, setStatus)
+        const {email, password, rememberMe, captcha} = formData
+
+        loginTC(email, password, rememberMe, captcha, setStatus)
     }
 
     if (isAuth) return <Redirect to={'/profile'}/>
