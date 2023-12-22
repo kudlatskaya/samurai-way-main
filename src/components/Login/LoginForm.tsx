@@ -13,7 +13,7 @@ export type FormikErrorType = {
     email?: string
     password?: string
     rememberMe: boolean
-    captcha: boolean
+    captcha: string | undefined
 }
 
 type PropsType = {
@@ -32,7 +32,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
             email: '',
             password: '',
             rememberMe: false,
-            captcha: false
+            captcha: ''
         },
         validationSchema: loginFormValidator('email', 'password'),
         onSubmit: (values) => {

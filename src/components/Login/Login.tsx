@@ -17,7 +17,7 @@ type MapDispatchToPropsType = {
     loginTC: (email: EmailType,
               password: PasswordType,
               rememberMe: RememberMeType,
-              captcha: boolean,
+              captcha: string | undefined,
               setStatus: (status: any) => void
     ) => void,
 }
