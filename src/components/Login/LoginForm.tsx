@@ -108,7 +108,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                         </div>
 
                         <div className={s.errorBlock}>
-                            {/*{formik.status ? <span className={s.error}>{formik.status}</span> : null}*/}
+                            {formik.status ? <span className={s.error}>{formik.status}</span> : null}
                         </div>
 
                         <div className={s.remember}>

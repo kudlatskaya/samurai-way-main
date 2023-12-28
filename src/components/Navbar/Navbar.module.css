@@ -92,6 +92,10 @@
     text-align: center;
 }
 
+/*.item:hover {*/
+/*    cursor: pointer;*/
+/*}*/
+
 
 
 @media (min-width: 992px) {

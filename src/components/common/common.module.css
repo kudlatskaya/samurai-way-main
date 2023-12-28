@@ -1,7 +1,7 @@
 .link {
     text-decoration: none;
     color: var(--icon-color);
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .link:hover {

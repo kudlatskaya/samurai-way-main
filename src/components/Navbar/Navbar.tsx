@@ -6,7 +6,6 @@ import logo from '../../asets/images/logo-icon.svg'
 import {Icon} from '@iconify/react';
 import Avatar from "../common/Avatar/Avatar";
 import UserName from "../common/UserName/UserName";
-import {iconColor} from '../../constants';
 
 const Navbar = () => {
 
@@ -36,30 +35,30 @@ const Navbar = () => {
             <div className={s.menu}>
                 <div className={s.item}>
                     <NavLink to="/dialogs" className={cs.link} activeClassName={cs.active}>
-                        <Icon icon="uil-comments" color={iconColor}/>
+                        <Icon icon="uil-comments" />
                         <p>Messages</p>
                     </NavLink>
                 </div>
                 <div className={s.item}>
                     <NavLink to="/users" className={cs.link} activeClassName={cs.active}>
-                        <Icon icon="uil-user" color={iconColor}/>
+                        <Icon icon="uil-user"/>
                         <p>Users</p></NavLink>
                 </div>
                 <div className={s.item}>
                     <NavLink to="/news" className={cs.link} activeClassName={cs.active}>
-                        <Icon icon="uil-newspaper" color={iconColor}/>
+                        <Icon icon="uil-newspaper" />
                         <p>News</p>
                     </NavLink>
                 </div>
                 <div className={s.item}>
                     <NavLink to="/music" className={cs.link} activeClassName={cs.active}>
-                        <Icon icon="uil-play" color={iconColor}/>
+                        <Icon icon="uil-play" />
                         <p>Music</p>
                     </NavLink>
                 </div>
                 <div className={s.item}>
                     <NavLink to="/settings" className={cs.link} activeClassName={cs.active}>
-                        <Icon icon="mi:settings" color={iconColor}/>
+                        <Icon icon="mi:settings" />
                         <p>Settings</p>
                     </NavLink>
                 </div>
