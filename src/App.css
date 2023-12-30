@@ -11,6 +11,8 @@
 }
 
 .app-wrapper-content {
+    width: 60%;
+    margin: 0 auto;
 }
 
 .login-container {

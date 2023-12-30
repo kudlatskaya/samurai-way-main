@@ -33,7 +33,8 @@
     margin-left: 0.8rem;
 }
 
-.inputBlock input {
+.inputBlock input,
+.inputBlock textarea {
     height: 2.3rem;
     background: var(--element-bg-color);
     /*border: none;*/
@@ -42,21 +43,38 @@
     border-radius: 2rem;
 }
 
+.inputBlock textarea {
+    border-radius: 0;
+}
+
 .inputField {
     width: 100%;
 }
 
 .inputField input::before,
-.inputField::before {
+.inputField textarea::before,
+.inputField::before,
+.inputField div::before {
     border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
 }
 
+/*.inputField>div>textarea:focus::before {*/
+/*    background-color: red;*/
+/*    border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;*/
+/*}*/
+
 .inputField input::after,
+.inputField textarea::after,
 .inputField::after {
     border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
 }
 
-.inputBlock input::placeholder {
+.inputField fieldset {
+    border: none;
+}
+
+.inputBlock input::placeholder,
+.inputBlock textarea::placeholder{
     font-size: 14px;
 }
 

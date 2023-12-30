@@ -45,8 +45,7 @@ const UsersAPIContainer = ({
     const onFilterChanged = (filter: FilterType) => getUsersTC(1, pageSize, filter)
 
     return <>
-        {/*{isFetching ? <Preloader/> : null}*/}
-        <Preloader/>
+        {isFetching ? <Preloader/> : null}
 
         <Users
             users={users}

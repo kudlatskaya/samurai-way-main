@@ -1,3 +1,4 @@
-.preloader img {
-    color: var(--accent-color)
+.preloader {
+    text-align: center;
+    line-height: 100vh;
 }

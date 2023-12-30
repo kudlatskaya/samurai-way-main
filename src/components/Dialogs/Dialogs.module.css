@@ -1,6 +1,11 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+    /*display: grid;*/
+    /*grid-template-columns: 2fr 10fr;*/
+    /*width: 100%;*/
+}
+
+#dialog-form>.buttonBlock {
+    /*width: 40%;*/
 }
 
 .dialogsItems {
