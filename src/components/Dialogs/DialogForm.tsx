@@ -5,7 +5,8 @@ import cs from "../common/common.module.css";
 import {accentColor, elementBgColor} from "../../constants";
 import {Input, InputAdornment, TextField} from "@mui/material";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import s from "../Login/Login.module.css";
+import ls from "../Login/Login.module.css";
+import s from "../Dialogs/Dialogs.module.css"
 
 type PropsType = {
     submit: (text: string) => void,
@@ -29,12 +30,8 @@ const DialogForm: React.FC<PropsType> = ({ submit}) => {
     })
 
     return (
-        <div>
+        <div className={s.dialogForm}>
             <form id={'dialog-form'} onSubmit={formik.handleSubmit}>
-                {/*<div>*/}
-                {/*    <textarea placeholder={'Enter your message'}*/}
-                {/*              {...formik.getFieldProps('message')} />*/}
-                {/*</div>*/}
                 <div>
                     <div id={'message-input-block'} className={cs.inputBlock}
                          onFocus={(e) => toggleFocus(e, accentColor)}
@@ -43,17 +40,14 @@ const DialogForm: React.FC<PropsType> = ({ submit}) => {
                                    type={"message"} placeholder={"Enter your message"}
                                    id="message-input"
                                    multiline
-                                   maxRows={4}
+                                   maxRows={10}
                                    {...formik.getFieldProps('message')}
                         />
                     </div>
                 </div>
 
-                {/*{formik.touched.message && formik.errors.message ?*/}
-                {/*    <div style={{color: 'red'}}>{formik.errors.message}</div> : null}*/}
-
-                <div className={s.buttonBlock}>
-                    <button className={s.loginButton} type={'submit'}>
+                <div className={ls.buttonBlock}>
+                    <button id={'sendMessage'}  className={`${ls.loginButton} ${s.sendMessage}`} type={'submit'}>
                         Send message
                     </button>
                 </div>

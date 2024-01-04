@@ -36,11 +36,11 @@ const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogsElements}
+                {/*{dialogsElements}*/}
             </div>
 
             <div className={s.messages}>
-                <div> {messagesElements} </div>
+                <div className={s.messagesBlock}> {messagesElements} </div>
                 <DialogForm submit={submit}/>
             </div>
         </div>

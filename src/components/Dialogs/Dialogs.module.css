@@ -1,15 +1,23 @@
 .dialogs {
-    /*display: grid;*/
-    /*grid-template-columns: 2fr 10fr;*/
+
+}
+
+.dialogForm {
     /*width: 100%;*/
 }
 
-#dialog-form>.buttonBlock {
-    /*width: 40%;*/
+div[id='message-input-block'] {
+    height: auto;
 }
 
 .dialogsItems {
     padding: 10px;
+}
+
+button[id="sendMessage"] {
+    width: 50%;
+    float: right;
+    margin: 1rem 0;
 }
 
 .dialog .active {
@@ -29,6 +37,9 @@
     padding: 10px;
 }
 
-.message {
-
+.messagesBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
+
