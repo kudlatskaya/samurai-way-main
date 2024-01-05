@@ -8,6 +8,7 @@ import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import s from './Login.module.css'
 import {accentColor, elementBgColor, errorColor, iconColor} from "../../constants";
+import {toggleFocus} from "../../utils/forms";
 
 export type FormikErrorType = {
     email?: string
@@ -22,10 +23,6 @@ type PropsType = {
 }
 
 const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
-
-    const toggleFocus = (e: FocusEvent<HTMLDivElement>, color: string) => {
-        e.currentTarget.style.borderColor = color
-    }
 
     const formik = useFormik({
         initialValues: {

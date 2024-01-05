@@ -1,7 +1,7 @@
 import {FilterType, UserType} from "../../state/reducers/usersReducer";
 import UsersSearchForm from "./UsersSearchForm";
 import Paginator from "../common/Paginator/Paginator";
-import User from "./User/Users";
+import User from "./User/User";
 
 type UsersPropsType = {
     users: UserType[],

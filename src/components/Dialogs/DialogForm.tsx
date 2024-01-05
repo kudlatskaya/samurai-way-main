@@ -7,16 +7,13 @@ import {Input, InputAdornment, TextField} from "@mui/material";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ls from "../Login/Login.module.css";
 import s from "../Dialogs/Dialogs.module.css"
+import {toggleFocus} from "../../utils/forms";
 
 type PropsType = {
     submit: (text: string) => void,
 }
 
 const DialogForm: React.FC<PropsType> = ({ submit}) => {
-
-    const toggleFocus = (e: FocusEvent<HTMLDivElement>, color: string) => {
-        e.currentTarget.style.borderColor = color
-    }
 
     const formik = useFormik({
         initialValues: {

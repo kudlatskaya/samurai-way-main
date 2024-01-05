@@ -1,9 +1,5 @@
 .messages {
     padding: 10px;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-content: flex-end;*/
-    /*align-items: flex-end;*/
 }
 
 .message {
@@ -12,6 +8,5 @@
     border-radius: 1rem;
     padding: 0.5rem 1rem;
     min-height: 2rem;
-    /*height: auto;*/
     overflow-wrap: anywhere;
 }

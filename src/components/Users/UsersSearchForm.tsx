@@ -1,6 +1,11 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {FilterType} from "../../state/reducers/usersReducer";
+import {Input} from "@mui/material";
+import cs from "../common/common.module.css";
+import {accentColor, elementBgColor} from "../../constants";
+import {toggleFocus} from "../../utils/forms";
+import s from './Users.module.css'
 
 type PropsType = {
     onFilterChanged: (filter: FilterType) => void,
@@ -16,7 +21,7 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
     const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmiting: boolean) => void }) => {
         const filter: FilterType = {
             term: values.term,
-            friend: values.friend === 'null' ? null : values.friend === "true" ? true : false
+            friend: values.friend === 'null' ? null : values.friend === "true"
         }
         onFilterChanged(filter)
         setSubmitting(false)
@@ -33,12 +38,26 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
         >
             {({isSubmitting}) => (
                 <Form>
-                    <Field type="text" name="term"/>
-                    <Field as="select" name="friend">
-                        <option value="null">All</option>
-                        <option value="true">Only followed</option>
-                        <option value="false">Only unfollowed</option>
-                    </Field>
+                    {/*<Field type="text" name="term"/>*/}
+                    <div className={s.searchBlock}>
+                        <div id='user-input-block' className={cs.inputBlock}
+                             onFocus={(e) => toggleFocus(e, accentColor)}
+                             onBlur={(e) => toggleFocus(e, elementBgColor)}>
+                            <Input className={cs.inputField}
+                                   type={"text"} placeholder={"Enter user name"}
+                                   id="user-input"
+                            />
+                        </div>
+                        <div className={cs.inputBlock}
+                             onFocus={(e) => toggleFocus(e, accentColor)}
+                             onBlur={(e) => toggleFocus(e, elementBgColor)}>
+                            <Field as="select" name="friend">
+                                <option value="null">All</option>
+                                <option value="true">Only followed</option>
+                                <option value="false">Only unfollowed</option>
+                            </Field>
+                        </div>
+                    </div>
                     <ErrorMessage name="password" component="div"/>
                     <button type="submit" disabled={isSubmitting}>
                         Find

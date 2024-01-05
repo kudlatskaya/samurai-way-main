@@ -6,3 +6,16 @@
 .seletedPage {
     font-weight: bold;
 }
+
+.searchBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.searchBlock > div {
+    width: 50%;
+}
+
