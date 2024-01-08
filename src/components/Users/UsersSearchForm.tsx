@@ -1,11 +1,12 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {FilterType} from "../../state/reducers/usersReducer";
-import {Input} from "@mui/material";
+import {Input, Select, MenuItem} from "@mui/material";
 import cs from "../common/common.module.css";
 import {accentColor, elementBgColor} from "../../constants";
 import {toggleFocus} from "../../utils/forms";
-import s from './Users.module.css'
+import s from './Users.module.css';
+import ls from '../Login/Login.module.css';
 
 type PropsType = {
     onFilterChanged: (filter: FilterType) => void,
@@ -38,7 +39,8 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
         >
             {({isSubmitting}) => (
                 <Form>
-                    {/*<Field type="text" name="term"/>*/}
+                    {/*<div className={s.searchContainer}>*/}
+                        {/*<Field type="text" name="term"/>*/}
                     <div className={s.searchBlock}>
                         <div id='user-input-block' className={cs.inputBlock}
                              onFocus={(e) => toggleFocus(e, accentColor)}
@@ -48,7 +50,12 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
                                    id="user-input"
                             />
                         </div>
-                        <div className={cs.inputBlock}
+                        <div>
+                            <button className={`${ls.loginButton} ${s.find}`} type={'submit'} disabled={isSubmitting}>
+                                Find
+                            </button>
+                        </div>
+                        <div className={`${cs.inputBlock} ${s.filter}`}
                              onFocus={(e) => toggleFocus(e, accentColor)}
                              onBlur={(e) => toggleFocus(e, elementBgColor)}>
                             <Field as="select" name="friend">
@@ -57,11 +64,11 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
                                 <option value="false">Only unfollowed</option>
                             </Field>
                         </div>
+                        {/*<ErrorMessage name="password" component="div"/>*/}
+
                     </div>
-                    <ErrorMessage name="password" component="div"/>
-                    <button type="submit" disabled={isSubmitting}>
-                        Find
-                    </button>
+
+                    {/*</div>*/}
                 </Form>
             )}
         </Formik>

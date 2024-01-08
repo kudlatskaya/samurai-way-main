@@ -7,15 +7,31 @@
     font-weight: bold;
 }
 
+/*.searchContainer {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 1rem;*/
+/*}*/
+
 .searchBlock {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.searchBlock > div {
-    width: 50%;
+.searchBlock:nth-child(1) {
+    /*width: 40%;*/
+    /*flex-grow: 1;*/
+}
+
+/*.searchBlock > div {*/
+/*    width: 50%;*/
+/*}*/
+
+.find {
+    border-radius: 2rem;
+    width: 4rem;
 }
 
