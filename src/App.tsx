@@ -72,6 +72,9 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
                                 <Route path='/profile/:userId' render={() => <ProfileContainer/>}/>
                                 <Route path='/users' render={() => <UsersContainer/>}/>
                                 <Route path='/login' render={() => <LoginContainer/>}/>
+                                <Route path='/news' render={() => <p>No news</p>}/>
+                                <Route path='/music' render={() => <p>No music</p>}/>
+                                <Route path='/settings' render={() => <p>Settings are not available</p>}/>
                             </Suspense>
                         </div>
                     }

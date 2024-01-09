@@ -33,28 +33,18 @@ const User = ({user, followingProgress, followTC, unfollowTC}: UsersPropsType) =
                 <div>
                     {
                         user.followed
-                            // ? <button disabled={followingProgress.some(id => id === user.id)} onClick={() => {
-                            //     unfollowTC(user.id)
-                            // }}>Unfollow</button>
-                            //
-                            // : <button disabled={followingProgress.some(id => id === user.id)} onClick={() => {
-                            //     followTC(user.id)
-                            // }}>Follow</button>
-                            ?
-                                <button className={s.followButton} disabled={followingProgress.some(id => id === user.id)}
+                            ? <button className={s.followButton} disabled={followingProgress.some(id => id === user.id)}
                                         onClick={() => {
                                             unfollowTC(user.id)
                                         }}>
                                     Unfollow
                                 </button>
-                            :
-                                <button className={s.followButton} disabled={followingProgress.some(id => id === user.id)}
+                            : <button className={s.followButton} disabled={followingProgress.some(id => id === user.id)}
                                         onClick={() => {
                                             followTC(user.id)
                                         }}>
                                     Follow
                                 </button>
-
                     }
                 </div>
             </span>
