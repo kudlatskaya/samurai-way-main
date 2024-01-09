@@ -44,7 +44,7 @@ export type FilterType = typeof initialState.filter
 
 const initialState = {
     items: [] as UserType[],
-    pageSize: 5,
+    pageSize: 9,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,

@@ -58,15 +58,6 @@
     border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
 }
 
-/*.inputField[id='user-input']:focus {*/
-/*    border: none;*/
-/*}*/
-
-/*.inputField>div>textarea:focus::before {*/
-/*    background-color: red;*/
-/*    border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;*/
-/*}*/
-
 .inputField input::after,
 .inputField textarea::after,
 .inputField::after {
@@ -89,10 +80,6 @@ input[id='user-input']::placeholder {
     border-width: 1px;
     border-style: solid
 }
-
-/*.inputBlock[id='user-input-block'] {*/
-/*    width: 45%;*/
-/*}*/
 
 .inputBlockError {
     border: 1px solid red;

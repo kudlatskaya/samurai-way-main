@@ -1,7 +1,4 @@
-.userPhoto {
-    width: 100px;
-    height: 100px;
-}
+
 
 .seletedPage {
     font-weight: bold;
@@ -35,4 +32,13 @@ input[id='user-input']:focus {
     outline: none;
 }
 
+.users {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
 
+.buttonBlock {
+    background-color: var();
+}

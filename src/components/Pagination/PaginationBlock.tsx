@@ -9,7 +9,7 @@ type PaginationBlockPropsType = {
 
 const PaginationBlock = ({count, onPageChanged}: PaginationBlockPropsType) => {
 
-    const [page, setPage] = React.useState(5);
+    const [page, setPage] = React.useState(1);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);

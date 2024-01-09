@@ -1,0 +1,46 @@
+.user {
+    min-height: 10rem;
+    width: 10rem;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 15px 15px 20px rgba(58,46,68,0.04);
+    text-align: center;
+
+}
+
+.user:hover {
+    box-shadow: 15px 15px 20px rgba(58,46,68,0.08);
+    transition: all .5s;
+}
+
+.userPhoto {
+    width: 100px;
+    height: 100px;
+    background-image: url('../../../asets/images/avatar.jpg');
+    background-size: cover;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+}
+
+.userName,
+.userStatus {
+    hyphens: auto;
+    overflow-wrap: anywhere;
+}
+
+.userStatus {
+    margin: 0.5rem;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.followButton {
+    height: 2.5rem;
+    min-width: 6rem;
+    background-color: var(--main-bg-color);
+    border-radius: 1.5rem;
+    border: 1px solid var(--accent-color);
+    cursor: pointer;
+    padding: 0 1rem;
+    margin-top: 0.5rem;
+}

@@ -2,6 +2,7 @@ import {FilterType, UserType} from "../../state/reducers/usersReducer";
 import UsersSearchForm from "./UsersSearchForm";
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User/User";
+import s from './Users.module.css';
 
 type UsersPropsType = {
     users: UserType[],
@@ -27,7 +28,7 @@ const Users = ({
         <div>
             <UsersSearchForm onFilterChanged={onFilterChanged}/>
 
-            <div>
+            <div className={s.users}>
                 {
                     users.map(u => <User key={u.id}
                                          user={u}
