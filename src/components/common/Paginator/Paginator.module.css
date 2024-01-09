@@ -1,0 +1,29 @@
+.paginatorContainer {
+    margin: 1.5rem 0;
+}
+
+.paginatorContainer nav {
+    margin: 0 auto;
+}
+
+.paginatorContainer nav ul {
+    font-size: 12px;
+    text-align: center;
+}
+
+.paginatorContainer nav ul li button {
+    color: var(--icon-color)
+}
+
+.paginatorContainer nav ul li button:hover {
+    color: var(--accent-color);
+    background-color: var(--element-bg-color);
+}
+
+/*.paginatorContainer nav ul li button.Mui-selected {*/
+/*    color: var(--accent-color)!important;*/
+/*    background-color: var(--main-bg-color)!important;*/
+/*    border: 1px solid var(--accent-color)!important;*/
+/*    border-color: var(--accent-color)!important;*/
+
+/*}*/

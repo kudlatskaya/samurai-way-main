@@ -26,7 +26,7 @@ const Users = ({
     return (
         <div>
             <UsersSearchForm onFilterChanged={onFilterChanged}/>
-            <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged}/>
+
             <div>
                 {
                     users.map(u => <User key={u.id}
@@ -37,6 +37,8 @@ const Users = ({
                     )
                 }
             </div>
+
+            <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged}/>
         </div>
     );
 };

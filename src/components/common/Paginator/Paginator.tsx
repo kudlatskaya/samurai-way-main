@@ -1,5 +1,6 @@
 import React from 'react';
 import PaginationBlock from "../../Pagination/PaginationBlock";
+import s from '../Paginator/Paginator.module.css'
 
 type PaginatorPropsType = {
     totalUsersCount: number,
@@ -11,7 +12,7 @@ const Paginator = ({totalUsersCount, pageSize, onPageChanged}: PaginatorPropsTyp
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
 
     return (
-        <div>
+        <div className={s.paginatorContainer}>
             <PaginationBlock count={pagesCount} onPageChanged={onPageChanged}/>
         </div>
     );
