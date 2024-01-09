@@ -1,14 +1,13 @@
 import React from 'react';
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Field, Form, Formik} from "formik";
 import {FilterType} from "../../state/reducers/usersReducer";
-import {Input, Select, MenuItem, InputAdornment} from "@mui/material";
+import {Input, InputAdornment} from "@mui/material";
 import cs from "../common/common.module.css";
 import {accentColor, elementBgColor} from "../../constants";
 import {toggleFocus} from "../../utils/forms";
 import s from './Users.module.css';
 import ls from '../Login/Login.module.css';
 import SearchIcon from '@mui/icons-material/Search';
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
 type PropsType = {
     onFilterChanged: (filter: FilterType) => void,
@@ -41,17 +40,18 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
         >
             {({isSubmitting}) => (
                 <Form>
-                    {/*<div className={s.searchContainer}>*/}
-                    {/*<Field type="text" name="term"/>*/}
                     <div className={s.searchBlock}>
                         <div className={s.search}>
                             <div id='user-input-block' className={cs.inputBlock}
                                  onFocus={(e) => toggleFocus(e, accentColor)}
                                  onBlur={(e) => toggleFocus(e, elementBgColor)}>
-                                <Input className={cs.inputField}
-                                       type={"text"} placeholder={"Enter user name"}
-                                       id="user-input"
-                                />
+                                {/*<Input className={cs.inputField} name="term"*/}
+                                {/*       type={"text"} placeholder={"Enter user name"}*/}
+                                {/*       id="user-input"*/}
+                                {/*/>*/}
+
+                                    <Field id="user-input" className={cs.inputField} type="text" name="term" placeholder={"Enter user name"}/>
+
                             </div>
                             <div className={s.find}>
                                 <button id={'user-find'} className={ls.loginButton} type={'submit'}
@@ -74,8 +74,6 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
                         {/*<ErrorMessage name="password" component="div"/>*/}
 
                     </div>
-
-                    {/*</div>*/}
                 </Form>
             )}
         </Formik>

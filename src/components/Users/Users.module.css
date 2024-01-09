@@ -29,4 +29,10 @@ button[id='user-find'] svg {
     gap: 1rem;
 }
 
+input[id='user-input'],
+input[id='user-input']:focus {
+    border: none;
+    outline: none;
+}
+
 

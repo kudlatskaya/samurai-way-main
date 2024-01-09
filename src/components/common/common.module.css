@@ -58,6 +58,10 @@
     border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;
 }
 
+/*.inputField[id='user-input']:focus {*/
+/*    border: none;*/
+/*}*/
+
 /*.inputField>div>textarea:focus::before {*/
 /*    background-color: red;*/
 /*    border-bottom: 0 solid rgba(0, 0, 0, 0.42)!important;*/
@@ -74,7 +78,9 @@
 }
 
 .inputBlock input::placeholder,
-.inputBlock textarea::placeholder{
+.inputBlock textarea::placeholder,
+input[id='user-input']::placeholder {
+    color: var(--mute-text-color);
     font-size: 14px;
 }
 
@@ -113,15 +119,6 @@ select{
     margin-left: 0.5rem;
     margin-right: 0.7rem;
 }
-
-
-/*option {*/
-/*    border-radius: 1rem;*/
-/*    border-bottom: none;*/
-/*    outline: none;*/
-/*}*/
-
-
 
 /*input[type="checkbox"] {*/
 /*    color: var(--accent-color);*/
