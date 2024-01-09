@@ -84,9 +84,9 @@
     border-style: solid
 }
 
-.inputBlock[id='user-input-block'] {
-    width: 45%;
-}
+/*.inputBlock[id='user-input-block'] {*/
+/*    width: 45%;*/
+/*}*/
 
 .inputBlockError {
     border: 1px solid red;

@@ -1,12 +1,14 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {FilterType} from "../../state/reducers/usersReducer";
-import {Input, Select, MenuItem} from "@mui/material";
+import {Input, Select, MenuItem, InputAdornment} from "@mui/material";
 import cs from "../common/common.module.css";
 import {accentColor, elementBgColor} from "../../constants";
 import {toggleFocus} from "../../utils/forms";
 import s from './Users.module.css';
 import ls from '../Login/Login.module.css';
+import SearchIcon from '@mui/icons-material/Search';
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
 type PropsType = {
     onFilterChanged: (filter: FilterType) => void,
@@ -40,20 +42,25 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChanged}) => {
             {({isSubmitting}) => (
                 <Form>
                     {/*<div className={s.searchContainer}>*/}
-                        {/*<Field type="text" name="term"/>*/}
+                    {/*<Field type="text" name="term"/>*/}
                     <div className={s.searchBlock}>
-                        <div id='user-input-block' className={cs.inputBlock}
-                             onFocus={(e) => toggleFocus(e, accentColor)}
-                             onBlur={(e) => toggleFocus(e, elementBgColor)}>
-                            <Input className={cs.inputField}
-                                   type={"text"} placeholder={"Enter user name"}
-                                   id="user-input"
-                            />
-                        </div>
-                        <div>
-                            <button className={`${ls.loginButton} ${s.find}`} type={'submit'} disabled={isSubmitting}>
-                                Find
-                            </button>
+                        <div className={s.search}>
+                            <div id='user-input-block' className={cs.inputBlock}
+                                 onFocus={(e) => toggleFocus(e, accentColor)}
+                                 onBlur={(e) => toggleFocus(e, elementBgColor)}>
+                                <Input className={cs.inputField}
+                                       type={"text"} placeholder={"Enter user name"}
+                                       id="user-input"
+                                />
+                            </div>
+                            <div className={s.find}>
+                                <button id={'user-find'} className={ls.loginButton} type={'submit'}
+                                        disabled={isSubmitting}>
+                                    <InputAdornment position="start">
+                                        <SearchIcon/>
+                                    </InputAdornment>
+                                </button>
+                            </div>
                         </div>
                         <div className={`${cs.inputBlock} ${s.filter}`}
                              onFocus={(e) => toggleFocus(e, accentColor)}
