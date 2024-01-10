@@ -13,7 +13,7 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void,
     isOwner: boolean,
     savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileType,  setStatus: (status: any) => void) => void
+    saveProfile: (profile: ProfileType, setStatus: (status: any) => void) => void
 }
 
 const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateStatus}: ProfileInfoPropsType) => {
@@ -28,7 +28,7 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
         }
     }
 
-    const submit = async (formData: ProfileType,  setStatus: (status: any) => void) => {
+    const submit = async (formData: ProfileType, setStatus: (status: any) => void) => {
         await saveProfile(formData, setStatus)
         setEditMode(false)
     }
@@ -36,9 +36,10 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
     return (
         <div className={s.userInfo}>
             <div className={s.userAvatar}>
-                <img
-                    src={profile?.photos?.large || userPhoto}
-                    alt=""/>
+                <div className={s.avatar}>
+                    <img src={profile?.photos?.large || userPhoto}
+                         alt=""/>
+                </div>
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
             </div>
             {

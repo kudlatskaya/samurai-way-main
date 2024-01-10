@@ -9,8 +9,46 @@
 }
 
 .userAvatar {
-    /*grid-area: avatar;*/
 }
+
+.avatar {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.avatar,
+.avatar img {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
+}
+
+.avatar::after {
+    content: "";
+    display: block;
+    margin-bottom: -100%;
+    border-radius: 1rem;
+
+    width: 12rem;
+    height: 12rem;
+    position: absolute; top: 0; left: 0;
+    z-index: 1;
+
+}
+
+.avatar::after:hover {
+
+    background-color: white;
+    opacity: 20%;
+}
+
+/*.avatar::before:hover {*/
+/*    content:'';*/
+/*    background-image: url('../../../asets/images/img-box-fill.svg');*/
+/*}*/
 
 .content .img {
     height: 5rem;

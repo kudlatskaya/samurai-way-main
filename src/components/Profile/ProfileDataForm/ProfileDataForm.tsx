@@ -19,7 +19,6 @@ type ProfileDataFormPropsType = {
 }
 
 
-
 const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
 
     return (
@@ -44,7 +43,7 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                     let errorsList = createErrorsObject(profile)
                     status?.errors.map((e: string) => {
                         errorsList.map((el) => {
-                            e.toLowerCase().includes(el.toLowerCase()) && console.log(el) //fieldsError[key as keyof ProfileType]
+                            e.toLowerCase().includes(el.toLowerCase()) /*&& console.log(el)*/ //fieldsError[key as keyof ProfileType]
                         })
 
 
@@ -54,13 +53,14 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                         <div>
                             <button type="submit">save</button>
                         </div>
+                        {touched.fullName ?
+                            <div style={{color: '#B22c12'}}>{status?.errors}</div> : null}
                         <div>
                             <label htmlFor="fullName">Full name:</label>
                             <Field id="fullName" name="fullName"/>
                             {/*<ErrorMessage component="div" name="fullName" />*/}
 
-                            {touched.fullName ?
-                                <div style={{color: '#B22c12'}}>{status?.errors}</div> : null}
+
                             {/*{console.log(`touched.fullName - ${touched.fullName}`)}*/}
                             {/*{console.log(status)}*/}
                         </div>

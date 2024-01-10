@@ -26,7 +26,7 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
     // let isAuth = store.getState().authReducer.isAuth
 
     let catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
-        alert('Some error occured')
+        // alert('Some error occured')
     }
 
     useEffect(() => {
