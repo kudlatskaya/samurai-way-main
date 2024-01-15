@@ -41,6 +41,7 @@
     border: 0.5px solid  var(--element-bg-color);
     border-radius: 2rem;
     padding: 0 1rem;
+    outline: none;
 }
 
 .inputBlock textarea {
@@ -80,6 +81,10 @@ input[id='user-input']::placeholder {
     border-width: 1px;
     border-style: solid
 }
+
+/*.inputBlock input:focus {*/
+/*    transition: background-color 0s 600000s, color 0s 600000s;*/
+/*}*/
 
 .inputBlockError {
     border: 1px solid red;

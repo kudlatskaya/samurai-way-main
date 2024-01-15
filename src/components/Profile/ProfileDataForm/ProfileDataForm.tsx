@@ -6,7 +6,8 @@ import {createErrorsObject, isObject} from "../../../utils/object-helpers";
 import {PhotosType} from "../../../state/reducers/profileReducer";
 import cs from "../../common/common.module.css";
 import {toggleFocus} from "../../../utils/forms";
-import {accentColor, elementBgColor} from "../../../constants";
+import {accentColor, elementBgColor, iconColor} from "../../../constants";
+import {Checkbox, FormControlLabel} from "@mui/material";
 
 // export type ProfileDataFormType = {
 //     contacts?: ContactsType | undefined | null
@@ -64,11 +65,8 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                             <div id='user-input-block' className={cs.inputBlock}
                                  onFocus={(e) => toggleFocus(e, accentColor)}
                                  onBlur={(e) => toggleFocus(e, elementBgColor)}>
-
-
                                 <Field id="fullName" className={cs.inputField} type="text" name="fullName"
                                        placeholder={"Enter user name"}/>
-
                             </div>
                             {/*<ErrorMessage component="div" name="fullName" />*/}
 
@@ -78,7 +76,20 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                         </div>
                         <div>
                             <label htmlFor="lookingForAJob">Looking for a job: </label>
-                            <Field type="checkbox" id="lookingForAJob" name="lookingForAJob"/>
+                            {/*<Field type="checkbox" id="lookingForAJob" name="lookingForAJob"/>*/}
+                            <FormControlLabel control={
+                                <Checkbox defaultChecked sx={{
+                                    color: iconColor,
+                                    '&.Mui-checked': {
+                                        color: elementBgColor,
+                                        backgroundColor: accentColor
+                                    },
+                                }}/>
+                            } label="Remember" name={"lookingForAJob"}
+                                              onChange={formik.handleChange}
+                                              checked={formik.values.rememberMe}
+                                              sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
+                            />
                             {/*<ErrorMessage component="div" name="lookingForAJob" />*/}
                             {touched.lookingForAJob && errors.lookingForAJob ?
                                 <div style={{color: 'red'}}>{status?.error}</div> : null}
