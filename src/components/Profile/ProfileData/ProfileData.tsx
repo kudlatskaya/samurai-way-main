@@ -1,7 +1,7 @@
 import React from 'react';
-import s from "../ProfileInfo/ProfileInfo.module.css";
 import Contact from "../Contacts/Contact";
 import {ContactsType, ProfileType} from "../ProfileContainer";
+import s from './ProfileData.module.css';
 
 
 type ProfileDataType = {
@@ -13,24 +13,39 @@ type ProfileDataType = {
 const ProfileData = ({profile, isOwner, activateEditMode}: ProfileDataType) => {
 
     return (
-        <div>
+        <div className={s.userInfo}>
             {
-                isOwner && <div><button onClick={activateEditMode}>edit</button></div>
-            }
-            <div>
-                <div>Full name: {profile?.fullName}</div>
-                <div>Looking for a job: {profile?.lookingForAJob ? 'yes' : 'no'}</div>
-                <div>My professional skills: {profile?.lookingForAJobDescription}</div>
-                <div>About me: {profile?.aboutMe}</div>
-
-                <div>
-                    Contacts: {
-                    profile?.contacts && Object.keys(profile.contacts).map(key =>
-                        <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
-                    )
-                }
+                isOwner && <div>
+                    <button onClick={activateEditMode}>edit</button>
                 </div>
-            </div>
+            }
+            <table>
+                <tr>
+                    <td>Full name:</td>
+                    <td>{profile?.fullName}</td>
+                </tr>
+                <tr>
+                    <td>Looking for a job:</td>
+                    <td>{profile?.lookingForAJob ? 'yes' : 'no'}</td>
+                </tr>
+                <tr>
+                    <td>My professional skills:</td>
+                    <td>{profile?.lookingForAJobDescription}</td>
+                </tr>
+                <tr>
+                    <td>About me:</td>
+                    <td>{profile?.aboutMe}</td>
+                </tr>
+                <tr >
+                    <td colSpan={2}><b>Contacts</b></td>
+                </tr>
+               {
+                        profile?.contacts && Object.keys(profile.contacts).map(key =>
+                            <Contact key={key} contactTitle={key}
+                                     contactValue={profile.contacts[key as keyof ContactsType]}/>
+                        )
+                    }
+            </table>
         </div>
     );
 };

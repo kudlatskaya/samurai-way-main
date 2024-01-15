@@ -29,11 +29,6 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
         }
     }
 
-    // const openFile = () => {
-    //     fileStyle += ` ${s.fileEnter}`
-    //     console.log(fileStyle)
-    // }
-
     const submit = async (formData: ProfileType, setStatus: (status: any) => void) => {
         await saveProfile(formData, setStatus)
         setEditMode(false)

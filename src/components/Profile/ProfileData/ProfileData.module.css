@@ -1,0 +1,27 @@
+.userInfo table {
+    border-collapse: collapse;
+    width: 100%;
+    line-height: 2.7rem;
+}
+
+
+.userInfo tr {
+    height: 2.7rem;
+    border-bottom: 1px solid var(--mute-text-color);
+}
+
+.userInfo tr td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    vertical-align: top;
+}
+
+.userInfo tr td:nth-of-type(1) {
+    background: var(--element-bg-color);
+    width: 35%;
+}
+
+.userInfo {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

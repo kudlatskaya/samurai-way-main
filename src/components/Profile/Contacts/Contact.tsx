@@ -7,9 +7,9 @@ type ContactPropsType = {
 // };
  const Contact = ({contactTitle, contactValue}: ContactPropsType) => {
     return (
-        <div>
-            <b>{contactTitle}</b>: {contactValue}
-        </div>
+        <tr>
+            <td>{contactTitle}: </td> <td>{contactValue}</td>
+        </tr>
     );
 };
 
