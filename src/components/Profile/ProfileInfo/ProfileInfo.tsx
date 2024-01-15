@@ -19,6 +19,7 @@ type ProfileInfoPropsType = {
 const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateStatus}: ProfileInfoPropsType) => {
     // console.log('ProfileInfo')
     let [editMode, setEditMode] = useState<boolean>(false)
+    let fileStyle = s.file
 
     if (!profile) return <Preloader/>
 
@@ -27,6 +28,11 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
             savePhoto(e.target.files[0])
         }
     }
+
+    // const openFile = () => {
+    //     fileStyle += ` ${s.fileEnter}`
+    //     console.log(fileStyle)
+    // }
 
     const submit = async (formData: ProfileType, setStatus: (status: any) => void) => {
         await saveProfile(formData, setStatus)
@@ -39,8 +45,9 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
                 <div className={s.avatar}>
                     <img src={profile?.photos?.large || userPhoto}
                          alt=""/>
+                    {isOwner && <input type={'file'} className={fileStyle} onChange={onMainPhotoSelected}/>}
                 </div>
-                {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+
             </div>
             {
                 editMode
