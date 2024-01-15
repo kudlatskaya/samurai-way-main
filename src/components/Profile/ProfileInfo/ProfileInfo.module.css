@@ -27,22 +27,26 @@
 }
 
 .avatar::after {
-    content: "";
+    content: '';
     display: block;
     margin-bottom: -100%;
     border-radius: 1rem;
-
-    width: 12rem;
-    height: 12rem;
-    position: absolute; top: 0; left: 0;
+    padding-left: 1.5rem;
+    padding-top:  1.5rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    position: absolute;
+    top: 2.5rem;
+    left:  2.5rem;
     z-index: 1;
-
+    transition: 0.3s;
 }
 
-.avatar::after:hover {
-
+.avatar:hover::after {
+    content: url('../../../asets/images/img-box-fill.svg');
     background-color: white;
-    opacity: 20%;
+    opacity: 50%;
+    transform: scale(1.2);
 }
 
 /*.avatar::before:hover {*/
