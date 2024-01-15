@@ -1,9 +1,12 @@
 import {ContactsType, ProfileType} from "../ProfileContainer";
 import {ErrorMessage, Field, Form, Formik, useFormik} from "formik";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {loginFormValidator} from "../../../utils/validators";
 import {createErrorsObject, isObject} from "../../../utils/object-helpers";
 import {PhotosType} from "../../../state/reducers/profileReducer";
+import cs from "../../common/common.module.css";
+import {toggleFocus} from "../../../utils/forms";
+import {accentColor, elementBgColor} from "../../../constants";
 
 // export type ProfileDataFormType = {
 //     contacts?: ContactsType | undefined | null
@@ -57,7 +60,16 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                             <div style={{color: '#B22c12'}}>{status?.errors}</div> : null}
                         <div>
                             <label htmlFor="fullName">Full name:</label>
-                            <Field id="fullName" name="fullName"/>
+                            {/*<Field id="fullName" name="fullName"/>*/}
+                            <div id='user-input-block' className={cs.inputBlock}
+                                 onFocus={(e) => toggleFocus(e, accentColor)}
+                                 onBlur={(e) => toggleFocus(e, elementBgColor)}>
+
+
+                                <Field id="fullName" className={cs.inputField} type="text" name="fullName"
+                                       placeholder={"Enter user name"}/>
+
+                            </div>
                             {/*<ErrorMessage component="div" name="fullName" />*/}
 
 
