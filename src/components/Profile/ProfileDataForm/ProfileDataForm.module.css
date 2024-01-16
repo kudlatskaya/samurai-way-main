@@ -1,0 +1,17 @@
+.checkbox input {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/*.checkbox input[type="checkbox" i]:hover {*/
+/*    !*border-color: var(--accent-color)*!*/
+/*    background: red;*/
+/*    outline-color: red*/
+/*}*/
+
+/*.checkbox input[type="checkbox" i]:focus {*/
+/*    !*border-color: var(--accent-color)*!*/
+/*    background: red;*/
+/*    outline-color: red*/
+/*}*/
+

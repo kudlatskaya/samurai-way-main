@@ -1,12 +1,11 @@
-import {ContactsType, ProfileType} from "../ProfileContainer";
-import {ErrorMessage, Field, Form, Formik, useFormik} from "formik";
-import React, {useEffect, useState} from "react";
-import {loginFormValidator} from "../../../utils/validators";
-import {createErrorsObject, isObject} from "../../../utils/object-helpers";
-import {PhotosType} from "../../../state/reducers/profileReducer";
+import {ProfileType} from "../ProfileContainer";
+import {Field, Form, Formik} from "formik";
+import React from "react";
+import {createErrorsObject} from "../../../utils/object-helpers";
 import cs from "../../common/common.module.css";
 import {toggleFocus} from "../../../utils/forms";
 import {accentColor, elementBgColor, iconColor} from "../../../constants";
+import s from '../ProfileDataForm/ProfileDataForm.module.css'
 import {Checkbox, FormControlLabel} from "@mui/material";
 
 // export type ProfileDataFormType = {
@@ -39,18 +38,15 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
 
                 onSubmit={(values: ProfileType, actions) => {
                     submit(values as ProfileType, actions.setStatus)
-                    // console.log('ProfileDataForm submit')
                     // actions.resetForm()
                 }}
             >
-                {({errors, touched, status}) => {
+                {({errors, touched, status, values, handleChange}) => {
                     let errorsList = createErrorsObject(profile)
                     status?.errors.map((e: string) => {
                         errorsList.map((el) => {
                             e.toLowerCase().includes(el.toLowerCase()) /*&& console.log(el)*/ //fieldsError[key as keyof ProfileType]
                         })
-
-
                     })
 
                     return (<Form>
@@ -70,26 +66,29 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                             </div>
                             {/*<ErrorMessage component="div" name="fullName" />*/}
 
-
                             {/*{console.log(`touched.fullName - ${touched.fullName}`)}*/}
                             {/*{console.log(status)}*/}
                         </div>
                         <div>
                             <label htmlFor="lookingForAJob">Looking for a job: </label>
-                            {/*<Field type="checkbox" id="lookingForAJob" name="lookingForAJob"/>*/}
-                            <FormControlLabel control={
-                                <Checkbox defaultChecked sx={{
-                                    color: iconColor,
-                                    '&.Mui-checked': {
-                                        color: elementBgColor,
-                                        backgroundColor: accentColor
-                                    },
-                                }}/>
-                            } label="Remember" name={"lookingForAJob"}
-                                              onChange={formik.handleChange}
-                                              checked={formik.values.rememberMe}
-                                              sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
-                            />
+                            <div className={s.checkbox}>
+                                {/*<Field type="checkbox" id="lookingForAJob" name="lookingForAJob"/>*/}
+                                <FormControlLabel control={
+                                    <Checkbox defaultChecked name="lookingForAJob" id="lookingForAJob"
+                                              checked={values.lookingForAJob}
+                                              onChange={handleChange}
+                                              sx={{
+                                        color: iconColor,
+                                        '&.Mui-checked': {
+                                            color: elementBgColor,
+                                            backgroundColor: accentColor
+                                        },
+                                    }}/>
+                                } label="" sx={{'& .MuiSvgIcon-root': {fontSize: 23}}}
+                                />
+                            </div>
+
+
                             {/*<ErrorMessage component="div" name="lookingForAJob" />*/}
                             {touched.lookingForAJob && errors.lookingForAJob ?
                                 <div style={{color: 'red'}}>{status?.error}</div> : null}
