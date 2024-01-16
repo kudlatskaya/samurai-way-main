@@ -1,17 +1,47 @@
+/*form {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
 .checkbox input {
     width: 1.5rem;
     height: 1.5rem;
 }
 
-/*.checkbox input[type="checkbox" i]:hover {*/
-/*    !*border-color: var(--accent-color)*!*/
-/*    background: red;*/
-/*    outline-color: red*/
-/*}*/
+div[id='skills-input-block'],
+div[id='about-input-block'] {
+    height: auto;
 
-/*.checkbox input[type="checkbox" i]:focus {*/
-/*    !*border-color: var(--accent-color)*!*/
-/*    background: red;*/
-/*    outline-color: red*/
-/*}*/
+}
+
+.formErrors {
+    margin: 2rem 0;
+}
+
+.label {
+    color: var(--icon-color)
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.item .input {
+    width: 50%;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.button button {
+    width: 10rem;
+}
+
+
 

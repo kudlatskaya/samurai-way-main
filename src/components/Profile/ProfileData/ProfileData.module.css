@@ -5,7 +5,8 @@
 .userInfo table {
     border-collapse: collapse;
     width: 100%;
-    line-height: 2.7rem;
+    /*line-height: 2.7rem;*/
+
     margin-right: 1rem;
 }
 
@@ -16,9 +17,9 @@
 }
 
 .userInfo tr td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.5rem 1rem;
     vertical-align: top;
+    overflow-wrap: anywhere;
 }
 
 .userInfo tr td:nth-of-type(1) {
