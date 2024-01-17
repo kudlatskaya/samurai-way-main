@@ -1,6 +1,10 @@
-import React, {ChangeEvent, useEffect, useState} from 'react'
-
-
+import React, {ChangeEvent, FocusEvent, useEffect, useState} from 'react'
+import s from './ProfileStatus.module.css'
+import cs from "../../common/common.module.css";
+import {toggleFocus} from "../../../utils/forms";
+import {accentColor, elementBgColor} from "../../../constants";
+import {TextField} from "@mui/material";
+import edit from "../../../asets/images/edit.svg";
 
 type ProfileStatusPropsType = {
     status: string
@@ -16,7 +20,8 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
         setEditMode(true)
         setStatusValue(props.status)
     }
-    const deactivateEditMode = () => {
+    const deactivateEditMode = (e: FocusEvent<HTMLDivElement>) => {
+        toggleFocus(e, elementBgColor)
         setEditMode(false)
         props.updateStatus(statusValue)
     }
@@ -30,16 +35,29 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
     }
 
     return (
-        <div>
+        <div className={s.profileStatus}>
             {
                 !editMode
-                    ? <div>
-                    <b>Status: </b>
+                    ? <div className={s.status}>
+                        {/*<b>Status: </b>*/}
                         <span onDoubleClick={activateEditMode}>{props.status}</span>
+
                     </div>
-                    : <div>
-                        <input autoFocus={true} onBlur={deactivateEditMode} value={statusValue}
-                               onChange={updateStatusValue}
+                    // : <div>
+                    //     <input autoFocus={true} onBlur={deactivateEditMode} value={statusValue}
+                    //            onChange={updateStatusValue}
+                    //     />
+                    // </div>
+                    : <div id={'status-input-block'} className={`${cs.inputBlock} ${s.statusInput}`}
+                           onFocus={(e) => toggleFocus(e, accentColor)}
+                           onBlur={(e) => deactivateEditMode(e)}>
+                        <TextField className={cs.inputField}
+                                   id={"status"}
+                                   value={statusValue}
+                                   multiline
+                                   maxRows={5}
+                                   onChange={updateStatusValue}
+                                   autoFocus={true}
                         />
                     </div>
             }

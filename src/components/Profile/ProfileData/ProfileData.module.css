@@ -1,5 +1,6 @@
 .userInfo {
     display: flex;
+
 }
 
 .userInfo table {
@@ -36,7 +37,7 @@
     background: none;
     border: none;
     cursor: pointer;
-padding-right: 0;
+    padding-right: 0;
     padding-left: 0;
     transition: 0.3s;
 }

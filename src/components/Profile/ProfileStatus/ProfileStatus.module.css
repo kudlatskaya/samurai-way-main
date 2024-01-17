@@ -1,0 +1,21 @@
+.status span{
+    font-style: italic;
+    overflow-wrap: anywhere;
+}
+
+.status {
+
+}
+
+div[id='status-input-block'] {
+    height: auto;
+}
+
+.statusInput {
+    width: 100%;
+}
+
+.profileStatus {
+    /*margin: 1rem 0;*/
+    flex-grow: 1;
+}
