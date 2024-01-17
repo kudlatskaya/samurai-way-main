@@ -44,15 +44,16 @@ const ProfileInfo = ({profile, savePhoto, saveProfile, isOwner, status, updateSt
                 </div>
 
             </div>
+            <div>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
+            </div>
             {
                 editMode
                     ? <ProfileDataForm profile={profile} submit={submit}/>
                     : <ProfileData profile={profile} activateEditMode={() => setEditMode(true)}
                                    isOwner={isOwner}/>
             }
-            <div>
-                <ProfileStatus status={status} updateStatus={updateStatus}/>
-            </div>
+
         </div>
     );
 };

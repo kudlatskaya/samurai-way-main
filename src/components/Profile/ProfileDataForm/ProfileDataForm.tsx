@@ -142,17 +142,17 @@ const ProfileDataForm = ({profile, submit}: ProfileDataFormPropsType) => {
                                 {/*    <div style={{color: 'red'}}>{errors.aboutMe}</div> : null}*/}
                             </div>
 
-                            <div className={s.item}>
+                            <div className={s.contacts}>
                                 Contacts:
                                 {profile.contacts && Object.keys(profile.contacts).length > 0 && (
                                     Object.keys(profile.contacts).map((key, index) => (
 
-                                        <div key={index}>
+                                        <div key={index} className={s.item}>
                                             <label className={s.label} htmlFor={`${key}`}>{key}: </label>
 
                                             {/*<Field key={index} id={`${key}`} name={`contacts.${key}`}/>*/}
 
-                                            <div key={index} className={`${cs.inputBlock} ${s.input}`}
+                                            <div key={index} className={`${cs.inputBlock} ${s.input} `}
                                                  onFocus={(e) => toggleFocus(e, accentColor)}
                                                  onBlur={(e) => toggleFocus(e, elementBgColor)}>
                                                 <Field id={`${key}`} className={cs.inputField} type="text"

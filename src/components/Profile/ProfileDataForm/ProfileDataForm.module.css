@@ -43,5 +43,9 @@ div[id='about-input-block'] {
     width: 10rem;
 }
 
+.contacts {
+    display: flex;
+    flex-direction: column;
+}
 
 
