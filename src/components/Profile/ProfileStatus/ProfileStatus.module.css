@@ -16,6 +16,5 @@ div[id='status-input-block'] {
 }
 
 .profileStatus {
-    /*margin: 1rem 0;*/
     flex-grow: 1;
 }

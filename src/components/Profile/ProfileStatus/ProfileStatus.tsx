@@ -4,7 +4,6 @@ import cs from "../../common/common.module.css";
 import {toggleFocus} from "../../../utils/forms";
 import {accentColor, elementBgColor} from "../../../constants";
 import {TextField} from "@mui/material";
-import edit from "../../../asets/images/edit.svg";
 
 type ProfileStatusPropsType = {
     status: string
@@ -39,9 +38,7 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
             {
                 !editMode
                     ? <div className={s.status}>
-                        {/*<b>Status: </b>*/}
                         <span onDoubleClick={activateEditMode}>{props.status}</span>
-
                     </div>
                     // : <div>
                     //     <input autoFocus={true} onBlur={deactivateEditMode} value={statusValue}
@@ -68,59 +65,4 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
 export default ProfileStatus;
 
 
-/*
-class ProfileStatus extends React.Component<any, any> {
-    state = {
-        editMode: false,
-        statusValue: this.props.status
-    }
-
-    activateEditMode = () => {
-        this.setState({
-            editMode: true
-        })
-    }
-
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false
-        })
-    }
-
-    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            status: e.currentTarget.value
-        })
-    }
-
-    componentDidUpdate(
-        prevProps: Readonly<any>,
-        prevState: Readonly<any>,
-        snapshot?: any
-    ) {
-        console.log(prevState)
-        console.log(prevProps)
-        console.log('update')
-    }
-
-    render() {
-        return (
-            <div>
-                {
-                    !this.state.editMode
-                        ? <div>
-                            <span onDoubleClick={this.activateEditMode}>{this.props.status || '-------'}</span>
-                        </div>
-                        : <div>
-                            <input autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.statusValue}
-                                   onInput={this.onStatusChange}
-                            />
-                        </div>
-                }
-            </div>
-        )
-    }
-}
-
-export default ProfileStatus*/
 
