@@ -10,7 +10,6 @@ type PropsType = {
 
 const MyPosts: React.FC<PropsType> = (props) => {
     const {addPost, posts} = props;
-    console.log('MyPosts')
 
     let myPostElements = posts.map(post =>
         <MyPost key={post.id} message={post.message} likesCount={post.likesCount} title={post.title}/>

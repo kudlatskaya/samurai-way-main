@@ -1,3 +1,20 @@
-.item {
-    color: aqua;
+.title {
+    color: var(--accent-color);
 }
+
+.post {
+    margin: 2rem 0;
+}
+
+.postText {
+    background: var(--element-bg-color);
+    padding: 1rem;
+    border-radius: 2rem;
+    overflow-wrap: anywhere;
+}
+
+.likes {
+    display: flex;
+    justify-content: right;
+}
+

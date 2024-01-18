@@ -2,6 +2,7 @@ import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
 import {ProfileType} from "../../components/Profile/ProfileContainer";
+import { loremIpsum } from 'react-lorem-ipsum';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -20,12 +21,14 @@ export type PhotosType = {
     large: null | string
 }
 
+let postText = loremIpsum()[0]
+
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi', likesCount: 12, title: "Post Title"},
-        {id: 2, message: 'By', likesCount: 1, title: "Post Title"},
-        {id: 3, message: 'Hello', likesCount: 10, title: "Post Title"},
-        {id: 4, message: 'Good by', likesCount: 11, title: "Post Title"},
+        {id: 1, message: postText, likesCount: 12, title: "Post Title"},
+        {id: 2, message: postText, likesCount: 1, title: "Post Title"},
+        {id: 3, message: postText, likesCount: 10, title: "Post Title"},
+        {id: 4, message: postText, likesCount: 11, title: "Post Title"},
     ] as PostType[],
     profile: {
         aboutMe: null,

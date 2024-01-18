@@ -53,7 +53,7 @@ const PostForm: React.FC<PropsType> = ({submit}) => {
                                    type={"post"} placeholder={"Enter your post"}
                                    id="post-input"
                                    multiline
-                                   maxRows={10}
+                                   maxRows={20}
                                    {...formik.getFieldProps('post')}
                         />
                     </div>
