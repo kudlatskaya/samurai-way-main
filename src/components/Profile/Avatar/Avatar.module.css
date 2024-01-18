@@ -1,0 +1,60 @@
+.file {
+    position: absolute;
+    top: 0;
+    left:  0;
+    z-index: 2;
+    opacity: 0%;
+
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.userAvatar {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0 ;
+}
+
+.avatar {
+    margin-right: 1rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.avatar,
+.avatar img {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
+}
+
+.avatar::after {
+    content: '';
+    display: block;
+    margin-bottom: -100%;
+    border-radius: 5.5rem;
+    padding-left: 1.5rem;
+    padding-top:  1.5rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    position: absolute;
+    top: 2.5rem;
+    left:  2.5rem;
+    z-index: 1;
+    transition: 0.3s;
+}
+
+.avatar:hover::after {
+    content: url('../../../asets/images/img-box-fill.svg');
+    background-color: white;
+    opacity: 50%;
+    transform: scale(1.2);
+}
+
+.avatar:active::after {
+    content: url('../../../asets/images/img-box-fill.svg');
+    opacity: 50%;
+    transform: scale(1.1);
+}

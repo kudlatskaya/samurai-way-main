@@ -41,7 +41,7 @@ const Navbar = () => {
                 </div>
                 <div className={s.item}>
                     <NavLink to="/users" className={cs.link} activeClassName={cs.active}>
-                        <Icon icon="uil-user"/>
+                        <Icon icon="majesticons:users-line"/>
                         <p>Users</p></NavLink>
                 </div>
                 <div className={s.item}>

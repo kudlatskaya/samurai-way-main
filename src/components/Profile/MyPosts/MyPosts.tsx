@@ -4,21 +4,23 @@ import {PostType} from "./MyPostsContainer";
 import PostForm from "./PostForm";
 
 type PropsType = {
-    addPost: (post: string) => void,
+    addPost: (post: string, title: string) => void,
     posts: PostType[],
 }
 
 const MyPosts: React.FC<PropsType> = (props) => {
     const {addPost, posts} = props;
+    console.log('MyPosts')
 
-    let myPostElements = posts.map(post => <MyPost key={post.id} message={post.message} likesCount={post.likesCount}/>);
+    let myPostElements = posts.map(post =>
+        <MyPost key={post.id} message={post.message} likesCount={post.likesCount} title={post.title}/>
+    );
 
-    const sumbit = (post: string) => {
-        addPost(post);
+    const sumbit = (post: string, title: string) => {
+        addPost(post, title);
     }
 
     return (<>
-            <p>My posts</p>
             <div>
                 <p>New post</p>
                 <PostForm submit={sumbit}/>

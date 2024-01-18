@@ -22,10 +22,10 @@ export type PhotosType = {
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi', likesCount: 12},
-        {id: 2, message: 'By', likesCount: 1},
-        {id: 3, message: 'Hello', likesCount: 10},
-        {id: 4, message: 'Good by', likesCount: 11},
+        {id: 1, message: 'Hi', likesCount: 12, title: "Post Title"},
+        {id: 2, message: 'By', likesCount: 1, title: "Post Title"},
+        {id: 3, message: 'Hello', likesCount: 10, title: "Post Title"},
+        {id: 4, message: 'Good by', likesCount: 11, title: "Post Title"},
     ] as PostType[],
     profile: {
         aboutMe: null,
@@ -61,6 +61,7 @@ const profileReducer = (state: StateType = initialState, action: ActionType): St
                 id: Math.random(),
                 message: action.payload.post,
                 likesCount: 0,
+                title: action.payload.title,
             }
 
             return {
@@ -90,7 +91,7 @@ const profileReducer = (state: StateType = initialState, action: ActionType): St
 }
 
 type AddPostActionCreatorType = ReturnType<typeof addPostActionCreator>
-export const addPostActionCreator = (post: string) => ({type: ADD_POST, payload: {post}} as const)
+export const addPostActionCreator = (post: string, title: string) => ({type: ADD_POST, payload: {post, title}} as const)
 
 type DeletePostActionCreatorType = ReturnType<typeof deletePostActionCreator>
 export const deletePostActionCreator = (postId: number) => ({type: DELETE_POST, payload: {postId}} as const)

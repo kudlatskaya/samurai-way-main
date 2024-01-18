@@ -8,6 +8,7 @@ export type PostType = {
     id: number,
     message: string,
     likesCount: number,
+    title: string,
 }
 
 type MapStateToProps = {
@@ -15,7 +16,7 @@ type MapStateToProps = {
 }
 
 type MapDispatchToPropsType = {
-    addPost: (post: string) => void
+    addPost: (post: string, title: string) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
@@ -26,8 +27,8 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addPost: (post: string) => {
-            dispatch(addPostActionCreator(post));
+        addPost: (post: string, title: string) => {
+            dispatch(addPostActionCreator(post, title));
         },
     }
 }

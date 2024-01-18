@@ -1,15 +1,16 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "./ProfileContainer";
-import {useState} from "react";
+import React, {useState} from "react";
 import Box from "@mui/material/Box";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import PhoneIcon from '@mui/icons-material/Phone';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-
+import Avatar from "./Avatar/Avatar";
+import s from './Profile.module.css'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import ArticleIcon from '@mui/icons-material/Article';
+import {accentColor} from "../../constants";
 
 type ProfilePropsType = {
     profile: null | ProfileType
@@ -27,7 +28,7 @@ interface TabPanelProps {
 }
 
 function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -38,19 +39,12 @@ function CustomTabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 3 }}>
+                <Box sx={{p: 3}}>
                     <Typography>{children}</Typography>
                 </Box>
             )}
         </div>
     );
-}
-
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
 }
 
 const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}: ProfilePropsType) => {
@@ -62,29 +56,34 @@ const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile
 
     return (
         <main>
-            {/*<ProfileInfo profile={profile} status={status} updateStatus={updateStatus}*/}
-            {/*             isOwner={isOwner}*/}
-            {/*             savePhoto={savePhoto}*/}
-            {/*             saveProfile={saveProfile}/>*/}
-            {/*<MyPostsContainer/>*/}
-            <Box sx={{width: '100%'}}>
-                <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                    <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
-                        <Tab icon={<PhoneIcon/>} label="RECENTS"/>
-                        <Tab icon={<FavoriteIcon/>} label="FAVORITES"/>
-                        <Tab icon={<PersonPinIcon/>} label="NEARBY"/>
-                    </Tabs>
+            <Avatar savePhoto={savePhoto} isOwner={isOwner} profile={profile} status={status}
+                    updateStatus={updateStatus}/>
+
+            <div className={s.profileData}>
+                <Box sx={{width: '100%'}}>
+                    <Box sx={{borderBottom: 1, borderColor: 'divider', color: accentColor}}>
+                        <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example"
+                              TabIndicatorProps={{sx:{backgroundColor: accentColor}}}
+                              sx={{
+                                  "& button": {color: accentColor},
+                                  "& button.Mui-selected": {color: accentColor},
+                                  "& button:focus": {color: accentColor},
+                              }}>
+                            <Tab icon={<PermIdentityIcon/>} label="PROFILE" />
+                            <Tab icon={<ArticleIcon/>} label="POSTS" />
+                        </Tabs>
+                    </Box>
+                    <CustomTabPanel value={value} index={0}>
+                        <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}
+                                     isOwner={isOwner}
+                                     savePhoto={savePhoto}
+                                     saveProfile={saveProfile}/>
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={1}>
+                        <MyPostsContainer/>
+                    </CustomTabPanel>
                 </Box>
-                <CustomTabPanel value={value} index={0}>
-                    Item One
-                </CustomTabPanel>
-                <CustomTabPanel value={value} index={1}>
-                    Item Two
-                </CustomTabPanel>
-                <CustomTabPanel value={value} index={2}>
-                    Item Three
-                </CustomTabPanel>
-            </Box>
+            </div>
         </main>
     );
 };

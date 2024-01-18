@@ -3,10 +3,10 @@ import {PostType} from "../../components/Profile/MyPosts/MyPostsContainer";
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi', likesCount: 12},
-        {id: 2, message: 'By', likesCount: 1},
-        {id: 3, message: 'Hello', likesCount: 10},
-        {id: 4, message: 'Good by', likesCount: 11},
+        {id: 1, message: 'Hi', likesCount: 12, title: "Post Title"},
+        {id: 2, message: 'By', likesCount: 1, title: "Post Title"},
+        {id: 3, message: 'Hello', likesCount: 10, title: "Post Title"},
+        {id: 4, message: 'Good by', likesCount: 11, title: "Post Title"},
     ],
     profile: {
         aboutMe: null,
@@ -33,14 +33,14 @@ let initialState = {
 }
 
 test('length of posts should be incremented', () => {
-    const action = addPostActionCreator("hello")
+    const action = addPostActionCreator("hello", "Post Title")
     const newState = profileReducer(initialState, action)
 
     expect(newState.posts.length).toBe(5)
 })
 
 test('new post should be added', () => {
-    const action = addPostActionCreator("hello")
+    const action = addPostActionCreator("hello", "Post Title")
     const newState = profileReducer(initialState, action)
 
     expect(newState.posts[4].message).toBe("hello")
