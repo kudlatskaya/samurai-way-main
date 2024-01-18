@@ -54,8 +54,22 @@ div[id='post-input-block'] {
     flex-direction: column;
 }
 
-/*div[id="about-input-block"] {*/
-/*    width: 100%;*/
-/*}*/
+@media (min-width: 576px) {
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem 0;
+        gap: 0.7rem;
+    }
+
+    .item div {
+        width: 100% !important;
+    }
+
+    .checkbox {
+        margin-left: 1rem;
+    }
+}
 
 

@@ -39,5 +39,14 @@
     margin: auto;
 }
 
+/*@media (min-width: 768px) {*/
+@media (min-width: 576px) {
+    .app-wrapper-content {
+        width: 75%;
+    }
+}
+
+
+
 
 

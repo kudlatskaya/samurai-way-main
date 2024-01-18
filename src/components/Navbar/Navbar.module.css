@@ -103,3 +103,25 @@
         width: 335px;
     }
 }
+
+/*@media (min-width: 768px) {*/
+@media (min-width: 576px) {
+    .nav {
+        width: auto;
+    }
+
+    .menu {
+        display: block;
+        padding: 2rem 0.5rem 2.75rem;
+    }
+
+    .connections,
+    .userInfo,
+    .title {
+        display: none;
+    }
+
+    .logoBlock {
+        padding: 2rem;
+    }
+}

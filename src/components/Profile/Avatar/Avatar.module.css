@@ -58,3 +58,9 @@
     opacity: 50%;
     transform: scale(1.1);
 }
+
+@media (min-width: 576px) {
+    .userAvatar {
+        flex-wrap: wrap;
+    }
+}

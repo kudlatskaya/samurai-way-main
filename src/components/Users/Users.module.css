@@ -1,5 +1,3 @@
-
-
 .seletedPage {
     font-weight: bold;
 }
@@ -39,6 +37,16 @@ input[id='user-input']:focus {
     gap: 3rem;
 }
 
-.buttonBlock {
-    background-color: var();
+/*.buttonBlock {*/
+/*    background-color: var();*/
+/*}*/
+
+@media (min-width: 576px) {
+    .search {
+        flex-wrap: nowrap;
+    }
+
+    .users {
+        justify-content: center;
+    }
 }
