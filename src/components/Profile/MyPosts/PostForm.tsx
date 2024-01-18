@@ -33,7 +33,7 @@ const PostForm: React.FC<PropsType> = ({submit}) => {
             <form onSubmit={formik.handleSubmit}>
                 <div className={s.item}>
                     <label className={s.label} htmlFor="title">Title:</label>
-                    <div className={cs.inputBlock}
+                    <div className={`${cs.inputBlock} ${s.input}`}
                          onFocus={(e) => toggleFocus(e, accentColor)}
                          onBlur={(e) => toggleFocus(e, elementBgColor)}>
                         <Input className={cs.inputField}
@@ -46,7 +46,7 @@ const PostForm: React.FC<PropsType> = ({submit}) => {
 
                 <div className={s.item}>
                     <label className={s.label} htmlFor="title">Post:</label>
-                    <div id={'post-input-block'} className={cs.inputBlock}
+                    <div id={'post-input-block'} className={`${cs.inputBlock} ${s.input}`}
                          onFocus={(e) => toggleFocus(e, accentColor)}
                          onBlur={(e) => toggleFocus(e, elementBgColor)}>
                         <TextField className={cs.inputField}
