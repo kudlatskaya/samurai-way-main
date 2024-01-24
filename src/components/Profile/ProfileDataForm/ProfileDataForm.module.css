@@ -54,7 +54,8 @@ div[id='post-input-block'] {
     flex-direction: column;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 768px) and (min-width: 576px) {
+/*@media (max-width: 576px) {*/
     .item {
         display: flex;
         flex-direction: column;

@@ -97,15 +97,14 @@
 /*}*/
 
 
-
-@media (min-width: 992px) {
+@media (max-width: 1200px) and (min-width: 992px) {
     .nav {
         width: 335px;
     }
 }
 
 /*@media (min-width: 768px) {*/
-@media (min-width: 576px) {
+@media (max-width: 992px) {
     .nav {
         width: auto;
     }

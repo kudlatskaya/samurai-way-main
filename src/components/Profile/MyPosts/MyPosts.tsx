@@ -1,7 +1,7 @@
 import s from "./MyPosts.module.css";
 import MyPost from "./Post/MyPost";
 import {PostType} from "./MyPostsContainer";
-import PostForm from "./PostForm";
+import PostForm from "./Post/PostForm";
 
 type PropsType = {
     addPost: (post: string, title: string) => void,

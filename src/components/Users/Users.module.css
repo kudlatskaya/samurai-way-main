@@ -35,13 +35,19 @@ input[id='user-input']:focus {
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
+    justify-content: center;
 }
 
 /*.buttonBlock {*/
 /*    background-color: var();*/
 /*}*/
 
-@media (min-width: 576px) {
+/*@media (max-width: 768px) and (min-width: 576px) {*/
+/*@media (max-width: 992px) and (min-width: 576px) {*/
+/*    text-align: center;*/
+/*}*/
+
+@media (max-width: 768px) and (min-width: 576px) {
     .search {
         flex-wrap: nowrap;
     }

@@ -1,13 +1,13 @@
 import React from 'react';
 import {Field, useFormik} from "formik";
-import {textareaValidator} from "../../../utils/validators";
-import cs from "../../common/common.module.css";
-import ps from "../ProfileDataForm/ProfileDataForm.module.css";
-import {toggleFocus} from "../../../utils/forms";
-import {accentColor, elementBgColor} from "../../../constants";
+import {textareaValidator} from "../../../../utils/validators";
+import cs from "../../../common/common.module.css";
+import ps from "../../ProfileDataForm/ProfileDataForm.module.css";
+import {toggleFocus} from "../../../../utils/forms";
+import {accentColor, elementBgColor} from "../../../../constants";
 import {Input, InputAdornment, TextField} from "@mui/material";
-import ls from "../../Login/Login.module.css";
-import s from "../ProfileDataForm/ProfileDataForm.module.css";
+import ls from "../../../Login/Login.module.css";
+import s from "../../ProfileDataForm/ProfileDataForm.module.css";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
 type PropsType = {

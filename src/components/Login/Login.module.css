@@ -148,18 +148,32 @@ button[type='submit'] {
 /*.captcha input {*/
 /*    margin: 0 auto;*/
 /*}*/
-@media (min-width: 768px) {
+
+/*@media (min-width: 992px) {*/
+@media (max-width: 992px) and (min-width: 768px) {
+    .login {
+        /*width: 750px;*/
+        width: 920px;
+        height: 600px;
+    }
+}
+
+/*@media (min-width: 768px) {*/
+@media (max-width: 768px) and (min-width: 576px) {
     .login {
         width: 750px;
         height: 600px;
     }
 }
 
-@media (min-width: 992px) {
-    .login {
-        /*width: 750px;*/
-        width: 920px;
-        height: 600px;
+/*@media (min-width: 576px) {*/
+@media (max-width: 576px) {
+    .loginSidebar {
+        display: none;
+    }
+
+    .loginBlock {
+        width: 100%;
     }
 }
 

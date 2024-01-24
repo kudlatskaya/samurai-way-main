@@ -59,7 +59,7 @@
     transform: scale(1.1);
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
     .userAvatar {
         flex-wrap: wrap;
     }

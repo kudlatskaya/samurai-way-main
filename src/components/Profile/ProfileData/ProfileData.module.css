@@ -55,7 +55,8 @@
     height: 1.3rem;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 768px) and (min-width: 576px) {
+/*@media (max-width: 576px) {*/
     .userInfo table tr {
         display: flex;
         flex-direction: column;
