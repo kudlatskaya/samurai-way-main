@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/samurai-way-main/static/css/main.a67ea07e.css",
-    "main.js": "/samurai-way-main/static/js/main.1ae65e6d.js",
+    "main.css": "/samurai-way-main/static/css/main.8baaa149.css",
+    "main.js": "/samurai-way-main/static/js/main.1178c254.js",
     "static/css/901.768656cd.chunk.css": "/samurai-way-main/static/css/901.768656cd.chunk.css",
     "static/js/901.608a417f.chunk.js": "/samurai-way-main/static/js/901.608a417f.chunk.js",
     "static/css/913.9a7ff803.chunk.css": "/samurai-way-main/static/css/913.9a7ff803.chunk.css",
@@ -15,8 +15,8 @@
     "index.html": "/samurai-way-main/index.html",
     "static/media/edit.svg": "/samurai-way-main/static/media/edit.b96db9c8079a9d0f5502e0804b93b4c7.svg",
     "static/media/editPoint.svg": "/samurai-way-main/static/media/editPoint.5a22b5d21f3c4dbce102b4c096f68131.svg",
-    "main.a67ea07e.css.map": "/samurai-way-main/static/css/main.a67ea07e.css.map",
-    "main.1ae65e6d.js.map": "/samurai-way-main/static/js/main.1ae65e6d.js.map",
+    "main.8baaa149.css.map": "/samurai-way-main/static/css/main.8baaa149.css.map",
+    "main.1178c254.js.map": "/samurai-way-main/static/js/main.1178c254.js.map",
     "901.768656cd.chunk.css.map": "/samurai-way-main/static/css/901.768656cd.chunk.css.map",
     "901.608a417f.chunk.js.map": "/samurai-way-main/static/js/901.608a417f.chunk.js.map",
     "913.9a7ff803.chunk.css.map": "/samurai-way-main/static/css/913.9a7ff803.chunk.css.map",
@@ -25,7 +25,7 @@
     "651.ea307fd3.chunk.js.map": "/samurai-way-main/static/js/651.ea307fd3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a67ea07e.css",
-    "static/js/main.1ae65e6d.js"
+    "static/css/main.8baaa149.css",
+    "static/js/main.1178c254.js"
   ]
 }
