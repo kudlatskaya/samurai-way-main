@@ -76,6 +76,7 @@ const LoginForm: React.FC<PropsType> = ({submit, captchaUrl}) => {
                                 />
                             </div>
                         </div>
+
                         {/*<Input className={cs.inputField}*/}
                         {/*       {...formik.getFieldProps('captchaUrl')}*/}
                         {/*/>*/}

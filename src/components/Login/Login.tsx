@@ -34,52 +34,58 @@ const Login: React.FC<PropsType> = ({loginTC, isAuth, captchaUrl}: PropsType) =>
 
     if (isAuth) return <Redirect to={'/profile'}/>
 
-    return (
-        <div className={s.login}>
-            <div className={s.loginSidebar}>
+    return (<>
+            <div className={s.login}>
+                <div className={s.loginSidebar}>
 
-                <h2 className={s.loginSidebarTitle}>Join us</h2>
-                <p className={s.loginSidebarText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                    tellus, luctus.</p>
+                    <h2 className={s.loginSidebarTitle}>Join us</h2>
+                    <p className={s.loginSidebarText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+                        tellus, luctus.</p>
 
-                <div className={s.loginSidebarIcon}>
-                    <div className={s.iconBlock}>
-                        <Icon icon="uil-comments"/>
+                    <div className={s.loginSidebarIcon}>
+                        <div className={s.iconBlock}>
+                            <Icon icon="uil-comments"/>
+                        </div>
+                        <p>
+                            <h3>Community</h3>
+                            <p>At vero eos et accusamus et.</p>
+                        </p>
                     </div>
-                    <p>
-                        <h3>Community</h3>
-                        <p>At vero eos et accusamus et.</p>
-                    </p>
-                </div>
-                <div className={s.loginSidebarIcon}>
-                    <div className={s.iconBlock}>
-                        <Icon icon="uil-play"/>
+                    <div className={s.loginSidebarIcon}>
+                        <div className={s.iconBlock}>
+                            <Icon icon="uil-play"/>
+                        </div>
+                        <p>
+                            <h3>Music</h3>
+                            <p>At vero eos et accusamus et.</p>
+                        </p>
                     </div>
-                    <p>
-                        <h3>Music</h3>
-                        <p>At vero eos et accusamus et.</p>
-                    </p>
-                </div>
-                <div className={s.loginSidebarIcon}>
-                    <div className={s.iconBlock}>
-                        <Icon icon="uil-newspaper"/>
+                    <div className={s.loginSidebarIcon}>
+                        <div className={s.iconBlock}>
+                            <Icon icon="uil-newspaper"/>
+                        </div>
+                        <p>
+                            <h3>News</h3>
+                            <p>At vero eos et accusamus et.</p>
+                        </p>
                     </div>
-                    <p>
-                        <h3>News</h3>
-                        <p>At vero eos et accusamus et.</p>
-                    </p>
                 </div>
+
+                <div className={s.loginBlock}>
+                    <div className={s.loginLogo}>
+                        <img src={logo} alt=""/>
+                    </div>
+                    <h2 className={s.loginSidebarTitle}>Welcome</h2>
+                    <p>Join gazillions of people online</p>
+                    <LoginForm submit={submit} captchaUrl={captchaUrl}/>
+                </div>
+
+
             </div>
-
-            <div className={s.loginBlock}>
-                <div className={s.loginLogo}>
-                    <img src={logo} alt=""/>
-                </div>
-                <h2 className={s.loginSidebarTitle}>Welcome</h2>
-                <p>Join gazillions of people online</p>
-                <LoginForm submit={submit} captchaUrl={captchaUrl}/>
+            <div className={s.testAccount}>
+                email: free@samuraijs.com, password: free
             </div>
-        </div>
+        </>
     );
 };
 

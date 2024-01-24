@@ -144,6 +144,23 @@ button[type='submit'] {
 
 }
 
+.testAccount {
+    font-size: 10px;
+    text-align: center;
+    color: var(--mute-text-color);
+    height: 1rem;
+    border-radius: 1rem;
+    background-color: #000000;
+    width: fit-content;
+    padding: 0.3rem 0.7rem;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+
+}
+
 /*.captcha img,*/
 /*.captcha input {*/
 /*    margin: 0 auto;*/
