@@ -20,11 +20,19 @@ div[id='post-input-block'] {
 }
 
 .label {
-    color: var(--icon-color)
+    color: var(--icon-color);
+    /*display: table-cell;*/
 }
+
+/*.table {*/
+/*    display: table;*/
+/*}*/
 
 .item {
     display: flex;
+    /*display: table-row;*/
+    /*margin-bottom: 2rem;*/
+    border-spacing: 2rem;
     flex-direction: row;
     align-items: center;
     gap: 2rem;
@@ -32,6 +40,7 @@ div[id='post-input-block'] {
 
 .item .input {
     width: 70%;
+    /*display: table-cell;*/
 }
 
 /*.item textarea {*/

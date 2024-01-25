@@ -84,10 +84,10 @@ export default function AccountMenu({login, logout, photo}: AccountMenuPropsType
             >
 
                 <MenuItem onClick={handleClose}>
-                    <AvatarMUI />
+
                     {/*<NavLink to="/profile/28736" className={s.link}*/}
                     {/*         activeClassName={s.active}>@kudlatskaya</NavLink>*/}
-                    <NavLink to={'/profile/28736'} className={cs.link}>My account</NavLink>
+                    <NavLink to={'/profile/28736'} className={`${cs.link} ${s.itemLink}`}> <AvatarMUI /> My account</NavLink>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={logout}>
