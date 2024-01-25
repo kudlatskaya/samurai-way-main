@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import {Icon} from "@iconify/react";
 import UserName from "../UserName/UserName";
 import {LoginType} from "../../../state/reducers/authReducer";
-import UserFoto from "../Avatar/UserFoto";
+import UserFoto from "../UserFoto/UserFoto";
 import s from './AccountMenu.module.css';
 import {NavLink} from "react-router-dom";
 import cs from '../common.module.css';

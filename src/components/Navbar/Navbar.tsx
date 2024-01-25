@@ -4,7 +4,7 @@ import cs from '../common/common.module.css'
 import {NavLink} from "react-router-dom";
 import logo from '../../asets/images/logo-icon.svg'
 import {Icon} from '@iconify/react';
-import UserFoto from "../common/Avatar/UserFoto";
+import UserFoto from "../common/UserFoto/UserFoto";
 import UserName from "../common/UserName/UserName";
 import {LoginType} from "../../state/reducers/authReducer";
 
