@@ -10,9 +10,10 @@ type HeaderPropsType = {
     isAuth: boolean
     login: LoginType
     logoutTC: () => void
+    photo: null | string
 }
 
-const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
+const Header = ({isAuth, login, logoutTC, photo}: HeaderPropsType) => {
     const headerStyle = !isAuth
         ? `${s.header} ${s.headerLogin}`
         : s.header
@@ -29,7 +30,7 @@ const Header = ({isAuth, login, logoutTC}: HeaderPropsType) => {
                 {
                     isAuth
                         ? <>
-                            <AccountMenu login={login} logout={logoutTC}/>
+                            <AccountMenu login={login} logout={logoutTC} photo={photo}/>
                         </>
                         : <NavLink to="/login" className={`${linkStyle}`} activeClassName={cs.active}>
                             <div className={s.loginIcon}>

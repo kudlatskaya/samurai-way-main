@@ -7,6 +7,7 @@ import {AppStateType} from "../../state/redux-store";
 type MapStateToPropsType = {
     isAuth: boolean
     login: LoginType
+    photo: null | string
 }
 
 type MapDispatchToPropsType = {
@@ -22,7 +23,8 @@ const HeaderContainer = (props: HeaderContainerPropsType) => {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.authReducer.isAuth,
-    login: state.authReducer.login
+    login: state.authReducer.login,
+    photo: state.profileReducer.profile.photos.small,
 })
 
 export default connect(mapStateToProps, {logoutTC})(HeaderContainer);

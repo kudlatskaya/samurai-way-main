@@ -9,17 +9,18 @@ import Typography from '@mui/material/Typography';
 import {Icon} from "@iconify/react";
 import UserName from "../UserName/UserName";
 import {LoginType} from "../../../state/reducers/authReducer";
-import Avatar from "../Avatar/Avatar";
+import UserFoto from "../Avatar/UserFoto";
 import s from './AccountMenu.module.css';
 import {NavLink} from "react-router-dom";
 import cs from '../common.module.css';
 
 type AccountMenuPropsType = {
     login: LoginType,
-    logout: () => void
+    logout: () => void,
+    photo: null | string
 }
 
-export default function AccountMenu({login, logout}: AccountMenuPropsType) {
+export default function AccountMenu({login, logout, photo}: AccountMenuPropsType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -42,7 +43,7 @@ export default function AccountMenu({login, logout}: AccountMenuPropsType) {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <AvatarMUI sx={{width: 32, height: 32, marginRight: 2}}> <Avatar/></AvatarMUI>
+                        <AvatarMUI sx={{width: 32, height: 32, marginRight: 2}}> <UserFoto userFoto={photo}/></AvatarMUI>
                         <Typography sx={{ minWidth: 100 }}><UserName login={login} url={''}/></Typography>
                     </IconButton>
             </Box>

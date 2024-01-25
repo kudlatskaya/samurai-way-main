@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './Navbar.module.css';
 import cs from '../common/common.module.css'
 import {NavLink} from "react-router-dom";
 import logo from '../../asets/images/logo-icon.svg'
 import {Icon} from '@iconify/react';
-import Avatar from "../common/Avatar/Avatar";
+import UserFoto from "../common/Avatar/UserFoto";
 import UserName from "../common/UserName/UserName";
+import {LoginType} from "../../state/reducers/authReducer";
 
-const Navbar = () => {
+type NavbarPropsType = {
+    userFoto: null | string
+    userName: LoginType
+}
 
+const Navbar = ({userFoto, userName}: NavbarPropsType ) => {
 
     return (
         <nav className={s.nav}>
@@ -17,12 +22,11 @@ const Navbar = () => {
                 <p className={s.title}>Social Network</p>
                 <div className={s.userInfo}>
                     <div className={s.avatarBlock}>
-                        <Avatar/>
+                        <UserFoto userFoto={userFoto}/>
                     </div>
                     <div className={`${cs.active} ${s.login}`}>
-                        <UserName login={'kudlatskaya'} url={"/profile/28736"}/>
-                        {/*<NavLink to="/profile/28736" className={s.link}*/}
-                        {/*         activeClassName={s.active}>@kudlatskaya</NavLink>*/}
+                        <UserName login={userName} url={"/profile/28736"}/>
+
                         <p className={s.member}>Member</p>
                         <div className={s.connections}>
                             <div><span className={s.count}>0</span><p className={s.mute}>Friends</p></div>

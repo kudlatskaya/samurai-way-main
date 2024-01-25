@@ -5,25 +5,22 @@ import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/Login";
-import {connect, Provider, useDispatch} from "react-redux";
+import {connect, Provider, useDispatch, useSelector} from "react-redux";
 import {AnyAction, compose} from "redux";
 import {initializeApp} from "./state/reducers/appReducer";
 import store, {AppStateType} from "./state/redux-store";
 import Preloader from "./components/Preloader/Preloader";
 
 
-// import DialogsContainer from "./components/Dialogs/DialogsContainer";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-// import ProfileContainer from "./components/Profile/ProfileContainer";
+
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 
 type PropsType = MapDispatchToPropsType & MapStateToPropsType
 
-const App = ({initializeApp, initialized, isAuth}: PropsType) => {
+const App = ({initializeApp, initialized, isAuth, photo, login}: PropsType) => {
     const dispatch = useDispatch()
-    // const [auth, setAuth] = useState(store.getState().authReducer.isAuth)
     let wrapperStyle, wrapperBlockStyle, contentStyle
-    // let isAuth = store.getState().authReducer.isAuth
 
     let catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
         // alert('Some error occured')
@@ -55,14 +52,12 @@ const App = ({initializeApp, initialized, isAuth}: PropsType) => {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className={`${wrapperStyle}`}>
-
-
                 <div className={`app-wrapper-block ${wrapperBlockStyle}`}>
                     <HeaderContainer/>
                     <div className={`${contentStyle}`}>
                     {
                         isAuth
-                            ? <Navbar/>
+                            ? <Navbar userFoto={photo.small} userName={login}/>
                             : <div className='login-container'><LoginContainer/></div>
                     }
                     {
@@ -93,7 +88,9 @@ type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
 const mapStateToProps = (state: AppStateType) => ({
     initialized: state.appReducer.initialized,
-    isAuth: state.authReducer.isAuth
+    isAuth: state.authReducer.isAuth,
+    photo: state.profileReducer.profile.photos,
+    login: state.authReducer.login
 })
 
 const AppContainer = compose<React.ComponentType>(
