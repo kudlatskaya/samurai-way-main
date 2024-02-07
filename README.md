@@ -74,10 +74,7 @@
 - **typescript** 
 - **uuid** and **@types/uuid**
 
-* ![ts](https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label)
-* [![React][React.js]][React-url]
-* [![jest tested](https://img.shields.io/badge/Jest-tested-eee.svg?logo=jest&labelColor=99424f)](https://github.com/jestjs/jest)
-* ![react-redux](https://img.shields.io/badge/react-redux)
+ ![ts](https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label) [![React][React.js]][React-url] [![jest tested](https://img.shields.io/badge/Jest-tested-eee.svg?logo=jest&labelColor=99424f)](https://github.com/jestjs/jest) ![react-redux](https://img.shields.io/badge/react-redux)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
