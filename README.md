@@ -76,12 +76,9 @@
 
 * ![ts](https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label)
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![jest tested](https://img.shields.io/badge/Jest-tested-eee.svg?logo=jest&labelColor=99424f)](https://github.com/jestjs/jest)
+* ![react-redux](https://img.shields.io/badge/react-redux)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
