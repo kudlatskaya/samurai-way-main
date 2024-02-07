@@ -1,31 +1,4 @@
 
-В этом стартовом проекте установлены следующие библиотеки
-
-- **antd** 
-- **axios** 
-- **classnames**
-- **formik**
-- **gh-pages**
-- **jest**
-- **react** and **@types/react**
-- **react-dom** and **@types/react-dom**
-- **react-redux** and **@types/react-redux**
-- **react-router-dom** and **@types/react-router-dom**
-- **react-scripts** 
-- **react-test-renderer** and **@types/react-test-renderer**
-- **redux**
-- **redux-form** and **@types/redux-form**
-- **redux-thunk**
-- **reselect**
-- **typescript** 
-- **uuid** and **@types/uuid**
-
-После git clone 'link' установите все зависимости из package.json:
-### `yarn`
-
-а потом запустите проект:
-### `yarn start`
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -73,18 +46,23 @@
 - **typescript** 
 - **uuid** and **@types/uuid**
 
+  После git clone 'link' установите все зависимости из package.json:
+### `yarn`
+
+а потом запустите проект:
+### `yarn start`
+
+
  ![ts](https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label) [![React][React.js]][React-url] [![jest tested](https://img.shields.io/badge/Jest-tested-eee.svg?logo=jest&labelColor=99424f)](https://github.com/jestjs/jest) ![react-redux](https://img.shields.io/badge/react-redux)
 
 
-See the [open issues]([https://github.com/kudlatskaya/samurai-way-main])) for a full list of proposed features (and known issues).
-
-
-<!-- CONTACT -->
+<!-- Контакты -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Марина - [@your_twitter](https://twitter.com/your_username) - m.kudlatskaya@gmail.com
+![@linkedin]([https://www.linkedin.com/in/marina-kudlatskaya])
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/kudlatskaya/samurai-way-main]([(https://github.com/kudlatskaya/samurai-way-main)])
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
