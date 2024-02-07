@@ -59,12 +59,14 @@
 <!-- Контакты -->
 ## Contact
 
-Марина - [@your_twitter](https://twitter.com/your_username) - m.kudlatskaya@gmail.com
-![@linkedin]([https://www.linkedin.com/in/marina-kudlatskaya])
+Марина - m.kudlatskaya@gmail.com
 
-Project Link: [https://github.com/kudlatskaya/samurai-way-main]([(https://github.com/kudlatskaya/samurai-way-main)])
+![Linkedin](https://i.stack.imgur.com/gVE0j.png) [LinkedIn](https://www.linkedin.com/in/marina-kudlatskaya)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+[![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/kudlatskaya)
+
+
+
 
 
 
