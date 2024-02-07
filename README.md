@@ -74,7 +74,7 @@
 - **typescript** 
 - **uuid** and **@types/uuid**
 
-* [![Next][Next.js]][Next-url]
+* ![ts](https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label)
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Angular][Angular.io]][Angular-url]
